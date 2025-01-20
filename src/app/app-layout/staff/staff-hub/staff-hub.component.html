@@ -1,0 +1,31 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="info-card-section">
+      <div class="main-heading-section">
+        <span class="main-heading-text">Staff Hub</span>
+        <img
+          class="logo"
+          src="../../../assets/geometrical-shape-dark.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="staff-list-section">
+      <div *ngIf="permissions" class="button-section">
+        <button (click)="addStaffMember()" class="course-add-button">
+          <mat-icon>add_circle</mat-icon>
+          Add Staff Member
+        </button>
+      </div>
+      <div class="staff-items">
+        <app-staff-item
+          *ngFor="let staff of staff"
+          [staff]="staff"
+        ></app-staff-item>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

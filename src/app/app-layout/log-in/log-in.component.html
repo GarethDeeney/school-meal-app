@@ -1,0 +1,27 @@
+<div class="background">
+  <div class="log-in">
+    <img src="../../../assets/geometrical-shape-dark.png" alt="" />
+    <form [formGroup]="fg" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput placeholder="Username" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input
+          formControlName="password"
+          matInput
+          type="password"
+          placeholder="Password"
+        />
+      </mat-form-field>
+
+      <mat-error *ngIf="fg.controls.password.hasError('notMatch')"
+        >Username or Password entered doesn't match</mat-error
+      >
+      <button type="submit" class="log-in-button">Log In</button>
+    </form>
+    <div></div>
+  </div>
+</div>

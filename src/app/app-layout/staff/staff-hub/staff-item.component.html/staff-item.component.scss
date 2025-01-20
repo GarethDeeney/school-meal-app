@@ -1,0 +1,51 @@
+@import "../../../../../assets/common.scss";
+
+h2 {
+    margin: 0;
+
+}
+
+.staff-item {
+    border: 1px solid black;
+    box-shadow: 2px 2px 2px #757575;
+    width: 18rem;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 15rem;
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+.staff-text {
+    padding-left: 1rem;
+}
+
+.staff-roles {
+    display: flex;
+}
+
+.staff-role {
+    color: #000;
+    min-width: 2rem;
+    border-radius: 1rem;
+}
+
+.staff-item-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    align-items: flex-start;
+
+    .staff-button {
+        background: #212A3E;
+        border: none;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 1rem;
+
+    }
+}

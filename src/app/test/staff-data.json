@@ -1,0 +1,132 @@
+[
+  {
+    "id": "d0043f2b-a79e-4102-9699-113a1ae1e94b",
+    "username": "abatham",
+    "password": "password",
+    "name": "April Batham",
+    "role": "Accountant",
+    "startDate": "09/11/2021",
+    "image": "../../assets/user.png",
+    "courses": []
+  },
+  {
+    "id": "cb1bc135-cbf5-4e5e-beb4-c8f48d7334af",
+    "username": "sscutchings",
+    "password": "password",
+    "name": "Shaylynn Scutchings",
+    "role": "Accountant",
+    "startDate": "04/26/2022",
+    "image": "../../assets/user.png",
+    "courses": []
+  },
+  {
+    "id": "d9f92835-5877-44b7-907b-c8a4c801ef70",
+    "username": "cstanman",
+    "password": "password",
+    "name": "Carmita Stanman",
+    "role": "Accountant",
+    "startDate": "12/17/2022",
+    "image": "../../assets/user.png",
+    "courses": []
+  },
+  {
+    "id": "52826166-2dc4-4fc4-abd5-d1534fdf4100",
+    "username": "ksmith",
+    "password": "password",
+    "name": "Katherine Smith",
+    "role": "Accountant",
+    "startDate": "04/01/2023",
+    "image": "../../assets/user.png",
+    "courses": []
+  },
+  {
+    "id": "bf6fc0f6-2592-4492-9d28-e190ce6c86a3",
+    "username": "neelhalt",
+    "password": "password",
+    "name": "Neel Halt",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "05/30/2020",
+    "courses": []
+  },
+  {
+    "id": "0fa9d8bf-d94f-4424-b765-744513807f1b",
+    "username": "lshah",
+    "password": "password",
+    "name": "Leonard Shah",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "04/17/2023",
+    "courses": []
+  },
+  {
+    "id": "27710fcd-c61f-44b9-a29b-e11c80163313",
+    "username": "jyeliashev",
+    "password": "password",
+    "name": "Jillane Yeliashev",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "09/10/2022",
+    "courses": []
+  },
+  {
+    "id": "441d845c-b4dc-45d1-b55c-c369b0e6883c",
+    "username": "gdunphie",
+    "password": "password",
+    "name": "Gregorius Dunphie",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "04/22/2021",
+    "courses": []
+  },
+  {
+    "id": "463a2f7b-5f65-4cff-a102-7077a5c36edd",
+    "username": "wbarta",
+    "password": "password",
+    "name": "Walsh Barta",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "05/05/2023",
+    "courses": []
+  },
+  {
+    "id": "d6a53f77-7cef-43ac-b41a-ab927995ca01",
+    "username": "ckegan",
+    "password": "password",
+    "name": "Cristi Kegan",
+    "role": "IT",
+    "image": "../../assets/user.png",
+    "startDate": "11/03/2019",
+    "courses": []
+  },
+  {
+    "id": "b115cc94-1cd0-4265-b4a4-63370147adde",
+    "username": "gnestoruk",
+    "password": "password",
+    "image": "../../assets/user.png",
+    "name": "Gamaliel Nestoruk",
+    "role": "IT",
+    "startDate": "10/16/2022",
+    "courses": []
+  },
+  {
+    "id": "0d0c8718-a982-438d-a0c6-a763522cc3c1",
+    "username": "vmcvane",
+    "password": "password",
+    "name": "Virginie McVane",
+    "role": "HR Manager",
+    "image": "../../assets/user.png",
+    "startDate": "06/15/2023",
+    "courses": []
+  },
+  {
+    "id": "9d0dd2d8-54fb-4b94-be8f-2e57791ac967",
+    "username": "drideout",
+    "password": "password",
+    "name": "Doralyn Rideout",
+    "role": "HR Assistant",
+    "image": "../../assets/user.png",
+    "startDate": "08/27/2019",
+    "courses": []
+  }
+]

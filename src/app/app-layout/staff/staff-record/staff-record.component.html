@@ -1,0 +1,67 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="info-card-section">
+      <div class="main-heading-section">
+        <span class="main-heading-text">Staff Details</span>
+        <img
+          class="logo"
+          src="../../../assets/geometrical-shape-dark.png"
+          alt=""
+        />
+      </div>
+    </div>
+    <div class="staff-section" *ngIf="staff">
+      <div class="staff-details-section">
+        <div class="profile-section">
+          <img class="staff-image" src="../../../../assets/user.png" alt="" />
+        </div>
+        <div class="detail-section">
+          <h3><strong>Name:</strong> {{ staff.name }}</h3>
+          <h3><strong>Role:</strong> {{ staff.role }}</h3>
+          <h3><strong>StartDate:</strong> {{ staff.startDate }}</h3>
+        </div>
+      </div>
+
+      <!-- courseSection -->
+
+      <div class="course-list-section">
+        <h1>Courses</h1>
+
+        <h2>Current</h2>
+        <div *ngFor="let course of staff.courses">
+          <div *ngIf="!course.achieved" class="course-list-items">
+            <div class="course-side">
+              <img src="{{ course.image }}" alt="" />
+              <div class="course-text">
+                <p>{{ course.name }}</p>
+                <p>Acheivement: Pending</p>
+              </div>
+            </div>
+            <button
+              (click)="recordAchievement(course._id)"
+              class="course-button"
+            >
+              Record Achievement
+            </button>
+          </div>
+        </div>
+        <h2>Achieved</h2>
+
+        <div *ngFor="let course of staff.courses">
+          <div *ngIf="course.achieved" class="course-list-items">
+            <div class="course-side">
+              <img src="{{ course.image }}" alt="" />
+              <div class="course-text">
+                <p>{{ course.name }}</p>
+                <p>Acheivement: Passed</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,34 @@
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #fafafa;
+}
+
+.side-nav {
+    background: #212A3E;
+    color: #fff;
+}
+
+.main-heading {
+    &-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin: 1rem;
+        border-radius: 6px;
+        padding: 1.5rem;
+        border: 3px solid #212A3E;
+
+        img {
+            width: 10rem;
+        }
+    }
+
+    &-text {
+        font-size: 4rem;
+        color: #212A3E
+    }
+}

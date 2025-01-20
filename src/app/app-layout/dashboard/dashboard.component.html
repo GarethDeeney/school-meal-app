@@ -1,0 +1,49 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="info-card-section">
+      <div class="main-heading-section">
+        <span class="main-heading-text">Dashboard</span>
+        <img
+          class="logo"
+          src="../../../assets/geometrical-shape-dark.png"
+          alt=""
+        />
+      </div>
+
+      <div class="menu-section">
+        <div class="cards">
+          <div class="course-list-card">
+            <h1>Course History</h1>
+            <div class="courses">
+              <div class="course-card">
+                <h3>{{ coursesEnrolled }} Courses Enrolled</h3>
+              </div>
+              <div class="course-card">
+                <h3>{{ coursesCompleted }} Courses completed</h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="example-courses-card">
+            <div class="card">
+              <h1>Links</h1>
+              <div class="links">
+                <div class="course-card link">
+                  <p (click)="navigate('courses-hub')">View Courses</p>
+                </div>
+                <div class="course-card link">
+                  <p (click)="navigate('staff-hub/' + staffDetails._id)">
+                    My Details
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

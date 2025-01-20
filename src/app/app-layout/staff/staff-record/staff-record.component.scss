@@ -1,0 +1,77 @@
+@import '../../../../assets/common.scss';
+
+.staff-section {
+    padding: 2rem 1rem;
+}
+
+.staff-details-section {
+    padding: 1rem;
+    display: flex;
+    gap: 2rem;
+    padding: 1rem;
+    display: flex;
+    gap: 2rem;
+    border: 3px solid #212a3e;
+    border-radius: 0.5rem;
+
+}
+
+.staff-image {
+    border-radius: 12rem;
+    width: 11rem;
+}
+
+.detail-section {
+    margin-top: 2rem
+}
+
+.course- {
+    &list-section {
+        padding: 1rem;
+        border: 3px solid #212a3e;
+        border-radius: 0.5rem;
+        margin-top: 2rem;
+    }
+
+    &list-items {
+        display: flex;
+        margin-bottom: 2rem;
+        background: #212A3E;
+        color: #fff;
+        padding: 1rem;
+        border-radius: 15px;
+        justify-content: space-between;
+        align-items: center;
+
+        & img {
+            width: 16rem;
+        }
+
+        .course-side {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .course-text {
+            font-size: 1.5rem;
+        }
+
+        .course-button {
+            padding: 1rem;
+            background: #FFF;
+            color: #212a3e;
+            border: 2px solid #FFF;
+            border-radius: 15px;
+            font-size: 1.1rem;
+
+            &:hover {
+                background: #212a3e;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+    }
+
+
+}

@@ -1,0 +1,33 @@
+<head>
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+  />
+</head>
+<div class="side-nav">
+  <div class="side-nav-top">
+    <img class="logo" src="../../../../assets/geometrical-shape.png" alt="" />
+
+    <div class="route-list">
+      <ng-container *ngFor="let route of routes">
+        <div
+          class="route-item"
+          [routerLink]="route.url"
+          routerLinkActive="active"
+          (click)="route?.execute()"
+        >
+          <mat-icon class="">
+            <span class="mat-icon material-symbols-outlined">
+              {{ route.icon }}
+            </span>
+          </mat-icon>
+          <a class="route-text">{{ route.label }}</a>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
