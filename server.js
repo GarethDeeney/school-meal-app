@@ -20,10 +20,6 @@ app.use(express.urlencoded({ extended: false }));
 //bodyparser middleware
 app.use(bodyParser.json());
 
-const Course = require("./src/app/models/courseSchema");
-const Staff = require("./src/app/models/staffSchema");
-const CourseProvider = require("./src/app/models/courseProviderSchema");
-
 //routes
 
 app.get("/", (req, res) => {
@@ -32,167 +28,167 @@ app.get("/", (req, res) => {
 
 //Course API
 
-app.get("/api/course", async (req, res) => {
-  try {
-    if (req.query.role) {
-      const role = req.query.role;
-      const courses = await Course.find({ role: role }).sort({
-        name: 1,
-      });
-      res.status(200).json(courses);
-    } else {
-      const courses = await Course.find();
-      res.status(200).json(courses);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/api/course", async (req, res) => {
+//   try {
+//     if (req.query.role) {
+//       const role = req.query.role;
+//       const courses = await Course.find({ role: role }).sort({
+//         name: 1,
+//       });
+//       res.status(200).json(courses);
+//     } else {
+//       const courses = await Course.find();
+//       res.status(200).json(courses);
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.get("/", function (req, res) {
-  res.send("id: " + req.query.id);
-});
+// app.get("/", function (req, res) {
+//   res.send("id: " + req.query.id);
+// });
 
-app.get("/api/course/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const course = await Course.findById(id);
-    res.status(200).json(course);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/api/course/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const course = await Course.findById(id);
+//     res.status(200).json(course);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.post("/api/course", async (req, res) => {
-  try {
-    const course = await Course.create(req.body);
-    res.status(201).json(course);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.post("/api/course", async (req, res) => {
+//   try {
+//     const course = await Course.create(req.body);
+//     res.status(201).json(course);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.put("/api/course/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const course = await Course.findByIdAndUpdate(id, req.body);
-    if (!course) {
-      res.status(404).json({ message: `Cannot find course with ${id}` });
-    }
-    const updatedCourse = await Course.findById(id);
-    res.status(204).json(updatedCourse);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.put("/api/course/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const course = await Course.findByIdAndUpdate(id, req.body);
+//     if (!course) {
+//       res.status(404).json({ message: `Cannot find course with ${id}` });
+//     }
+//     const updatedCourse = await Course.findById(id);
+//     res.status(204).json(updatedCourse);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.delete("/api/course/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const course = await Course.findById(id);
-    const courseToDelete = await Course.deleteOne({ _id: id });
-    res.status(202).json(`${course.name} deleted`);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.delete("/api/course/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const course = await Course.findById(id);
+//     const courseToDelete = await Course.deleteOne({ _id: id });
+//     res.status(202).json(`${course.name} deleted`);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-// Course Provder API
+// // Course Provder API
 
-app.post("/api/courseprovider", async (req, res) => {
-  try {
-    const courseProvider = await CourseProvider.create(req.body);
-    res.status(201).json(courseProvider);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.post("/api/courseprovider", async (req, res) => {
+//   try {
+//     const courseProvider = await CourseProvider.create(req.body);
+//     res.status(201).json(courseProvider);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.put("/api/courseprovider/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const courseProvider = await CourseProvider.findByIdAndUpdate(id, req.body);
+// app.put("/api/courseprovider/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const courseProvider = await CourseProvider.findByIdAndUpdate(id, req.body);
 
-    if (!courseProvider) {
-      res.status(404).json({ message: `Cannot find course with ${id}` });
-    }
+//     if (!courseProvider) {
+//       res.status(404).json({ message: `Cannot find course with ${id}` });
+//     }
     
-    const updatedCourseProvider = await CourseProvider.findById(id);
-    res.status(204).json(updatedCourseProvider);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+//     const updatedCourseProvider = await CourseProvider.findById(id);
+//     res.status(204).json(updatedCourseProvider);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-//Staff API
+// //Staff API
 
-app.get("/api/staff", async (req, res) => {
-  try {
-    if (req.query._id) {
-      const staff = await Staff.find({ _id: req.query._id });
-      res.status(200).json(staff);
-    } else if (req.query.username) {
-      const staffDetails = await Staff.find({ username: req.query.username });
-      res.status(200).json(staffDetails);
-    } else {
-      const staff = await Staff.find();
-      res.status(200).json(staff);
-    }
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/api/staff", async (req, res) => {
+//   try {
+//     if (req.query._id) {
+//       const staff = await Staff.find({ _id: req.query._id });
+//       res.status(200).json(staff);
+//     } else if (req.query.username) {
+//       const staffDetails = await Staff.find({ username: req.query.username });
+//       res.status(200).json(staffDetails);
+//     } else {
+//       const staff = await Staff.find();
+//       res.status(200).json(staff);
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.get("/api/staff/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const staff = await Staff.findById(id);
-    res.status(200).json(staff);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/api/staff/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const staff = await Staff.findById(id);
+//     res.status(200).json(staff);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.post("/api/staff", async (req, res) => {
-  try {
-    const staff = await Staff.create(req.body);
-    res.status(200).json(staff);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.post("/api/staff", async (req, res) => {
+//   try {
+//     const staff = await Staff.create(req.body);
+//     res.status(200).json(staff);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.put("/api/staff/:id", async (req, res) => {
-  try {
-    const { id } = req.params;
-    const staff = await Staff.findByIdAndUpdate(id, req.body);
-    if (!staff) {
-      res.status(404).json({ message: `Cannot find staff with ${id}` });
-    }
-    const updatedStaff = await Staff.findById(id);
-    res.status(200).json(updatedStaff);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.put("/api/staff/:id", async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const staff = await Staff.findByIdAndUpdate(id, req.body);
+//     if (!staff) {
+//       res.status(404).json({ message: `Cannot find staff with ${id}` });
+//     }
+//     const updatedStaff = await Staff.findById(id);
+//     res.status(200).json(updatedStaff);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.get("/api/courseprovider", async (req, res) => {
-  try {
-    const courseProvider = await CourseProvider.find();
-    res.status(200).json(courseProvider);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.get("/api/courseprovider", async (req, res) => {
+//   try {
+//     const courseProvider = await CourseProvider.find();
+//     res.status(200).json(courseProvider);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
-app.post("/api/courseprovider", async (req, res) => {
-  try {
-    const courseProvider = await CourseProvider.create(req.body);
-    res.status(200).json(courseProvider);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
+// app.post("/api/courseprovider", async (req, res) => {
+//   try {
+//     const courseProvider = await CourseProvider.create(req.body);
+//     res.status(200).json(courseProvider);
+//   } catch (error) {
+//     res.status(500).json({ message: error.message });
+//   }
+// });
 
 mongoose
   .connect(mongoString, {

@@ -36,17 +36,20 @@ export class LogInComponent {
   //   }
   // };
 
-  // onSubmit = () => {
-  //   const username = this.fg.controls.username;
-  //   const password = this.fg.controls.password;
+  onSubmit = () => {
+    this.router.navigateByUrl('/dashboard')
+    console.log("Clicked")
 
-  //   password.setErrors({ notMatch: null });
-  //   password.updateValueAndValidity();
+    // const username = this.fg.controls.username;
+    // const password = this.fg.controls.password;
 
-  //   setTimeout(() => {
-  //     this.checkLoginCredentials(username, password)
-  //       ? this.router.navigateByUrl('/dashboard')
-  //       : password.setErrors({ notMatch: 'Password entered does not match' });
-  //   }, 500);
-  // };
+    // password.setErrors({ notMatch: null });
+    // password.updateValueAndValidity();
+
+    // setTimeout(() => {
+    //   this.checkLoginCredentials(username, password)
+    //     ? this.router.navigateByUrl('/dashboard')
+    //     : password.setErrors({ notMatch: 'Password entered does not match' });
+    // }, 500);
+  };
 }
