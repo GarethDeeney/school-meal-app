@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
-import { Employee } from '../../../models/employee';
 
 @Component({
   selector: 'app-side-nav',
@@ -11,14 +10,8 @@ import { Employee } from '../../../models/employee';
   providers: [HttpService],
 })
 export class SideNavComponent {
-  staffDetails$!: Observable<any>;
-  staffDetails!: Employee;
 
-  constructor(private router: Router, private http: HttpService) {
-    setTimeout(() => {
-      this.getStaffDetails();
-    }, 300);
-  }
+  constructor(private router: Router, private http: HttpService) {}
 
   supportRoutes = [
     {
@@ -65,16 +58,6 @@ export class SideNavComponent {
     ...this.supportRoutes,
   ];
 
-  getStaffDetails = (): void => {
-    if (localStorage.getItem('id')) {
-      this.staffDetails$ = this.http.getStaffDetails(
-        localStorage.getItem('id')
-      );
-      this.staffDetails$.subscribe((staff) => {
-        this.staffDetails = staff;
-      });
-    }
-  };
 
   navigate = (url: string) => {
     this.router.navigateByUrl(url);
