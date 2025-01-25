@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 
-import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { HttpClient, HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +18,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         MatToolbarModule,
         MatIconModule,
         MatTableModule,
-        HttpClientModule,
         MatSidenavModule,
         MatDatepickerModule,
     ], imports: [MatCardModule,
@@ -28,5 +27,5 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
         MatIconModule,
         MatTableModule,
         MatSidenavModule,
-        MatDatepickerModule], providers: [HttpClient, MatDatepickerModule, provideHttpClient(withInterceptorsFromDi())] })
+        MatDatepickerModule], providers: [HttpClient,MatDatepickerModule, provideHttpClient(withInterceptorsFromDi())] })
 export class MaterialModule {}
