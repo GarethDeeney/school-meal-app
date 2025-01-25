@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    standalone: false
 })
 export class DashboardComponent {
   constructor(private router: Router, private http: HttpService) {}

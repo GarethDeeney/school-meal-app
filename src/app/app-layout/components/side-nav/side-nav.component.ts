@@ -4,10 +4,11 @@ import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-  selector: 'app-side-nav',
-  templateUrl: './side-nav.component.html',
-  styleUrls: ['./side-nav.component.scss'],
-  providers: [HttpService],
+    selector: 'app-side-nav',
+    templateUrl: './side-nav.component.html',
+    styleUrls: ['./side-nav.component.scss'],
+    providers: [HttpService],
+    standalone: false
 })
 export class SideNavComponent {
 
