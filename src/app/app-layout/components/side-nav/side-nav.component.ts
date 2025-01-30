@@ -14,17 +14,35 @@ export class SideNavComponent {
 
   constructor(private router: Router, private http: HttpService) {}
 
-  supportRoutes = [
+  routes = [
     {
-      label: 'Settings',
-      url: '/settings',
-      icon: 'settings',
+      label: 'Home',
+      url: '/dashboard',
+      icon: 'home_outline',
       execute: (): void => {},
     },
     {
-      label: 'Support',
-      url: '/support',
-      icon: 'contact_support',
+      label: 'Allergens',
+      url: '/allergen/hub',
+      icon: 'account_box',
+      execute: (): void => {},
+    },
+    {
+      label: 'Child',
+      url: `/child/hub`,
+      icon: 'work',
+      execute: (): void => {},
+    },
+    {
+      label: 'Ingredients',
+      url: '/ingredient/hub',
+      icon: 'account_box',
+      execute: (): void => {},
+    },
+    {
+      label: 'Menus',
+      url: '/menu/hub',
+      icon: 'account_box',
       execute: (): void => {},
     },
     {
@@ -35,28 +53,6 @@ export class SideNavComponent {
         this.logOut();
       },
     },
-  ];
-
-  routes = [
-    {
-      label: 'Home',
-      url: '/dashboard',
-      icon: 'home_outline',
-      execute: (): void => {},
-    },
-    {
-      label: 'Course List',
-      url: `/courses-hub`,
-      icon: 'work',
-      execute: (): void => {},
-    },
-    {
-      label: 'Staff Details',
-      url: '/staff-hub',
-      icon: 'account_box',
-      execute: (): void => {},
-    },
-    ...this.supportRoutes,
   ];
 
 
