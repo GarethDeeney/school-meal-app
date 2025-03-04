@@ -1,84 +1,84 @@
 .active {
-    border-right: 0.4rem solid #fff;
+  border-right: 0.4rem solid #fff;
 }
 
 .side-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 75%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1.5rem;
+
+  &-top {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 75%;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 1.5rem;
+  }
 
-    &-top {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  &-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  & .logo {
+    width: 14rem;
+    padding-top: 2rem;
+  }
+
+  & .route {
+    &-list {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      padding-left: 2rem;
     }
 
-    &-bottom {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+    &-item {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      cursor: pointer;
+      height: 2.5rem;
+      padding: 0.5rem 0;
+      width: 12.55rem;
 
+      &:hover {
+        background-color: #fff;
+        color: #012a3e !important;
+        cursor: pointer;
+        border-radius: 15px;
+      }
     }
 
-    & .logo {
-        width: 7rem;
-        padding-top: 3rem;
+
+  }
+
+  & .action {
+    &-list {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
     }
 
-    & .route {
-        &-list {
-            margin-top: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            padding-left: 2rem;
-        }
-
-        &-item {
-            margin-top: 2rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            cursor: pointer;
-            height: 2.5rem;
-            padding: 0.5rem 0;
-            width: 12.55rem;
-
-            &:hover {
-                background-color: #fff;
-                color: #012a3e !important;
-                cursor: pointer;
-                border-radius: 15px;
-            }
-        }
+    &-item {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      padding: 0.5rem 0;
 
 
+      &:hover {
+        background-color: #fff;
+        color: #012a3e !important;
+        cursor: pointer;
+        border-radius: 15px;
+      }
     }
-
-    & .action {
-        &-list {
-            margin-top: 2rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        &-item {
-            margin-top: 2.5rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            padding: 0.5rem 0;
-
-
-            &:hover {
-                background-color: #fff;
-                color: #012a3e !important;
-                cursor: pointer;
-                border-radius: 15px;
-            }
-        }
-    }
+  }
 }

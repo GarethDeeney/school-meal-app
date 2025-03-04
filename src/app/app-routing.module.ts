@@ -22,11 +22,14 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'child/hub',
-    component: ChildHubComponent,
+    path: 'child',
     children: [
       {
-        path: ':childId',
+        path: 'hub',
+        component: ChildHubComponent,
+      },
+      {
+        path: ':_id',
         component: ChildDetailsComponent,
       },
     ],

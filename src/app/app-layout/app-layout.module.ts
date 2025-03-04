@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { BrowserModule } from '@angular/platform-browser';
@@ -11,16 +12,19 @@ import { LogInComponent } from './log-in/log-in.component';
 
 @NgModule({
   declarations: [DashboardComponent, LogInComponent],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {},
+    },
+  ],
   imports: [
     ComponentModule,
-    MaterialModule,
     BrowserModule,
     CommonModule,
-    MatInputModule,
-    FormsModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatInputModule,
+    ComponentModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [DashboardComponent],
 })

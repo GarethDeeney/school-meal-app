@@ -1,1 +1,49 @@
-<p>allergen-hub works!</p>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="action-header">
+      <h2>Child Hub</h2>
+      <button class="add-child-button" (click)="openAddChildDialog()">
+        Add Child
+        <span class="material-symbols-outlined"> add_circle </span>
+      </button>
+    </div>
+    <div
+      class="table-container"
+      *ngIf="childService.datasource$ | async as datasource"
+    >
+      <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td
+            class="element-link"
+            mat-cell
+            *matCellDef="let element"
+            (click)="navigateByToChildDetails(element)"
+          >
+            {{ element.name }}
+          </td>
+        </ng-container>
+
+        <!-- Year Column -->
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef>Year</th>
+          <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let element">
+            <span class="material-symbols-outlined more-icon"> more_vert </span>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

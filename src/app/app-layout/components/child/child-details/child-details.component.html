@@ -1,1 +1,14 @@
-<p>child-details works!</p>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="child-container" *ngIf="child$ | async as child">
+      <h2>{{ child.name }}</h2>
+
+      <div class="child-info-section">
+        <div class="child-details"></div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
