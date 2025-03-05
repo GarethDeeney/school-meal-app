@@ -6,13 +6,13 @@ export interface Allergen {
 }
 
 const allergen: Allergen = {
-  name: 'New Allergen',
-  reaction: '',
-  specialRequirements: '9',
+  "name": "New Allergen",
+  "reaction": "",
+  "specialRequirements": "",
 };
 
 const allergen2: Allergen = {
-  name: 'Another Allergen',
-  reaction: '',
-  specialRequirements: '9',
+  "name": "Another Allergen",
+  "reaction": "",
+  "specialRequirements": "",
 };

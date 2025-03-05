@@ -52,17 +52,20 @@ const routes: Routes = [
         path: ':ingredientId',
         component: IngredientDetailsComponent,
       },
-    ]
+    ],
   },
   {
-    path: 'allergen/hub',
-    component: AllergenHubComponent,
+    path: 'allergen',
     children: [
       {
-        path: ':allergenId',
+        path: 'hub',
+        component: AllergenHubComponent,
+      },
+      {
+        path: ':_id',
         component: AllergenDetailsComponent,
       },
-    ]
+    ],
   },
 ];
 

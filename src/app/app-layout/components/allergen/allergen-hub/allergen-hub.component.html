@@ -4,15 +4,15 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="action-header">
-      <h2>Child Hub</h2>
-      <button class="add-child-button" (click)="openAddChildDialog()">
-        Add Child
+      <h2>Allergen Hub</h2>
+      <button class="add-allergen-button" (click)="openAddAllergenDialog()">
+        Add Allergen
         <span class="material-symbols-outlined"> add_circle </span>
       </button>
     </div>
     <div
       class="table-container"
-      *ngIf="childService.datasource$ | async as datasource"
+      *ngIf="allergenService.datasource$ | async as datasource"
     >
       <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
         <!-- Name Column -->
@@ -22,16 +22,24 @@
             class="element-link"
             mat-cell
             *matCellDef="let element"
-            (click)="navigateByToChildDetails(element)"
+            (click)="navigateByToAllergenDetails(element)"
           >
             {{ element.name }}
           </td>
         </ng-container>
 
-        <!-- Year Column -->
-        <ng-container matColumnDef="year">
-          <th mat-header-cell *matHeaderCellDef>Year</th>
-          <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+        <!-- Reaction Column -->
+        <ng-container matColumnDef="reaction">
+          <th mat-header-cell *matHeaderCellDef>Reaction</th>
+          <td mat-cell *matCellDef="let element">{{ element.reaction }}</td>
+        </ng-container>
+
+        <!-- Special Requirements Column -->
+        <ng-container matColumnDef="specialRequirements">
+          <th mat-header-cell *matHeaderCellDef>Special Requirements</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.specialRequirements }}
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">

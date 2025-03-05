@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material-module';
 import { HttpService } from 'src/app/services/http.service';
+import { AddAllergenComponent } from './allergen/add-allergen/add-allergen.component';
 import { AllergenDetailsComponent } from './allergen/allergen-details/allergen-details.component';
 import { AllergenHubComponent } from './allergen/allergen-hub/allergen-hub.component';
 import { AddChildDetailsComponent } from './child/add-child/add-child.component';
@@ -28,6 +29,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AllergenHubComponent,
     AllergenDetailsComponent,
     AddChildDetailsComponent,
+    AddAllergenComponent,
   ],
   imports: [
     RouterModule,

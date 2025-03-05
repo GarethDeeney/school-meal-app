@@ -13,9 +13,15 @@ app.use(express.json());
 
 const customerRoutes = require("./backend/routes/customers");
 const childRoutes = require("./backend/routes/child");
+const ingredientRoutes = require("./backend/routes/ingredients");
+const allergenRoutes = require("./backend/routes/allergy");
+const mealRoutes = require("./backend/routes/meal");
 
 app.use("/api/customers", customerRoutes);
 app.use("/api/child", childRoutes);
+app.use("/api/allergen", allergenRoutes);
+app.use("/api/ingredient", ingredientRoutes);
+app.use("/api/meal", mealRoutes);
 
 app.listen(port, (err) => {
   if (!err) {
