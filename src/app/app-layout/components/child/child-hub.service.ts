@@ -1,14 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
 @Injectable({ providedIn: 'root' })
 export class ChildService {
@@ -16,17 +10,39 @@ export class ChildService {
 
   constructor(protected http: HttpClient) {}
 
+  api = '/api/child/';
+
+  formGroup = new FormGroup({
+    _id: new FormControl<string | undefined>(undefined),
+    name: new FormControl<string | undefined>(undefined, Validators.required),
+    allergies: new FormControl<any[] | undefined>(
+      undefined,
+      Validators.required
+    ),
+    year: new FormControl<string | undefined>(undefined),
+  });
+
   getChildren$() {
-    return this.http.get<Child[]>('/api/child').subscribe((children: Child[]) =>{
-      this.datasource$.next([...children])
-    });
+    return this.http
+      .get<Child[]>('/api/child')
+      .subscribe((children: Child[]) => {
+        this.datasource$.next([...children]);
+      });
   }
 
   getChildInfo$(childId: string): Observable<Child> {
-    return this.http.get<Child>(`/api/child/${childId}`);
+    return this.http.get<Child>(`${this.api}${childId}`);
   }
 
   addChild$(child: Child): Observable<Child> {
-    return this.http.post<Child>(`/api/child`, child);
+    return this.http.post<Child>(`${this.api}`, child);
+  }
+
+  updateChild$(child: Child): Observable<Child> {
+    return this.http.put<Child>(`${this.api}${child._id}`, child);
+  }
+
+  deleteChild$(id: string): Observable<any> {
+    return this.http.delete(`${this.api}${id}`);
   }
 }

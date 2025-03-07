@@ -36,13 +36,15 @@ router.post("/", async (req, res) => {
 //  PUT: update
 router.put("/:id", async (req, res) => {
   try {
+
     const id = req.params.id;
     const child = req.body;
-    const updatedChild = Child.findOneAndUpdate(
+    const updatedChild = await Child.findOneAndUpdate(
       { _id: id },
       { $set: child },
       { new: true }
     );
+
     res.status(204).json(updatedChild);
   } catch (error) {
     res.status(400).json({ message: "An error occured: ", error: error });
@@ -52,11 +54,11 @@ router.put("/:id", async (req, res) => {
 //  DELETE
 router.delete("/:id", async (req, res) => {
   try {
-    const id = req.body.params.id;
+    const id = req.params.id;
     let deletedChild = await Child.deleteOne({ _id: id });
     res.status(200).json(deletedChild);
   } catch (error) {
-    res.status(400).json({ message: "An error occured: ", error: error });
+    res.status(400).json({ message: "An error occured: ", error: error.message });
   }
 });
 

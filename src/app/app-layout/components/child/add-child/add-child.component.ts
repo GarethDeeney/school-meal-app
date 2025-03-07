@@ -17,20 +17,18 @@ export class AddChildDetailsComponent {
     public dialogRef: MatDialogRef<AddChildDetailsComponent>
   ) {}
 
-  formGroup = new FormGroup({
-    name: new FormControl(null, Validators.required),
-    allergies: new FormControl(null, Validators.required),
-    year: new FormControl(null),
-  });
-
   getChildValues(fg: FormGroup) {
+    console.log(fg);
     return {
+      _id: fg.controls['_id'].value,
       name: fg.controls['name'].value,
       allergies: <any>[],
       year: fg.controls['year'].value,
       meals: <any>[],
     };
   }
+
+  formGroup: FormGroup = this.childService.formGroup;
 
   close() {
     this.dialogRef.close();
@@ -39,11 +37,20 @@ export class AddChildDetailsComponent {
   submit() {
     const child = this.getChildValues(this.formGroup);
     this.dialogRef.close();
+    return child._id ? this.editChild(child) : this.addChild(child);
+  }
+
+  addChild(child: Child) {
     return this.childService.addChild$(child).subscribe({
       complete: () => this.childService.getChildren$(),
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  editChild(child: Child) {
+    return this.childService.updateChild$(child).subscribe({
+      complete: () => this.childService.getChildren$(),
+      error: (err) => console.log(err),
     });
   }
 }

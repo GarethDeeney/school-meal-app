@@ -22,6 +22,6 @@ export class AllergenService {
   }
 
   addAllergen$(allergen: Allergen): Observable<Allergen> {
-    return this.http.post<Allergen>(`/api/ allergen`, allergen);
+    return this.http.post<Allergen>(`/api/allergen`, allergen);
   }
 }

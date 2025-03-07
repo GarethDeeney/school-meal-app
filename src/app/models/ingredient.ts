@@ -2,17 +2,17 @@ import { Allergen } from './allergen';
 import { Nutrition } from './Nutrition';
 
 export interface Ingredient {
-  _id?: String;
-  name: String;
+  _id?: string;
+  name: string;
   allergens: Allergen[];
-  pricePerKG: String;
+  pricePerKG: Number;
   nutritionalInformation: Nutrition;
 }
 
 const ingredient: Ingredient = {
   name: 'New Ingredient',
   allergens: [],
-  pricePerKG: '9',
+  pricePerKG: 1.00,
   nutritionalInformation: {
     energy: 100,
     fat: 100,
@@ -25,7 +25,7 @@ const ingredient: Ingredient = {
 const ingredient2: Ingredient = {
   name: 'New Ingredient',
   allergens: [],
-  pricePerKG: '9',
+  pricePerKG: 1.00,
   nutritionalInformation: {
     energy: 100,
     fat: 100,

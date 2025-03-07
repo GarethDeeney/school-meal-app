@@ -1,8 +1,8 @@
 export interface Allergen {
-  _id?: String;
-  name: String;
-  reaction: String;
-  specialRequirements: String;
+  _id?: string;
+  name: string;
+  reaction: string;
+  specialRequirements: string;
 }
 
 const allergen: Allergen = {

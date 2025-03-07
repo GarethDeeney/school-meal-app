@@ -1,8 +1,8 @@
 export interface Child {
-  _id?: String;
-  name: String;
+  _id?: string;
+  name: string;
   allergies: [];
-  year: String;
+  year: string;
   meals: [];
 }
 
