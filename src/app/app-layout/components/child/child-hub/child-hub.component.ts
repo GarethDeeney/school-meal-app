@@ -26,6 +26,8 @@ export class ChildHubComponent {
   }
 
   openAddChildDialog() {
+    this.childService.formGroup.reset();
+
     this.dialog.open(AddChildDetailsComponent, {
       height: '325px',
       width: '500px',
@@ -42,7 +44,7 @@ export class ChildHubComponent {
       _id: child._id,
       name: child.name,
       year: child.year,
-      allergies: child.allergies,
+      allergens: child.allergens,
     });
 
     this.dialog.open(AddChildDetailsComponent, {

@@ -1,5 +1,5 @@
 <div class="dialog-container">
-  <h2>Add Child</h2>
+  <h2>Add Ingredient</h2>
 
   <form class="add-child-form" [formGroup]="formGroup">
     <div class="form-row">
@@ -9,19 +9,23 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Year</mat-label>
-        <input formControlName="year" matInput placeholder="Year" />
-      </mat-form-field>
-    </div>
-
-    <div class="form-row">
-      <mat-form-field>
         <mat-label>Allergies</mat-label>
         <mat-select formControlName="allergens" multiple>
           @for (allergen of allergens$ | async; track allergen) {
           <mat-option [value]="allergen">{{ allergen.name }}</mat-option>
           }
         </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Price Per kg</mat-label>
+        <input
+          formControlName="pricePerKG"
+          matInput
+          placeholder="Price Per kg"
+        />
       </mat-form-field>
     </div>
   </form>

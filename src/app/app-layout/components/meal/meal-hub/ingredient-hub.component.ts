@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient';
-import { AddIngredientComponent } from '../add-ingredient/add-ingredient.component';
-import { IngredientService } from '../ingredient.service';
+import { AddIngredientComponent } from '../add-meal/add-ingredient.component';
+import { IngredientService } from '../meal.service';
 
 @Component({
   selector: 'app-ingredient-hub',

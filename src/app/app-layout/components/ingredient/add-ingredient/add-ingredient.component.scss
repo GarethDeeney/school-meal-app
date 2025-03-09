@@ -1,0 +1,11 @@
+@use '../../../../../assets/common.scss';
+
+.dialog-container {
+  padding: 1.5rem;
+  border-radius: 15px;
+
+  .form-row {
+    display: flex;
+    gap: 2rem;
+  }
+}

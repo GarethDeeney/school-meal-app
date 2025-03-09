@@ -7,10 +7,13 @@ import { Nutrition } from 'src/app/models/Nutrition';
 import { AllergenService } from '../allergen/allergenService';
 
 @Injectable({ providedIn: 'root' })
-export class IngredientService {
+export class MealService {
   datasource$: BehaviorSubject<any[]> = new BehaviorSubject(<any>[]);
   api = '/api/ingredient/';
-  constructor(protected http: HttpClient, protected allergenService: AllergenService) {}
+  constructor(
+    protected http: HttpClient,
+    protected allergenService: AllergenService
+  ) {}
 
   allergies$ = this.allergenService.getAllergens$();
 

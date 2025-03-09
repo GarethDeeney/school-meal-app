@@ -38,7 +38,7 @@ router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const allergen = req.body;
-    const updatedAllergen = Allergen.findOneAndUpdate(
+    const updatedAllergen = await Allergen.findOneAndUpdate(
       { _id: id },
       { $set: allergen },
       { new: true }
@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
 //  DELETE
 router.delete("/:id", async (req, res) => {
   try {
-    const id = req.body.params.id;
+    const id = req.params.id;
     let deletedAllergen = await Allergen.deleteOne({ _id: id });
     res.status(200).json(deletedAllergen);
   } catch (error) {

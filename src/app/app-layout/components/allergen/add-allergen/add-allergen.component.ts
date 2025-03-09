@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { AllergenService } from '../allergenService';
+import { Allergen } from 'src/app/models/allergen';
 
 @Component({
   selector: 'app-add-allergen-details',
@@ -15,19 +16,16 @@ export class AddAllergenComponent {
     public dialogRef: MatDialogRef<AddAllergenComponent>
   ) {}
 
-  formGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    reaction: new FormControl('', Validators.required),
-    specialRequirements: new FormControl(''),
-  });
-
   getAllergenValues(fg: FormGroup) {
     return {
+      _id: fg.controls['_id'].value,
       name: fg.controls['name'].value,
       reaction: fg.controls['reaction'].value,
-      specialRequirements: fg.controls['reaction'].value,
+      specialRequirements: fg.controls['specialRequirements'].value,
     };
   }
+
+  formGroup = this.allergenService.formGroup;
 
   close() {
     this.dialogRef.close();
@@ -36,11 +34,20 @@ export class AddAllergenComponent {
   submit() {
     const allergen = this.getAllergenValues(this.formGroup);
     this.dialogRef.close();
+    return allergen._id ? this.editChild(allergen) : this.addChild(allergen);
+  }
+
+  addChild(allergen: Allergen) {
     return this.allergenService.addAllergen$(allergen).subscribe({
       complete: () => this.allergenService.getAllergens$(),
-      error: (err: any) => {
-        console.log(err);
-      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  editChild(allergen: Allergen) {
+    return this.allergenService.updateAllergen$(allergen).subscribe({
+      complete: () => this.allergenService.getAllergens$(),
+      error: (err) => console.log(err),
     });
   }
 }

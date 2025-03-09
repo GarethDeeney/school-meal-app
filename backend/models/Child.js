@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const ChildSchema = mongoose.Schema({
   id: String,
   name: String,
-  allergies: Array,
+  allergens: Array,
   year: String,
   meals: Array,
 });

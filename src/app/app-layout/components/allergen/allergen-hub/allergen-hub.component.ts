@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
-import { Child } from 'src/app/models/child';
-import { AddChildDetailsComponent } from '../../child/add-child/add-child.component';
-import { ChildService } from '../../child/child-hub.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { AllergenService } from '../allergenService';
 import { Allergen } from 'src/app/models/allergen';
 import { AddAllergenComponent } from '../add-allergen/add-allergen.component';
+import { AllergenService } from '../allergenService';
 
 @Component({
   selector: 'app-allergen-hub',
@@ -15,7 +12,12 @@ import { AddAllergenComponent } from '../add-allergen/add-allergen.component';
   standalone: false,
 })
 export class AllergenHubComponent {
-  displayedColumns: string[] = ['name', 'reaction', 'specialRequirements', 'actions'];
+  displayedColumns: string[] = [
+    'name',
+    'reaction',
+    'specialRequirements',
+    'actions',
+  ];
 
   constructor(
     protected allergenService: AllergenService,
@@ -23,17 +25,42 @@ export class AllergenHubComponent {
     public dialogRef: MatDialogRef<AddAllergenComponent>,
     protected dialog: MatDialog
   ) {
-    this.allergenService.getAllergens$();
+    this.allergenService.setDataSource();
   }
 
   openAddAllergenDialog() {
+    this.allergenService.formGroup.reset();
+
     this.dialog.open(AddAllergenComponent, {
       height: '325px',
       width: '500px',
     });
   }
 
-  navigateByToAllergenDetails = (child: Allergen) => {
-    this.router.navigateByUrl(`/allergen/${child._id}`);
+  openEditDialog(allergen: Allergen) {
+    this.allergenService.formGroup.setValue({
+      _id: allergen._id,
+      name: allergen.name,
+      reaction: allergen.reaction,
+      specialRequirements: allergen.specialRequirements,
+    });
+
+    this.dialog.open(AddAllergenComponent, {
+      height: '325px',
+      width: '500px',
+    });
+  }
+
+  navigateByToAllergenDetails = (allergen: Allergen) => {
+    this.router.navigateByUrl(`/allergen/${allergen._id}`);
   };
+
+  deleteAllergen(id: string) {
+    return this.allergenService.deleteAllergen$(id).subscribe({
+      complete: () => this.allergenService.getAllergens$(),
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
 }

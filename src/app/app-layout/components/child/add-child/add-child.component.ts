@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Allergen } from 'src/app/models/allergen';
+import { AllergenService } from '../../allergen/allergenService';
 
 @Component({
   selector: 'app-add-child-details',
@@ -14,15 +16,17 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddChildDetailsComponent {
   constructor(
     protected childService: ChildService,
-    public dialogRef: MatDialogRef<AddChildDetailsComponent>
+    public dialogRef: MatDialogRef<AddChildDetailsComponent>,
+    protected allergenService: AllergenService
   ) {}
 
-  getChildValues(fg: FormGroup) {
-    console.log(fg);
+  allergens$ = this.allergenService.getAllergens$();
+
+  getChildValues(fg: FormGroup): Child {
     return {
       _id: fg.controls['_id'].value,
       name: fg.controls['name'].value,
-      allergies: <any>[],
+      allergens: fg.controls['allergens'].value,
       year: fg.controls['year'].value,
       meals: <any>[],
     };

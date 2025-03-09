@@ -38,7 +38,7 @@ router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const meal = req.body;
-    const updatedMeal = Meal.findOneAndUpdate(
+    const updatedMeal = await Meal.findOneAndUpdate(
       { _id: id },
       { $set: meal },
       { new: true }
@@ -52,7 +52,7 @@ router.put("/:id", async (req, res) => {
 //  DELETE
 router.delete("/:id", async (req, res) => {
   try {
-    const id = req.body.params.id;
+    const id = req.params.id;
     let deletedMeal = await Meal.deleteOne({ _id: id });
     res.status(200).json(deletedMeal);
   } catch (error) {

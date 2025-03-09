@@ -11,6 +11,7 @@ import { AllergenHubComponent } from './allergen/allergen-hub/allergen-hub.compo
 import { AddChildDetailsComponent } from './child/add-child/add-child.component';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { ChildHubComponent } from './child/child-hub/child-hub.component';
+import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { IngredientDetailsComponent } from './ingredient/ingredient-details/ingredient-details.component';
 import { IngredientHubComponent } from './ingredient/ingredient-hub/ingredient-hub.component';
 import { MenuDetailsComponent } from './menu/menu-details/menu-details.component';
@@ -30,6 +31,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AllergenDetailsComponent,
     AddChildDetailsComponent,
     AddAllergenComponent,
+    AddIngredientComponent,
   ],
   imports: [
     RouterModule,
