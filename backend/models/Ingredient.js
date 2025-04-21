@@ -1,13 +1,17 @@
 const mongoose = require("mongoose");
 
-const Nutrition = require('./Nutrition')
-
 const ingredientSchema = mongoose.Schema({
-  id:  String,
-  name:  String,
-  allergens:  Array,
+  id: String,
+  name: String,
+  allergens: Array,
   pricePerKG: Number,
-  nutritionalInformation: Array
+  nutrition: {
+    energy: Number,
+    fat: Number,
+    saturates: Number,
+    sugars: Number,
+    salt: Number,
+  },
 });
 
 const Ingredient = mongoose.model("Ingredient", ingredientSchema);

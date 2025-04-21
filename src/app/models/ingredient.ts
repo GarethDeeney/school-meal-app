@@ -5,15 +5,15 @@ export interface Ingredient {
   _id?: string;
   name: string;
   allergens: Allergen[];
-  pricePerKG: Number;
-  nutritionalInformation: Nutrition;
+  pricePerKG: number;
+  nutrition: Nutrition;
 }
 
 const ingredient: Ingredient = {
   name: 'New Ingredient',
   allergens: [],
   pricePerKG: 1.00,
-  nutritionalInformation: {
+  nutrition: {
     energy: 100,
     fat: 100,
     saturates: 100,
@@ -26,7 +26,7 @@ const ingredient2: Ingredient = {
   name: 'New Ingredient',
   allergens: [],
   pricePerKG: 1.00,
-  nutritionalInformation: {
+  nutrition: {
     energy: 100,
     fat: 100,
     saturates: 100,

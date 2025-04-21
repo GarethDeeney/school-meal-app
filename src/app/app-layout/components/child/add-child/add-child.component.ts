@@ -22,6 +22,8 @@ export class AddChildDetailsComponent {
 
   allergens$ = this.allergenService.getAllergens$();
 
+  compareAllergens = (a: any, b: any) => a.id == b.id;
+
   getChildValues(fg: FormGroup): Child {
     return {
       _id: fg.controls['_id'].value,

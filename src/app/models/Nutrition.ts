@@ -1,7 +1,7 @@
 export interface Nutrition {
-  energy:  Number,
-  fat:  Number,
-  saturates:  Number,
-  sugars: Number,
-  salt: Number
+  energy:  number,
+  fat:  number,
+  saturates:  number,
+  sugars: number,
+  salt: number
 }

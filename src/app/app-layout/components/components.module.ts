@@ -17,6 +17,9 @@ import { IngredientHubComponent } from './ingredient/ingredient-hub/ingredient-h
 import { MenuDetailsComponent } from './menu/menu-details/menu-details.component';
 import { MenuHubComponent } from './menu/menu-hub/menu-hub.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
+import { MealHubComponent } from './meal/meal-hub/meal-hub.component';
+import { MealCardComponent } from './meal/meal-details/meal-card.component';
+import { AddMealComponent } from './meal/add-meal/add-meal.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AddChildDetailsComponent,
     AddAllergenComponent,
     AddIngredientComponent,
+    MealHubComponent,
+    MealCardComponent,
+    AddMealComponent,
   ],
   imports: [
     RouterModule,

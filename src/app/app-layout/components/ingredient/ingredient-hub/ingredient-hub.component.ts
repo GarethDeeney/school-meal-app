@@ -20,13 +20,12 @@ export class IngredientHubComponent {
     public dialogRef: MatDialogRef<AddIngredientComponent>,
     protected dialog: MatDialog
   ) {
-    this.ingredientService.getIngredients$();
+    this.ingredientService.setDataSource();
   }
 
-  openAddIngredientDialog() {
+  openIngredientDialog() {
     this.dialog.open(AddIngredientComponent, {
-      height: '325px',
-      width: '500px',
+      maxHeight: '100%',
     });
   }
 
@@ -40,18 +39,22 @@ export class IngredientHubComponent {
       name: ingredient.name,
       allergens: ingredient.allergens,
       pricePerKG: ingredient.pricePerKG,
-      nutritionalInformation: ingredient.nutritionalInformation,
+      nutrition: {
+        energy: ingredient.nutrition.energy,
+        fat: ingredient.nutrition.fat,
+        sugars: ingredient.nutrition.sugars,
+        saturates: ingredient.nutrition.saturates,
+        salt: ingredient.nutrition.salt,
+
+      },
     });
 
-    this.dialog.open(AddIngredientComponent, {
-      height: '325px',
-      width: '500px',
-    });
+    this.openIngredientDialog();
   }
 
   deleteAllergen(id: string) {
     return this.ingredientService.deleteIngredient$(id).subscribe({
-      complete: () => this.ingredientService.getIngredients$(),
+      complete: () => this.ingredientService.setDataSource(),
       error: (err) => {
         console.log(err);
       },

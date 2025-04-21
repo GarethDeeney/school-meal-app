@@ -5,21 +5,27 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Nutrition } from 'src/app/models/Nutrition';
 import { AllergenService } from '../allergen/allergenService';
+import { Allergen } from 'src/app/models/allergen';
 
 @Injectable({ providedIn: 'root' })
 export class IngredientService {
   datasource$: BehaviorSubject<any[]> = new BehaviorSubject(<any>[]);
   api = '/api/ingredient/';
-  constructor(protected http: HttpClient, protected allergenService: AllergenService) {}
+  constructor(
+    protected http: HttpClient,
+    protected allergenService: AllergenService
+  ) {}
 
   allergies$ = this.allergenService.getAllergens$();
 
-  getIngredients$() {
-    return this.http
-      .get<Ingredient[]>(`${this.api}`)
-      .subscribe((ingredients: Ingredient[]) => {
-        this.datasource$.next([...ingredients]);
-      });
+  getIngredients$(): Observable<Ingredient[]> {
+    return this.http.get<Ingredient[]>(`${this.api}`);
+  }
+
+  setDataSource() {
+    this.getIngredients$().subscribe((allergens: Ingredient[]) => {
+      this.datasource$.next([...allergens]);
+    });
   }
 
   formGroup = new FormGroup({
@@ -29,8 +35,14 @@ export class IngredientService {
       undefined,
       Validators.required
     ),
-    nutritionalInformation: new FormControl<Nutrition | undefined>(undefined),
-    pricePerKG: new FormControl<Number | undefined>(undefined),
+    nutrition: new FormGroup({
+      energy: new FormControl<number | undefined>(undefined),
+      fat: new FormControl<number | undefined>(undefined),
+      saturates: new FormControl<number | undefined>(undefined),
+      sugars: new FormControl<number | undefined>(undefined),
+      salt: new FormControl<number | undefined>(undefined),
+    }),
+    pricePerKG: new FormControl<number | undefined>(undefined),
   });
 
   getIngredientInfo$(ingredientId: string): Observable<Ingredient> {
@@ -42,6 +54,7 @@ export class IngredientService {
   }
 
   updateIngredient$(ingredient: Ingredient): Observable<Ingredient> {
+    console.log(ingredient);
     return this.http.put<Ingredient>(
       `${this.api}${ingredient._id}`,
       ingredient

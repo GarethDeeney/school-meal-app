@@ -10,7 +10,11 @@
 
       <mat-form-field>
         <mat-label>Allergies</mat-label>
-        <mat-select formControlName="allergens" multiple>
+        <mat-select
+          formControlName="allergens"
+          multiple
+          [compareWith]="compareAllergens"
+        >
           @for (allergen of allergens$ | async; track allergen) {
           <mat-option [value]="allergen">{{ allergen.name }}</mat-option>
           }
@@ -27,6 +31,52 @@
           placeholder="Price Per kg"
         />
       </mat-form-field>
+    </div>
+
+    <h3>Nutrional Information per 100g</h3>
+    <div formGroupName="nutrition">
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Energy</mat-label>
+          <input
+            formControlName="energy"
+            matInput
+            placeholder="Energy per 100g"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Fats</mat-label>
+          <input formControlName="fat" matInput placeholder="Fats per 100g" />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Saturates</mat-label>
+          <input
+            formControlName="saturates"
+            matInput
+            placeholder="Saturates per 100g"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sugars</mat-label>
+          <input
+            formControlName="sugars"
+            matInput
+            placeholder="Sugars per 100g"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Salt</mat-label>
+          <input formControlName="salt" matInput placeholder="Salt per 100g" />
+        </mat-form-field>
+      </div>
     </div>
   </form>
 

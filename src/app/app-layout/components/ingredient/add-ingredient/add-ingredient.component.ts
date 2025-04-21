@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Form, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { Allergen } from 'src/app/models/allergen';
@@ -21,11 +21,18 @@ export class AddIngredientComponent {
   allergens$: Observable<Allergen[]> = this.ingredientService.allergies$;
 
   getIngredientValues(fg: FormGroup) {
+    const nutrition = fg.controls['nutrition'] as FormGroup;
     return {
       _id: fg.controls['_id'].value,
       name: fg.controls['name'].value,
       allergens: fg.controls['allergens'].value,
-      nutritionalInformation: fg.controls['nutritionalInformation'].value,
+      nutrition: {
+        energy: nutrition.controls['energy'].value,
+        fat: nutrition.controls['fat'].value,
+        saturates: nutrition.controls['saturates'].value,
+        salt: nutrition.controls['salt'].value,
+        sugars: nutrition.controls['sugars'].value,
+      },
       pricePerKG: fg.controls['pricePerKG'].value,
     };
   }
@@ -34,6 +41,8 @@ export class AddIngredientComponent {
   close() {
     this.dialogRef.close();
   }
+
+  compareAllergens = (a: any, b: any) => a.id == b.id;
 
   submit() {
     const ingredient = this.getIngredientValues(this.formGroup);

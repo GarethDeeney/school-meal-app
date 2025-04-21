@@ -2,9 +2,8 @@ const mongoose = require("mongoose");
 
 const mealSchema = mongoose.Schema({
   id: String,
-  name:  String,
-  ingredients:  Array,
-  allergens: Array,
+  name: String,
+  ingredients: Array,
 });
 
 const Meal = mongoose.model("Meal", mealSchema);

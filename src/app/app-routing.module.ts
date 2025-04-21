@@ -10,6 +10,7 @@ import { MenuDetailsComponent } from './app-layout/components/menu/menu-details/
 import { MenuHubComponent } from './app-layout/components/menu/menu-hub/menu-hub.component';
 import { DashboardComponent } from './app-layout/dashboard/dashboard.component';
 import { LogInComponent } from './app-layout/log-in/log-in.component';
+import { MealHubComponent } from './app-layout/components/meal/meal-hub/meal-hub.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,10 @@ const routes: Routes = [
         component: ChildDetailsComponent,
       },
     ],
+  },
+  {
+    path: 'meal/hub',
+    component: MealHubComponent,
   },
   {
     path: 'menu/hub',

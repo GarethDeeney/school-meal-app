@@ -39,7 +39,6 @@ export class ChildHubComponent {
   };
 
   openEditDialog(child: Child) {
-    console.log(child);
     this.childService.formGroup.setValue({
       _id: child._id,
       name: child.name,

@@ -4,7 +4,7 @@ const AllergenSchema = mongoose.Schema({
   id: String,
   name: String,
   reaction: String,
-  specialRequirements: String,
+  specialRequirements: String
 });
 
 const Allergen = mongoose.model("Allergen", AllergenSchema);

@@ -4,14 +4,13 @@ import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 
 @Component({
-    selector: 'app-side-nav',
-    templateUrl: './side-nav.component.html',
-    styleUrls: ['./side-nav.component.scss'],
-    providers: [HttpService],
-    standalone: false
+  selector: 'app-side-nav',
+  templateUrl: './side-nav.component.html',
+  styleUrls: ['./side-nav.component.scss'],
+  providers: [HttpService],
+  standalone: false,
 })
 export class SideNavComponent {
-
   constructor(private router: Router, private http: HttpService) {}
 
   routes = [
@@ -40,6 +39,12 @@ export class SideNavComponent {
       execute: (): void => {},
     },
     {
+      label: 'Meals',
+      url: '/meal/hub',
+      icon: 'account_box',
+      execute: (): void => {},
+    },
+    {
       label: 'Menus',
       url: '/menu/hub',
       icon: 'account_box',
@@ -54,7 +59,6 @@ export class SideNavComponent {
       },
     },
   ];
-
 
   navigate = (url: string) => {
     this.router.navigateByUrl(url);

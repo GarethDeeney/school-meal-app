@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { IngredientHubComponent } from './ingredient-hub.component';
+import { IngredientHubComponent } from './meal-hub.component';
 
 describe('IngredientHubComponent', () => {
   let component: IngredientHubComponent;

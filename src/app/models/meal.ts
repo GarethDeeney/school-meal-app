@@ -4,6 +4,5 @@ import { Ingredient } from './ingredient';
 export interface Meal {
   _id?: string;
   name: string;
-  ingredients: Ingredient[];
-  allergens: Allergen[];
+  ingredients: { ingredient: Ingredient; amount: number }[];
 }
