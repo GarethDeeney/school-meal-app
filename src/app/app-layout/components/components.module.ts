@@ -6,32 +6,32 @@ import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material-module';
 import { HttpService } from 'src/app/services/http.service';
 import { AddAllergenComponent } from './allergen/add-allergen/add-allergen.component';
-import { AllergenDetailsComponent } from './allergen/allergen-details/allergen-details.component';
 import { AllergenHubComponent } from './allergen/allergen-hub/allergen-hub.component';
 import { AddChildDetailsComponent } from './child/add-child/add-child.component';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { ChildHubComponent } from './child/child-hub/child-hub.component';
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
-import { IngredientDetailsComponent } from './ingredient/ingredient-details/ingredient-details.component';
 import { IngredientHubComponent } from './ingredient/ingredient-hub/ingredient-hub.component';
-import { MenuDetailsComponent } from './menu/menu-details/menu-details.component';
+import { AddMealComponent } from './meal/add-meal/add-meal.component';
+import { MealCardInfoComponent } from './meal/meal-card-info/meal-card-info.component';
+import { MealCardComponent } from './meal/meal-card/meal-card.component';
+import { MealHubComponent } from './meal/meal-hub/meal-hub.component';
+import { AddMenuComponent } from './menu/add-menu/add-menu.component';
+import { MenuCardComponent } from './menu/menu-card/menu-card.component';
 import { MenuHubComponent } from './menu/menu-hub/menu-hub.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { MealHubComponent } from './meal/meal-hub/meal-hub.component';
-import { MealCardComponent } from './meal/meal-details/meal-card.component';
-import { AddMealComponent } from './meal/add-meal/add-meal.component';
 
 @NgModule({
   declarations: [
+    MealCardInfoComponent,
+    AddMenuComponent,
     SideNavComponent,
     ChildHubComponent,
     ChildDetailsComponent,
-    MenuDetailsComponent,
+    MenuCardComponent,
     MenuHubComponent,
     IngredientHubComponent,
-    IngredientDetailsComponent,
     AllergenHubComponent,
-    AllergenDetailsComponent,
     AddChildDetailsComponent,
     AddAllergenComponent,
     AddIngredientComponent,

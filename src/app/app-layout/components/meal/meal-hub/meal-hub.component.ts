@@ -13,17 +13,16 @@ import { BehaviorSubject } from 'rxjs';
   standalone: false,
 })
 export class MealHubComponent {
-  meals!: Meal[];
   constructor(
     protected mealService: MealService,
     protected router: Router,
-    // public dialogRef: MatDialogRef<AddIngredientComponent>,
     protected dialog: MatDialog
   ) {
-    this.mealService.getMeals$();
+    this.mealService.setMeals();
   }
 
   openMealDialog() {
+    this.mealService.formGroup = this.mealService.setupFormGroup();
     this.dialog.open(AddMealComponent, {
       maxHeight: '100%',
     });

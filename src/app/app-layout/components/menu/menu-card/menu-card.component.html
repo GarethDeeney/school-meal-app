@@ -1,0 +1,20 @@
+<mat-expansion-panel [expanded]="true">
+  <mat-expansion-panel-header class="expansion-header">
+    <mat-panel-title> {{ menu.name }} </mat-panel-title>
+    <div class="icons">
+      <mat-icon class="icon" (click)="openEditDialog(menu)" >edit</mat-icon>
+      <mat-icon class="icon" (click)="deleteMenu(menu._id)" >delete</mat-icon>
+    </div>
+  </mat-expansion-panel-header>
+  @for (meal of menu.meals; track meal) {
+  <div class="meal-info">
+    <h3>{{ meal.name }}</h3>
+    <h4>Ingredients</h4>
+    <p>{{ setIngredientList(meal.ingredients) }}</p>
+    <p>{{ setAllergenList(meal.ingredients) }}</p>
+    <hr />
+  </div>
+  } @empty {
+  <p>No ingredient information available.</p>
+  }
+</mat-expansion-panel>

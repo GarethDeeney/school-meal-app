@@ -10,7 +10,6 @@ import { IngredientService } from '../ingredient/ingredient.service';
 
 @Injectable({ providedIn: 'root' })
 export class MealService {
-  datasource$: BehaviorSubject<any[]> = new BehaviorSubject(<any>[]);
   api = '/api/meal/';
   constructor(
     protected http: HttpClient,
@@ -20,7 +19,11 @@ export class MealService {
   meals$ = new BehaviorSubject<Meal[]>([]);
 
   getMeals$() {
-    return this.http.get<Meal[]>(`${this.api}`).subscribe((meals) => {
+    return this.http.get<Meal[]>(`${this.api}`);
+  }
+
+  setMeals() {
+    this.getMeals$().subscribe((meals) => {
       this.meals$.next(meals);
     });
   }
@@ -41,49 +44,38 @@ export class MealService {
     this.ingredients.removeAt(index);
   };
 
-  formGroup = new FormGroup({
-    _id: new FormControl<string | undefined>(undefined),
-    name: new FormControl<string | undefined>(undefined, Validators.required),
-    ingredients: new FormArray<FormGroup>(
-      [
-        new FormGroup({
-          ingredient: new FormControl(),
-          amount: new FormControl(),
-        }),
-      ],
-      Validators.required
-    ),
-  });
-
-  // addFormGroup = () => {
-  //   this.formGroup.controls['ingredients'].push(new FormGroup({}));
-  // };
-
-  // emptyformGroup = new FormGroup({
-  //   ingredient: new FormControl(undefined),
-  // });
-
-  // getIngredientInfo$(ingredientId: string): Observable<Ingredient> {
-  //   return this.http.get<Ingredient>(`${this.api}${ingredientId}`);
-  // }
-
   addMeal$(meal: Meal): Observable<Meal> {
     return this.http.post<Meal>(`${this.api}`, meal);
   }
 
-  // updateIngredient$(ingredient: Ingredient): Observable<Ingredient> {
-  //   return this.http.put<Ingredient>(
-  //     `${this.api}${ingredient._id}`,
-  //     ingredient
-  //   );
-  // }
+  editMeal$(meal: Meal): Observable<Meal> {
+    return this.http.put<Meal>(`${this.api}${meal._id}`, meal);
+  }
 
-  // deleteIngredient$(id: string): Observable<any> {
-  //   return this.http.delete(`${this.api}${id}`);
-  // }
+  deleteMeal$(id: string): Observable<any> {
+    return this.http.delete(`${this.api}${id}`);
+  }
+
+  setupFormGroup = () => {
+    return new FormGroup({
+      _id: new FormControl<string | undefined>(undefined),
+      name: new FormControl<string | undefined>(undefined, Validators.required),
+      ingredients: new FormArray<FormGroup>(
+        [
+          new FormGroup({
+            ingredient: new FormControl(),
+            amount: new FormControl(),
+          }),
+        ],
+        Validators.required
+      ),
+    });
+  };
+
+  formGroup = this.setupFormGroup();
 }
 
-const meals = [
+export const meals = [
   {
     name: 'A new meal',
     ingredients: [

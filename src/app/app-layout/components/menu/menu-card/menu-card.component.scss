@@ -1,0 +1,60 @@
+@use '@angular/material' as mat;
+
+// Customize the entire app. Change :root to your selector if you want to scope the styles.
+@include mat.expansion-overrides((header-text-size: 3rem));
+
+.meal-card {
+  background: #fff;
+  box-shadow: -1px -1px 5px 1px rgba(217, 217, 217, 1);
+  margin: 5px;
+  padding: 0.5rem;
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+
+    & .icon {
+      &:hover {
+        background: lightgray
+      }
+    }
+  }
+}
+
+.expansion-header {
+
+  mat-panel-title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+  }
+
+  .icons {
+    padding-right: 1rem;
+    gap: 0.5rem;
+    display: flex;
+
+    & .icon {
+      padding: 0.25rem;
+      border-radius: 15px;
+
+      &:hover {
+        background: lightgray;
+
+      }
+    }
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  text-transform: capitalize;
+}
+
+h4 {
+  font-weight: bold;
+}
+
+.meal-info {
+  padding: 0.5rem;
+}

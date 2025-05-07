@@ -55,9 +55,7 @@ export class ChildHubComponent {
   deleteChild(id: string) {
     return this.childService.deleteChild$(id).subscribe({
       complete: () => this.childService.getChildren$(),
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => console.log(err),
     });
   }
 }

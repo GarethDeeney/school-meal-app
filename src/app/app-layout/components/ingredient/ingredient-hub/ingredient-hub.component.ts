@@ -45,19 +45,16 @@ export class IngredientHubComponent {
         sugars: ingredient.nutrition.sugars,
         saturates: ingredient.nutrition.saturates,
         salt: ingredient.nutrition.salt,
-
       },
     });
 
     this.openIngredientDialog();
   }
 
-  deleteAllergen(id: string) {
+  deleteIngredient(id: string) {
     return this.ingredientService.deleteIngredient$(id).subscribe({
       complete: () => this.ingredientService.setDataSource(),
-      error: (err) => {
-        console.log(err);
-      },
+      error: (err) => console.log(err),
     });
   }
 }

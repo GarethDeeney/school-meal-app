@@ -1,0 +1,13 @@
+<div class="meal-card">
+  <div class="meal-card-header">
+    <h2>{{ meal.name }}</h2>
+    <div class="icons">
+      <mat-icon class="icon" (click)="openEditDialog(meal)">edit</mat-icon>
+      <mat-icon class="icon" (click)="deleteMeal(meal._id!)">delete</mat-icon>
+    </div>
+  </div>
+
+  <mat-accordion>
+    <app-meal-card-info [meal]="meal"></app-meal-card-info>
+  </mat-accordion>
+</div>

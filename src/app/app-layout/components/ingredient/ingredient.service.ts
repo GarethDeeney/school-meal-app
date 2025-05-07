@@ -23,8 +23,8 @@ export class IngredientService {
   }
 
   setDataSource() {
-    this.getIngredients$().subscribe((allergens: Ingredient[]) => {
-      this.datasource$.next([...allergens]);
+    this.getIngredients$().subscribe((ingredients: Ingredient[]) => {
+      this.datasource$.next([...ingredients]);
     });
   }
 

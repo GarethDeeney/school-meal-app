@@ -32,29 +32,33 @@ export class AddMealComponent {
     };
   }
 
+  compareIngredients = (a: any, b: any) => a.id == b.id;
+
   close() {
     this.dialogRef.close();
   }
   submit() {
     const meal = this.getMealValues(this.service.formGroup);
-    this.addMeal(meal);
+    return meal._id ? this.editMeal(meal) : this.addMeal(meal);
   }
 
   addMeal(meal: Meal) {
     return this.service.addMeal$(meal).subscribe({
       complete: () => {
         this.dialogRef.close();
-        this.service.getMeals$();
+        this.service.setMeals();
+      },
+      error: (err) => console.log(err),
+    });
+  }
+
+  editMeal(meal: Meal) {
+    return this.service.editMeal$(meal).subscribe({
+      complete: () => {
+        this.dialogRef.close();
+        this.service.setMeals();
       },
       error: (err) => console.log(err),
     });
   }
 }
-
-// submit() {
-//   const ingredient = this.getIngredientValues(this.formGroup);
-//   this.dialogRef.close();
-//   return ingredient._id
-//     ? this.editIngredient(ingredient)
-//     : this.addIngredient(ingredient);
-// }

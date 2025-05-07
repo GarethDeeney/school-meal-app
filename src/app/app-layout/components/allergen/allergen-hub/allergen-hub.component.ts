@@ -57,10 +57,8 @@ export class AllergenHubComponent {
 
   deleteAllergen(id: string) {
     return this.allergenService.deleteAllergen$(id).subscribe({
-      complete: () => this.allergenService.getAllergens$(),
-      error: (err) => {
-        console.log(err);
-      },
+      complete: () => this.allergenService.setDataSource(),
+      error: (err) => console.log(err),
     });
   }
 }
