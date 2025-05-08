@@ -6,6 +6,7 @@ import { Child } from 'src/app/models/child';
 import { AddChildDetailsComponent } from '../add-child/add-child.component';
 import { ChildService } from '../child-hub.service';
 import { FormControl, Validators } from '@angular/forms';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-child-hub',
@@ -20,7 +21,8 @@ export class ChildHubComponent {
     protected childService: ChildService,
     protected router: Router,
     public dialogRef: MatDialogRef<AddChildDetailsComponent>,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    private snackbarService: SnackbarService
   ) {
     this.childService.getChildren$();
   }
@@ -54,7 +56,10 @@ export class ChildHubComponent {
 
   deleteChild(id: string) {
     return this.childService.deleteChild$(id).subscribe({
-      complete: () => this.childService.getChildren$(),
+      complete: () => {
+        this.childService.getChildren$();
+        this.snackbarService.openSnackBar('Child Deleted Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

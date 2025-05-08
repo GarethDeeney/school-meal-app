@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient';
 import { AddIngredientComponent } from '../add-ingredient/add-ingredient.component';
 import { IngredientService } from '../ingredient.service';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-ingredient-hub',
@@ -18,7 +19,8 @@ export class IngredientHubComponent {
     protected ingredientService: IngredientService,
     protected router: Router,
     public dialogRef: MatDialogRef<AddIngredientComponent>,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    private snackbarService: SnackbarService
   ) {
     this.ingredientService.setDataSource();
   }
@@ -53,7 +55,10 @@ export class IngredientHubComponent {
 
   deleteIngredient(id: string) {
     return this.ingredientService.deleteIngredient$(id).subscribe({
-      complete: () => this.ingredientService.setDataSource(),
+      complete: () => {
+        this.ingredientService.setDataSource(),
+          this.snackbarService.openSnackBar('Ingredient Deleted Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

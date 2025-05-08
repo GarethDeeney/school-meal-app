@@ -7,6 +7,7 @@ import { AddMealComponent } from '../add-meal/add-meal.component';
 import { MealService } from '../meal.service';
 import { Ingredient } from 'src/app/models/ingredient';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-meal-card',
@@ -17,7 +18,8 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 export class MealCardComponent {
   constructor(
     protected dialog: MatDialog,
-    protected mealService: MealService
+    protected mealService: MealService,
+    private snackbarService: SnackbarService
   ) {}
 
   @Input() meal!: Meal;
@@ -71,7 +73,10 @@ export class MealCardComponent {
 
   deleteMeal(mealId: string) {
     return this.mealService.deleteMeal$(mealId).subscribe({
-      complete: () => this.mealService.setMeals(),
+      complete: () => {
+        this.mealService.setMeals();
+        this.snackbarService.openSnackBar('Meal Deleted Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

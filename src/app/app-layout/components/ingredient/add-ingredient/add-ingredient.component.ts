@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { Allergen } from 'src/app/models/allergen';
 import { Ingredient } from 'src/app/models/ingredient';
 import { IngredientService } from '../ingredient.service';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-add-ingredient-details',
@@ -15,7 +16,8 @@ import { IngredientService } from '../ingredient.service';
 export class AddIngredientComponent {
   constructor(
     protected ingredientService: IngredientService,
-    public dialogRef: MatDialogRef<AddIngredientComponent>
+    public dialogRef: MatDialogRef<AddIngredientComponent>,
+    private snackbarService: SnackbarService
   ) {}
 
   allergens$: Observable<Allergen[]> = this.ingredientService.allergies$;
@@ -54,14 +56,20 @@ export class AddIngredientComponent {
 
   addIngredient(ingredient: Ingredient) {
     return this.ingredientService.addIngredient$(ingredient).subscribe({
-      complete: () => this.ingredientService.getIngredients$(),
+      complete: () => {
+        this.ingredientService.getIngredients$();
+        this.snackbarService.openSnackBar('Ingredient Created Successfully');
+      },
       error: (err) => console.log(err),
     });
   }
 
   editIngredient(ingredient: Ingredient) {
     return this.ingredientService.updateIngredient$(ingredient).subscribe({
-      complete: () => this.ingredientService.getIngredients$(),
+      complete: () => {
+        this.ingredientService.getIngredients$();
+        this.snackbarService.openSnackBar('Ingredient Updated Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

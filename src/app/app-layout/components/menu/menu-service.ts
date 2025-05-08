@@ -23,7 +23,7 @@ export class MenuService {
   setMenus() {
     this.getMenus$().subscribe((menus: Menu[]) => {
       console.log(menus);
-      this.menus$.next([...menus]);
+      this.menus$.next(menus);
     });
   }
 
@@ -71,5 +71,3 @@ export class MenuService {
     this.meals.removeAt(index);
   };
 }
-
-const menu = [{ name: 'Menu 1', meals: [...meals, ...meals] }];

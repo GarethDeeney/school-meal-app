@@ -6,6 +6,7 @@ import { Menu } from 'src/app/models/menu';
 import { AddMenuComponent } from '../add-menu/add-menu.component';
 import { MenuService } from '../menu-service';
 import { MatDialog } from '@angular/material/dialog';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-menu-card',
@@ -15,7 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class MenuCardComponent {
   @Input() menu!: any;
-  constructor(protected service: MenuService, protected dialog: MatDialog) {}
+  constructor(
+    protected service: MenuService,
+    protected dialog: MatDialog,
+    private snackbarService: SnackbarService
+  ) {}
 
   setIngredientList(ingredients: Ingredient[]) {
     return ingredients.map((i: any) => i.ingredient.name).join(', ');
@@ -68,7 +73,12 @@ export class MenuCardComponent {
 
   deleteMenu(menuId: string) {
     return this.service.deleteMenu$(menuId).subscribe({
-      complete: () => this.service.setMenus(),
+      complete: () => {
+        this.service.getMenus$().subscribe((menus) => {
+          this.service.menus$.next(menus);
+        });
+        this.snackbarService.openSnackBar('Menu Deleted Successfully');
+      },
       error: (err: any) => console.log(err),
     });
   }

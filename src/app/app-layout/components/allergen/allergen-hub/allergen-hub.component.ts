@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Allergen } from 'src/app/models/allergen';
 import { AddAllergenComponent } from '../add-allergen/add-allergen.component';
 import { AllergenService } from '../allergenService';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-allergen-hub',
@@ -23,7 +24,8 @@ export class AllergenHubComponent {
     protected allergenService: AllergenService,
     protected router: Router,
     public dialogRef: MatDialogRef<AddAllergenComponent>,
-    protected dialog: MatDialog
+    protected dialog: MatDialog,
+    private snackbarService: SnackbarService
   ) {
     this.allergenService.setDataSource();
   }
@@ -57,7 +59,10 @@ export class AllergenHubComponent {
 
   deleteAllergen(id: string) {
     return this.allergenService.deleteAllergen$(id).subscribe({
-      complete: () => this.allergenService.setDataSource(),
+      complete: () => {
+        this.allergenService.setDataSource();
+        this.snackbarService.openSnackBar('Allergen Deleted Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

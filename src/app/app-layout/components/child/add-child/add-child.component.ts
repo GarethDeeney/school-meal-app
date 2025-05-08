@@ -6,6 +6,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Allergen } from 'src/app/models/allergen';
 import { AllergenService } from '../../allergen/allergenService';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-add-child-details',
@@ -17,7 +18,8 @@ export class AddChildDetailsComponent {
   constructor(
     protected childService: ChildService,
     public dialogRef: MatDialogRef<AddChildDetailsComponent>,
-    protected allergenService: AllergenService
+    protected allergenService: AllergenService,
+    private snackbarService: SnackbarService
   ) {}
 
   allergens$ = this.allergenService.getAllergens$();
@@ -48,14 +50,20 @@ export class AddChildDetailsComponent {
 
   addChild(child: Child) {
     return this.childService.addChild$(child).subscribe({
-      complete: () => this.childService.getChildren$(),
+      complete: () => {
+        this.childService.getChildren$();
+        this.snackbarService.openSnackBar('Child Created Successfully');
+      },
       error: (err) => console.log(err),
     });
   }
 
   editChild(child: Child) {
     return this.childService.updateChild$(child).subscribe({
-      complete: () => this.childService.getChildren$(),
+      complete: () => {
+        this.childService.getChildren$();
+        this.snackbarService.openSnackBar('Child Updated Successfully');
+      },
       error: (err) => console.log(err),
     });
   }

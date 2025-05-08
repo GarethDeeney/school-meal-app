@@ -6,6 +6,7 @@ import { IngredientService } from '../../ingredient/ingredient.service';
 import { Ingredient } from 'src/app/models/ingredient';
 import { Observable } from 'rxjs';
 import { Meal } from 'src/app/models/meal';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-add-meal-details',
@@ -18,7 +19,8 @@ export class AddMealComponent {
     protected mealService: MealService,
     public dialogRef: MatDialogRef<AddMealComponent>,
     protected service: MealService,
-    protected ingredientService: IngredientService
+    protected ingredientService: IngredientService,
+    private snackbarService: SnackbarService
   ) {}
 
   ingredients$: Observable<Ingredient[]> =
@@ -47,6 +49,7 @@ export class AddMealComponent {
       complete: () => {
         this.dialogRef.close();
         this.service.setMeals();
+        this.snackbarService.openSnackBar('Meal Created Successfully');
       },
       error: (err) => console.log(err),
     });
@@ -57,6 +60,7 @@ export class AddMealComponent {
       complete: () => {
         this.dialogRef.close();
         this.service.setMeals();
+        this.snackbarService.openSnackBar('Meal Updated Successfully');
       },
       error: (err) => console.log(err),
     });

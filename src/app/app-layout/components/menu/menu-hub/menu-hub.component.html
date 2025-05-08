@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="menu-container">
-      @for (menu of menus$ | async; track menu) {
+      @for (menu of menuService.menus$ | async; track menu) {
       <app-menu-card class="menu-card" [menu]="menu"></app-menu-card>
       } @empty {
       <h2>There are no menus.</h2>

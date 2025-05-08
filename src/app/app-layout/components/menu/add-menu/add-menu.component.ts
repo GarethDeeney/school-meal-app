@@ -6,6 +6,7 @@ import { Menu } from 'src/app/models/menu';
 import { MealService } from '../../meal/meal.service';
 import { MenuService } from '../menu-service';
 import { Meal } from 'src/app/models/meal';
+import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-add-menu',
@@ -19,7 +20,8 @@ export class AddMenuComponent {
   constructor(
     protected service: MenuService,
     protected mealService: MealService,
-    public dialogRef: MatDialogRef<AddMenuComponent>
+    public dialogRef: MatDialogRef<AddMenuComponent>,
+    protected snackbarService: SnackbarService
   ) {}
   meals$: Observable<Meal[]> = this.mealService.getMeals$();
 
@@ -48,7 +50,10 @@ export class AddMenuComponent {
     return this.service.addMenu$(menu).subscribe({
       complete: () => {
         this.dialogRef.close();
-        this.service.setMenus();
+        this.service.getMenus$().subscribe((menus) => {
+          this.service.menus$.next(menus);
+        });
+        this.snackbarService.openSnackBar('Menu Create Successful');
       },
       error: (err) => console.log(err),
     });
@@ -58,7 +63,10 @@ export class AddMenuComponent {
     return this.service.editMenu$(menu).subscribe({
       complete: () => {
         this.dialogRef.close();
-        this.service.setMenus();
+        this.service.getMenus$().subscribe((menus) => {
+          this.service.menus$.next(menus);
+        });
+        this.snackbarService.openSnackBar('Menu Updated Successfully');
       },
       error: (err) => console.log(err),
     });

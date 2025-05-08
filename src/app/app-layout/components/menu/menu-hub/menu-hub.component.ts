@@ -12,18 +12,15 @@ import { AddMenuComponent } from '../add-menu/add-menu.component';
   styleUrls: ['./menu-hub.component.scss'],
   standalone: false,
 })
-export class MenuHubComponent implements OnInit {
-  menus$ = new BehaviorSubject<Menu[]>([]);
-
+export class MenuHubComponent {
   constructor(
     protected menuService: MenuService,
     protected router: Router,
     protected dialog: MatDialog
   ) {
     this.menuService.getMenus$().subscribe((menus) => {
-      this.menus$.next(menus);
+      this.menuService.menus$.next(menus);
     });
-    this.menuService.menus$.subscribe(console.log);
   }
 
   openMenuDialog() {
@@ -32,9 +29,5 @@ export class MenuHubComponent implements OnInit {
       maxHeight: '100%',
       width: '300px',
     });
-  }
-
-  ngOnInit(): void {
-    this.menuService.menus$.subscribe(console.log);
   }
 }
