@@ -34,6 +34,10 @@ export class ChildService {
     return this.http.get<Child>(`${this.api}${childId}`);
   }
 
+  getChildNutritionInfo$(childId: string): Observable<Child> {
+    return this.http.get<Child>(`${this.api}${childId}/nutrition`);
+  }
+
   addChild$(child: Child): Observable<Child> {
     return this.http.post<Child>(`${this.api}`, child);
   }

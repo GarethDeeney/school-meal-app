@@ -4,11 +4,30 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="child-container" *ngIf="child$ | async as child">
-      <h2>{{ child.name }}</h2>
+      <div class="child-header">
+        <img class="child-image" src="../../../../../assets/user.png" alt="" />
 
-      <div class="child-info-section">
-        <div class="child-details"></div>
+        <div class="header-text">
+          <h2>{{ child.name }}</h2>
+          <p>(Year {{ child.year }})</p>
+        </div>
+      </div>
+
+      <div class="nutrition-section">
+        <h2>Nurition</h2>
+        @if(nutrition$ | async; as nutrition){
+        <p>Energy: {{ nutrition.energy }}</p>
+        <p>Fats: 100g</p>
+        <p>Salt: 100g</p>
+        <p>Saturates: 100g</p>
+        <p>Sugars: 100g</p>
+        } @else {
+        <p>no nutrtion information available</p>
+        }
       </div>
     </div>
+
+<!-- meal list -->
+
   </mat-sidenav-content>
 </mat-sidenav-container>

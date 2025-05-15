@@ -2,16 +2,18 @@
 
 .child-container {
   padding: 1rem;
+  display: flex;
 }
 
-.child-info-section {
-  width: 100%;
+.child-image {
+  width: 7rem;
+}
 
-  .child-details {
-    background: #fff;
-    width: 100%;
-    border-radius: 15px;
-    border: solid 1px black;
-    height: 300px;
-  }
+.child-header {
+  padding: 3rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 10px 5px 5px rgb(0, 0, 0, 0.1);
 }
