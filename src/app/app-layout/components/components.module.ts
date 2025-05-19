@@ -9,6 +9,8 @@ import { AddAllergenComponent } from './allergen/add-allergen/add-allergen.compo
 import { AllergenHubComponent } from './allergen/allergen-hub/allergen-hub.component';
 import { AddChildDetailsComponent } from './child/add-child/add-child.component';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
+import { ChildMealTableComponent } from './child/child-details/child-meal-table/child-meal-table.component';
+import { NutritionGroupComponent } from './child/child-details/nutrition-group/nutrition-group.component';
 import { ChildHubComponent } from './child/child-hub/child-hub.component';
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { IngredientHubComponent } from './ingredient/ingredient-hub/ingredient-hub.component';
@@ -38,6 +40,8 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MealHubComponent,
     MealCardComponent,
     AddMealComponent,
+    ChildMealTableComponent,
+    NutritionGroupComponent,
   ],
   imports: [
     RouterModule,

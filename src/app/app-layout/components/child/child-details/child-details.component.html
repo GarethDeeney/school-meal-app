@@ -3,31 +3,66 @@
     <app-side-nav class="action-items"></app-side-nav>
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="child-container" *ngIf="child$ | async as child">
-      <div class="child-header">
-        <img class="child-image" src="../../../../../assets/user.png" alt="" />
+    <ng-container *ngIf="child$ | async as child">
+      <div class="child-container">
+        <div class="child-header">
+          <img
+            class="child-image"
+            src="../../../../../assets/user.png"
+            alt=""
+          />
 
-        <div class="header-text">
-          <h2>{{ child.name }}</h2>
-          <p>(Year {{ child.year }})</p>
+          <div class="header-text">
+            <h2>{{ child.name }}</h2>
+            <p>(Year {{ child.year }})</p>
+          </div>
+        </div>
+
+        <div class="nutrition-section">
+          @if(nutrition$ | async; as nutrition){
+          <div class="nutrition-info-section">
+            <nutrition-group
+              [nutrition]="nutrition.energy"
+              nutritionType="energy"
+              unit="kj"
+            ></nutrition-group>
+
+            <nutrition-group
+              [nutrition]="nutrition.fat"
+              nutritionType="fat"
+              unit="g"
+              [recommended]="setRecommendedFat(child)"
+            ></nutrition-group>
+
+            <nutrition-group
+              [nutrition]="nutrition.salt"
+              nutritionType="salt"
+              unit="g"
+              [recommended]="5"
+            ></nutrition-group>
+
+            <nutrition-group
+              [nutrition]="nutrition.saturates"
+              nutritionType="saturates"
+              unit="g"
+              [recommended]="setRecommendedSaturates(child)"
+            ></nutrition-group>
+
+            <nutrition-group
+              [nutrition]="nutrition.sugars"
+              nutritionType="sugars"
+              [recommended]="setRecommendedSugar(child)"
+              unit="g"
+              class="no-border"
+            ></nutrition-group>
+          </div>
+          } @else {
+          <p>no nutrtion information available</p>
+          }
         </div>
       </div>
 
-      <div class="nutrition-section">
-        <h2>Nurition</h2>
-        @if(nutrition$ | async; as nutrition){
-        <p>Energy: {{ nutrition.energy }}</p>
-        <p>Fats: 100g</p>
-        <p>Salt: 100g</p>
-        <p>Saturates: 100g</p>
-        <p>Sugars: 100g</p>
-        } @else {
-        <p>no nutrtion information available</p>
-        }
-      </div>
-    </div>
-
-<!-- meal list -->
-
+      <app-child-meal-table [meals]="child.meals"></app-child-meal-table>
+    </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

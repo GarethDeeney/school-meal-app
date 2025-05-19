@@ -1,19 +1,46 @@
 @use '../../../../../assets/common.scss';
 
-.child-container {
-  padding: 1rem;
-  display: flex;
+.child {
+  &-container {
+    padding: 1rem 6rem;
+  }
+
+  &-image {
+    width: 7rem;
+  }
+
+  &-header {
+    padding: 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    background-color: #fff;
+    box-shadow: 10px 5px 5px rgb(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+  }
 }
 
-.child-image {
-  width: 7rem;
+.nutrition {
+  &-info-section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+  &-section {
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    background-color: #fff;
+    box-shadow: 10px 5px 5px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+  }
 }
 
-.child-header {
-  padding: 3rem;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  background-color: #fff;
-  box-shadow: 10px 5px 5px rgb(0, 0, 0, 0.1);
+.no-border {
+  ::ng-deep {
+    .nutrition-info-group {
+      border: none !important;
+    }
+  }
 }

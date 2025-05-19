@@ -1,0 +1,15 @@
+<div class="nutrition-info-group">
+  @if(nutritionType != "energy"){
+  <div
+    class="nutrition-info"
+    [ngStyle]="{
+      'background-color': setNutritionColour()
+    }"
+  ></div>
+  }
+
+  <div class="nutrition-text">
+    <h3>{{ nutritionType }}</h3>
+    <p>{{ nutrition }}{{ unit }}</p>
+  </div>
+</div>

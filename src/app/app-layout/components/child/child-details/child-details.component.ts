@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
@@ -9,7 +9,7 @@ import { ChildService } from '../child-hub.service';
   selector: 'app-child-details',
   templateUrl: './child-details.component.html',
   styleUrls: ['./child-details.component.scss'],
-  standalone: false,
+  standalone: false
 })
 export class ChildDetailsComponent implements OnInit {
   idParam!: string;
@@ -26,13 +26,59 @@ export class ChildDetailsComponent implements OnInit {
     });
   }
 
+  setNutritionColour(value: number, recommended: number): string {
+    const percentage = (value / recommended) * 100;
+
+    let colour;
+    if (percentage < 70 && percentage > 50) {
+      colour = 'yellow';
+    } else if (percentage < 50) {
+      colour = 'green';
+    } else {
+      colour = 'red';
+    }
+
+    return colour;
+  }
+
+  setRecommendedSugar(child: Child): number {
+    let recommended = 0;
+    if (Number(child.year) <= 3) {
+      recommended = 19;
+    } else if (Number(child.year) > 3 && Number(child.year) <= 6) {
+      recommended = 24;
+    } else {
+      recommended = 30;
+    }
+    return recommended;
+  }
+
+  setRecommendedSaturates(child: Child): number {
+    let recommended = 0;
+    if (Number(child.year) <= 2) {
+      recommended = 18;
+    } else if (Number(child.year) > 2 && Number(child.year) <= 6) {
+      recommended = 22;
+    } else {
+      recommended = 28;
+    }
+    return recommended;
+  }
+
+  setRecommendedFat(child: Child): number {
+    let recommended = 0;
+    if (Number(child.year) == 1) {
+      recommended = 15;
+    } else if (Number(child.year) > 2 && Number(child.year) <= 5) {
+      recommended = 21;
+    } else {
+      recommended = 25;
+    }
+    return recommended;
+  }
+
   ngOnInit(): void {
     this.child$ = this.childService.getChildInfo$(this.idParam);
     this.nutrition$ = this.childService.getChildNutritionInfo$(this.idParam);
-
-    this.nutrition$.subscribe((val) => {
-      console.log('inside observable');
-      console.log(val);
-    });
   }
 }

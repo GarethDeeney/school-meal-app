@@ -1,0 +1,33 @@
+@use '../../../../../../assets/common.scss';
+
+.nutrition {
+  &-info {
+    padding: 0.5rem;
+    height: 2rem;
+    width: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+
+    &-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-right: 1px solid lightgray;
+      padding: 1rem;
+    }
+  }
+
+  &-text {
+    display: block;
+    margin: 0;
+
+    h3 {
+      margin: 0;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+  }
+
+}
