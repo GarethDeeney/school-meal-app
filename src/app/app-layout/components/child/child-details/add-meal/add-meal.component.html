@@ -1,0 +1,39 @@
+<div class="dialog-container">
+  <ng-container [formGroup]="formGroup">
+    <p>Please select the Monday of the week you wish to select meals for.</p>
+    <mat-form-field>
+      <mat-label>Select menu date</mat-label>
+      <input
+        formControlName="start"
+        matInput
+        [matDatepickerFilter]="myFilter"
+        [matDatepicker]="picker"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- submit button uses date to fetch menu for that date - will need to save date as part of the request? -->
+    <button (click)="dateValue()">submit</button>
+  </ng-container>
+
+  <!-- menu section -->
+  <!-- something like this maybe? -->
+  <!-- @for (meal of menu.meals; track meal) {
+  <div class="meal-info">
+    <h3>{{ meal.name }}</h3>
+    <h4>Ingredients</h4>
+    <p>{{ setIngredientList(meal.ingredients) }}</p>
+    <p>{{ setAllergenList(meal.ingredients) }}</p>
+    <hr />
+  </div>
+  } @empty {
+  <p>No ingredient information available.</p>
+  } -->
+  <!-- app menu list here??? -->
+  <!-- need to filter options depending on allergens also. -->
+</div>

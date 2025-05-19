@@ -23,6 +23,17 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+// GET by date
+router.get("", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const meal = await Meal.findOne({ date: date });
+    res.status(200).json(meal);
+  } catch (error) {
+    res.status(400).json({ message: "An error occured: ", error: error });
+  }
+});
+
 // POST Create Meal
 router.post("/", async (req, res) => {
   try {

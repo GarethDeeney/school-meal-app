@@ -11,7 +11,7 @@
       </button>
     </div>
     <div class="meal-container">
-      @for (meal of mealService.meals$ | async; track meal.name) {
+      @for (meal of meals$ | async; track meal.name) {
       <app-meal-card class="meal-card" [meal]="meal"></app-meal-card>
       } @empty {
       <h2>There are no meals.</h2>

@@ -60,9 +60,11 @@
           <p>no nutrtion information available</p>
           }
         </div>
+        <app-child-meal-table
+          class="meal-section"
+          [meals]="child.meals"
+        ></app-child-meal-table>
       </div>
-
-      <app-child-meal-table [meals]="child.meals"></app-child-meal-table>
     </ng-container>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -49,4 +49,8 @@ export class ChildService {
   deleteChild$(id: string): Observable<any> {
     return this.http.delete(`${this.api}${id}`);
   }
+
+  getMenu$(id: string, date: any) {
+    return this.http.get<any>(`${this.api}/id/menu`);
+  }
 }

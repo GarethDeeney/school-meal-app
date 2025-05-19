@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import {
+  provideNativeDateAdapter
+} from '@angular/material/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from 'src/app/material-module';
@@ -8,6 +11,7 @@ import { HttpService } from 'src/app/services/http.service';
 import { AddAllergenComponent } from './allergen/add-allergen/add-allergen.component';
 import { AllergenHubComponent } from './allergen/allergen-hub/allergen-hub.component';
 import { AddChildDetailsComponent } from './child/add-child/add-child.component';
+import { ChildAddMealComponent } from './child/child-details/add-meal/add-meal.component';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { ChildMealTableComponent } from './child/child-details/child-meal-table/child-meal-table.component';
 import { NutritionGroupComponent } from './child/child-details/nutrition-group/nutrition-group.component';
@@ -42,6 +46,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     AddMealComponent,
     ChildMealTableComponent,
     NutritionGroupComponent,
+    ChildAddMealComponent,
   ],
   imports: [
     RouterModule,
@@ -50,7 +55,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [HttpService],
+  providers: [HttpService, provideNativeDateAdapter()],
   exports: [SideNavComponent],
 })
 export class ComponentModule {}

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
 import { ChildService } from '../../child-hub.service';
+import { ChildAddMealComponent } from '../add-meal/add-meal.component';
 
 @Component({
   selector: 'app-child-meal-table',
@@ -18,11 +20,23 @@ export class ChildMealTableComponent implements OnInit {
   datasource$ = new BehaviorSubject([]);
   @Input() meals!: [];
 
+  displayedColumns: string[] = ['meal', 'date', 'nutrition'];
+
   constructor(
     protected childService: ChildService,
     protected activatedRoute: ActivatedRoute,
-    protected http: HttpClient
+    protected http: HttpClient,
+    protected dialog: MatDialog
   ) {}
+
+  openAddChildDialog() {
+    this.childService.formGroup.reset();
+
+    this.dialog.open(ChildAddMealComponent, {
+      height: '325px',
+      width: '500px',
+    });
+  }
 
   ngOnInit(): void {
     this.datasource$.next(this.meals);

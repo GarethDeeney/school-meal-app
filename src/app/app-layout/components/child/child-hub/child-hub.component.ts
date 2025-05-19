@@ -20,7 +20,6 @@ export class ChildHubComponent {
   constructor(
     protected childService: ChildService,
     protected router: Router,
-    public dialogRef: MatDialogRef<AddChildDetailsComponent>,
     protected dialog: MatDialog,
     private snackbarService: SnackbarService
   ) {

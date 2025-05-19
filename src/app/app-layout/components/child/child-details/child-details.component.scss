@@ -3,6 +3,8 @@
 .child {
   &-container {
     padding: 1rem 6rem;
+    display: flex;
+    flex-direction: column;
   }
 
   &-image {
@@ -43,4 +45,8 @@
       border: none !important;
     }
   }
+}
+
+.meal-section {
+  margin: 3rem 0;
 }

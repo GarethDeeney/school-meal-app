@@ -86,6 +86,18 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// add meal to list
+router.post("/:id/meal", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const meal = req.body;
+    const addedMeal = await Child.findOneAndUpdate({ _id: id });
+    res.status(201).json(addedMeal);
+  } catch (err) {
+    res.status(400).json({ message: "An error occured: ", error: err });
+  }
+});
+
 //  DELETE
 router.delete("/:id", async (req, res) => {
   try {

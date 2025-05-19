@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { AddMealComponent } from '../add-meal/add-meal.component';
 import { MealService } from '../meal.service';
 import { Meal } from 'src/app/models/meal';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-meal-hub',
@@ -13,13 +13,34 @@ import { BehaviorSubject } from 'rxjs';
   standalone: false,
 })
 export class MealHubComponent {
+  HOME_FOR_LUNCH = 'Home for Lunch';
+  PACKED_LUNCH = 'Packed Lunch';
+  meals$!: Observable<any>;
+
   constructor(
     protected mealService: MealService,
     protected router: Router,
     protected dialog: MatDialog
   ) {
     this.mealService.setMeals();
+
+    this.meals$ = this.mealService.meals$.pipe(
+      map((meals: Meal[]) =>
+        meals.filter(
+          (meal: Meal) =>
+            !this.checkHomeForLunch(meal) && !this.checkPackedLunch(meal)
+        )
+      )
+    );
   }
+
+  checkPackedLunch = (meal: Meal) => {
+    return meal.name == this.PACKED_LUNCH;
+  };
+
+  checkHomeForLunch = (meal: Meal) => {
+    return meal.name == this.HOME_FOR_LUNCH;
+  };
 
   openMealDialog() {
     this.mealService.formGroup = this.mealService.setupFormGroup();
