@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+require('dotenv').config()
 
 const passport = require("passport");
 const { uuid } = require("uuidv4");
@@ -41,7 +42,7 @@ main().catch((err) => {
 
 async function main() {
   const connectionString =
-    "mongodb+srv://garethdeeney:7QGatOz2ffu9bMXh@cluster0.u7ujn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+    `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@cluster0.u7ujn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
   await mongoose.connect(connectionString, { dbName: "schoolmealapp" });
   mongoose.set("strictQuery", true);
 }
