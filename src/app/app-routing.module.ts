@@ -8,6 +8,7 @@ import { MenuHubComponent } from './app-layout/components/menu/menu-hub/menu-hub
 import { DashboardComponent } from './app-layout/dashboard/dashboard.component';
 import { LogInComponent } from './app-layout/log-in/log-in.component';
 import { MealHubComponent } from './app-layout/components/meal/meal-hub/meal-hub.component';
+import { MealPlanHubComponent } from './app-layout/components/meal-plan/meal-plan-hub/meal-plan-hub.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,10 @@ const routes: Routes = [
     component: MealHubComponent,
   },
   {
+    path: 'meal-plan/hub',
+    component: MealPlanHubComponent,
+  },
+  {
     path: 'menu/hub',
     component: MenuHubComponent,
   },
@@ -45,13 +50,8 @@ const routes: Routes = [
     component: IngredientHubComponent,
   },
   {
-    path: 'allergen',
-    children: [
-      {
-        path: 'hub',
-        component: AllergenHubComponent,
-      },
-    ],
+    path: 'allergen/hub',
+    component: AllergenHubComponent,
   },
 ];
 

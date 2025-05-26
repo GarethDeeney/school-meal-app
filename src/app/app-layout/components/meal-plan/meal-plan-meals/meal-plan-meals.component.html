@@ -1,0 +1,17 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header class="expansion-header">
+    <mat-panel-title>
+      {{ header }} ({{ setDateString(date) }})
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  @for(meal of meals; track $index; let last = $last){
+  <h3>{{ meal.name }}</h3>
+  <div class="allergen-list">
+    <h4>Allergens:</h4>
+    {{ listAllergens(meal.ingredients) }}
+  </div>
+
+  @if(!last){
+  <hr />
+  } }
+</mat-expansion-panel>

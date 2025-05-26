@@ -4,7 +4,6 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Menu } from 'src/app/models/menu';
 import { IngredientService } from '../ingredient/ingredient.service';
-import { meals } from '../meal/meal.service';
 
 @Injectable({ providedIn: 'root' })
 export class MenuService {

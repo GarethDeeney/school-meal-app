@@ -1,0 +1,50 @@
+<div class="meal-plan-list">
+  @for (mealPlan of mealPlanService.mealPlans$ | async; track $index) {
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header class="expansion-header">
+      <mat-panel-title>
+        {{ mealPlan.name }} {{ setDateRange(mealPlan.monday.date) }}
+      </mat-panel-title>
+      <div class="icons">
+        <mat-icon class="icon" (click)="openMealPlanEditDialog(mealPlan)"
+          >edit</mat-icon
+        >
+        <mat-icon class="icon" (click)="deleteMealPlan(mealPlan)"
+          >delete</mat-icon
+        >
+      </div>
+    </mat-expansion-panel-header>
+    <div class="meal-list">
+      <app-meal-plan-meals
+        header="Monday"
+        [date]="mealPlan.monday.date"
+        [meals]="mealPlan.monday.meals"
+      ></app-meal-plan-meals>
+
+      <app-meal-plan-meals
+        header="Tuesday"
+        [date]="mealPlan.tuesday.date"
+        [meals]="mealPlan.tuesday.meals"
+      ></app-meal-plan-meals>
+
+      <app-meal-plan-meals
+        header="Wednesday"
+        [date]="mealPlan.wednesday.date"
+        [meals]="mealPlan.wednesday.meals"
+      ></app-meal-plan-meals>
+
+      <app-meal-plan-meals
+        header="Thursday"
+        [date]="mealPlan.thursday.date"
+        [meals]="mealPlan.thursday.meals"
+      ></app-meal-plan-meals>
+
+      <app-meal-plan-meals
+        header="Friday"
+        [date]="mealPlan.friday.date"
+        [meals]="mealPlan.friday.meals"
+      ></app-meal-plan-meals>
+    </div>
+  </mat-expansion-panel>
+  }
+</div>

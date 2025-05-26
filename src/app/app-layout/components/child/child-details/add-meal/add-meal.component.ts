@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ChildService } from '../../child-hub.service';
-import { FormControl, FormGroup } from '@angular/forms';
-import { ValidateFn } from 'mongoose';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'child-add-meal',
@@ -24,6 +24,23 @@ export class ChildAddMealComponent {
   formGroup = new FormGroup({
     start: new FormControl(),
   });
+
+  mealPlan$ = new BehaviorSubject({
+    startDate: '19/05/2025',
+    meals: []
+  });
+
+  mealPlanFormGroup = new FormGroup({
+    monday: new FormControl(),
+    tuesday: new FormControl(),
+    wednesday: new FormControl(),
+    thursday: new FormControl(),
+    friday: new FormControl(),
+  });
+
+  setmealPlanValues = () => {
+    this.mealPlanFormGroup
+  }
 
   dateValue = () => {
     console.log(this.formGroup.controls['start'].value);

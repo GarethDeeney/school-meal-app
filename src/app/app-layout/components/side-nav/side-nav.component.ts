@@ -39,6 +39,12 @@ export class SideNavComponent {
       execute: (): void => {},
     },
     {
+      label: 'Meal Plans',
+      url: '/meal-plan/hub',
+      icon: 'account_box',
+      execute: (): void => {},
+    },
+    {
       label: 'Meals',
       url: '/meal/hub',
       icon: 'account_box',

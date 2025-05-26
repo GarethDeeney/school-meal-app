@@ -1,0 +1,57 @@
+@use '../../../../../assets/common.scss';
+
+.action-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 2rem;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+
+  & .add-allergen-button {
+    background: #212A3E;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 23px;
+    font-size: large;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+.meal-plan-list {
+  padding: 2rem;
+}
+
+.expansion-header {
+
+  mat-panel-title {
+    text-transform: capitalize;
+    font-size: 1.5rem;
+  }
+
+  .icons {
+    padding-right: 1rem;
+    gap: 0.5rem;
+    display: flex;
+
+    & .icon {
+      padding: 0.25rem;
+      border-radius: 15px;
+
+      &:hover {
+        background: lightgray;
+      }
+    }
+  }
+}
+
+.meal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

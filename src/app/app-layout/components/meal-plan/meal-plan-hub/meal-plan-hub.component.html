@@ -1,0 +1,16 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" mode="side" opened>
+    <app-side-nav class="action-items"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="action-header">
+      <h2>Meal Plans</h2>
+      <button (click)="openMealPlanCreateDialog()" class="add-allergen-button">
+        Add Meal Plan
+        <span class="material-symbols-outlined"> add_circle </span>
+      </button>
+    </div>
+
+    <app-meal-plan-list></app-meal-plan-list>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -17,6 +17,7 @@ const ingredientRoutes = require("./backend/routes/ingredients");
 const allergenRoutes = require("./backend/routes/allergy");
 const mealRoutes = require("./backend/routes/meal");
 const menuRoutes = require("./backend/routes/menu");
+const mealPlanRoutes = require("./backend/routes/mealPlan");
 
 app.use("/api/customers", customerRoutes);
 app.use("/api/child", childRoutes);
@@ -24,6 +25,7 @@ app.use("/api/allergen", allergenRoutes);
 app.use("/api/ingredient", ingredientRoutes);
 app.use("/api/meal", mealRoutes);
 app.use("/api/menu", menuRoutes);
+app.use("/api/mealPlan", mealPlanRoutes);
 
 app.listen(port, (err) => {
   if (!err) {
