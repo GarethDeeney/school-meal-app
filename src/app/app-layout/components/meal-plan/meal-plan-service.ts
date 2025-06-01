@@ -1,10 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { DateTime } from 'luxon';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { MealPlan, MealPlanDay } from 'src/app/models/mealPlan';
 import { IngredientService } from '../ingredient/ingredient.service';
-import { Meal } from 'src/app/models/meal';
 
 @Injectable({ providedIn: 'root' })
 export class MealPlanService {
@@ -42,7 +49,10 @@ export class MealPlanService {
   setupFormGroup = (mealPlan?: MealPlan) => {
     this.formGroup = new FormGroup({
       _id: new FormControl<string | undefined>(mealPlan?._id),
-      startDate: new FormControl<Date | undefined>(mealPlan?.monday.date),
+      startDate: new FormControl<Date | undefined>(
+        mealPlan?.startDate,
+        this.checkFutureDate()
+      ),
       name: new FormControl<string | undefined>(
         mealPlan?.name,
         Validators.required
@@ -69,91 +79,26 @@ export class MealPlanService {
       ),
     });
   };
+
+  convertToDateTime = (date: string | Object) => {
+    return typeof date == 'object'
+      ? DateTime.fromISO((date as Date).toISOString()).startOf('day')
+      : DateTime.fromISO(date).startOf('day');
+  };
+
+  checkFutureDate(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (!control.untouched && !control.pristine) {
+        const startDate: DateTime = this.convertToDateTime(control.value);
+        const notBeforeDate: DateTime = DateTime.now()
+          .startOf('week')
+          .startOf('day')
+          .plus({ weeks: 3 });
+
+        return startDate < notBeforeDate ? { isBefore: true } : null;
+      } else {
+        return null;
+      }
+    };
+  }
 }
-const mealPlans = [
-  {
-    startDate: '2025-06-01',
-    name: 'Week 1',
-    monday: [
-      {
-        _id: '68065e9ec1eb88d02cd6a5a4',
-        name: 'new meal',
-        ingredients: [
-          {
-            amount: '12134',
-            ingredient: {
-              nutrition: {
-                energy: '100',
-                fat: '10',
-                saturates: '19',
-                salt: '3',
-                sugars: '22',
-              },
-              _id: '6806349a8b585cb69af9b331',
-              name: 'new ingredient',
-              allergens: [
-                {
-                  _id: '67cafdd7768a744b3238d557',
-                  name: 'Allergen 1',
-                  reaction: 'something else',
-                  specialRequirements: 'something',
-                },
-              ],
-              pricePerKG: '1',
-            },
-          },
-          {
-            amount: '12134',
-            ingredient: {
-              nutrition: {
-                energy: '100',
-                fat: '10',
-                saturates: '19',
-                salt: '3',
-                sugars: '22',
-              },
-              _id: '6806349a8b585cb69af9b331',
-              name: 'new ingredient',
-              allergens: [
-                {
-                  _id: '67cafdd7768a744b3238d557',
-                  name: 'Allergen 1',
-                  reaction: 'something else',
-                  specialRequirements: 'something',
-                },
-              ],
-              pricePerKG: '1',
-            },
-          },
-          {
-            amount: '12134',
-            ingredient: {
-              nutrition: {
-                energy: '100',
-                fat: '10',
-                saturates: '19',
-                salt: '3',
-                sugars: '22',
-              },
-              _id: '6806349a8b585cb69af9b331',
-              name: 'new ingredient',
-              allergens: [
-                {
-                  _id: '67cafdd7768a744b3238d557',
-                  name: 'Allergen 2',
-                  reaction: 'something else',
-                  specialRequirements: 'something',
-                },
-              ],
-              pricePerKG: '1',
-            },
-          },
-        ],
-      },
-    ],
-    tuesday: [],
-    wednesday: [],
-    thursday: [],
-    friday: [],
-  },
-];

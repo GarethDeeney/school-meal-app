@@ -24,8 +24,6 @@ export class CreateMealPlanComponent {
 
   menus$ = this.menuService.getMenus$();
 
-  formGroup = this.mealPlanService.formGroup;
-
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     return day == 1;
@@ -36,7 +34,9 @@ export class CreateMealPlanComponent {
   }
 
   submit() {
-    const mealPlanEntity = this.setMealPlanEntity(this.formGroup);
+    const mealPlanEntity = this.setMealPlanEntity(
+      this.mealPlanService.formGroup
+    );
     return mealPlanEntity._id
       ? this.editMeal(mealPlanEntity)
       : this.addMeal(mealPlanEntity);
@@ -47,6 +47,7 @@ export class CreateMealPlanComponent {
     const mealPlanEntity = {
       _id: mealPlanFormGroup.controls['_id'].value,
       name: mealPlanFormGroup.controls['name'].value,
+      startDate: date,
       monday: {
         date: this.setDate(date, 0),
         meals: mealPlanFormGroup.controls['monday'].value.meals,
@@ -71,8 +72,6 @@ export class CreateMealPlanComponent {
 
     return mealPlanEntity;
   }
-
-  // validation date must be at least 3 weeks in the future
 
   addMeal(mealPlan: MealPlan) {
     return this.mealPlanService.createMealPlan$(mealPlan).subscribe({

@@ -5,6 +5,7 @@ import { MealPlan } from 'src/app/models/mealPlan';
 import { SnackbarService } from '../../snackbar-service';
 import { CreateMealPlanComponent } from '../create-meal-plan/create-meal-plan.component';
 import { MealPlanService } from '../meal-plan-service';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-meal-plan-list',
@@ -23,11 +24,17 @@ export class MealPlanListComponent {
   }
 
   setDateRange(startDate: string) {
-    const start = new Date(startDate);
-    const endDate = new Date(new Date().setDate(start.getDate() + 4));
-    return `${start.toISOString().substring(0, 10)} - ${endDate
+    const endDate = new Date(
+      new Date().setDate(new Date(startDate).getDate() + 4)
+    )
       .toISOString()
-      .substring(0, 10)}`;
+      .substring(0, 10);
+    const startStr = new Date(startDate).toISOString().substring(0, 10);
+    return `${this.convertDigitIn(startStr)} - ${this.convertDigitIn(endDate)}`;
+  }
+
+  convertDigitIn(str: string) {
+    return str.split('-').reverse().join('-');
   }
 
   openMealPlanEditDialog(mealPlan: MealPlan) {

@@ -3,7 +3,7 @@
   <mat-expansion-panel [expanded]="true">
     <mat-expansion-panel-header class="expansion-header">
       <mat-panel-title>
-        {{ mealPlan.name }} {{ setDateRange(mealPlan.monday.date) }}
+        {{ mealPlan.name }} ({{ setDateRange(mealPlan.startDate) }})
       </mat-panel-title>
       <div class="icons">
         <mat-icon class="icon" (click)="openMealPlanEditDialog(mealPlan)"

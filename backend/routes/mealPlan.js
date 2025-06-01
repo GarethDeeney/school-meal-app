@@ -15,6 +15,7 @@ router.get("/", async (req, res) => {
 // POST Create MealPlan
 router.post("/", async (req, res) => {
   try {
+    console.log(req.body);
     const mealPlan = await MealPlan.create(req.body);
     res.status(201).json(mealPlan);
   } catch (error) {
@@ -27,6 +28,7 @@ router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const mealPlan = req.body;
+    console.log(mealPlan);
     const updatedMeal = await MealPlan.findOneAndUpdate(
       { _id: id },
       { $set: mealPlan },

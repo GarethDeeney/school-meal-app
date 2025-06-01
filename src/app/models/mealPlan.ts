@@ -3,6 +3,7 @@ import { Meal } from './meal';
 export interface MealPlan {
   _id?: string;
   name: string;
+  startDate: Date;
   monday: MealPlanDay;
   tuesday: MealPlanDay;
   wednesday: MealPlanDay;

@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const mealPlanSchema = mongoose.Schema({
   id: String,
   name: String,
+  startDate: Date,
   monday: {
     date: Date,
     meals: Array,
