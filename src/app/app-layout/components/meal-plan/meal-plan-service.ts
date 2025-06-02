@@ -28,6 +28,10 @@ export class MealPlanService {
     return this.http.get<MealPlan[]>(`${this.api}`);
   }
 
+  getMealPlanByDate$(date: DateTime) {
+    return this.http.get<MealPlan>(`${this.api}/date/${date}`);
+  }
+
   setMealsPlans() {
     this.getMealPlans$().subscribe((mealPlans) => {
       this.mealPlans$.next(mealPlans);

@@ -24,7 +24,22 @@
     <!-- Nutrition Column -->
     <ng-container matColumnDef="nutrition">
       <th mat-header-cell *matHeaderCellDef>Nutrition</th>
-      <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+      <div>
+        <td mat-cell *matCellDef="let element">
+          <div class="meal-nutrition">
+            <p>
+              Energy: {{ getNutrtionalVal(element.ingredients, "energy") }}kj
+            </p>
+            <p>Fat: {{ getNutrtionalVal(element.ingredients, "fat") }}g</p>
+            <p>Salt: {{ getNutrtionalVal(element.ingredients, "salt") }}g</p>
+            <p>
+              Saturates:
+              {{ getNutrtionalVal(element.ingredients, "saturates") }}g
+            </p>
+            <p>Sugar: {{ getNutrtionalVal(element.ingredients, "sugars") }}g</p>
+          </div>
+        </td>
+      </div>
     </ng-container>
 
     <ng-container matColumnDef="actions">

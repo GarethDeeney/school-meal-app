@@ -21,7 +21,11 @@ export class NutritionGroupComponent {
     protected http: HttpClient
   ) {}
 
-  setNutritionColour(): string {
+  setNutritionColour(nutrtionType: string): string {
+    if (nutrtionType == 'energy') {
+      return 'green';
+    }
+
     const percentage = (this.nutrition / this.recommended) * 100;
     let colour;
     if (percentage < 70 && percentage > 50) {

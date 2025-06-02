@@ -3,25 +3,75 @@
     <p>Please select the Monday of the week you wish to select meals for.</p>
     <mat-form-field>
       <mat-label>Select menu date</mat-label>
-      <input
-        formControlName="start"
-        matInput
-        [matDatepickerFilter]="myFilter"
-        [matDatepicker]="picker"
-      />
-      <mat-hint>MM/DD/YYYY</mat-hint>
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
+      <input formControlName="start" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <!-- submit button uses date to fetch menu for that date - will need to save date as part of the request? -->
-    <button (click)="dateValue()">submit</button>
-  </ng-container>
+    <button (click)="getMealPlanByDate(formGroup.controls['start'].value)">
+      submit
+    </button>
 
-  
+    @let mealPlan = mealPlan$ | async;
+
+
+    @if(!!mealPlan){
+
+    @let mondayMeals =getMealsLessAllergens(mealPlan[0].monday.meals);
+    @let tuesdayMeals = getMealsLessAllergens(mealPlan[0].tuesday.meals);
+    @let wednesdayMeals = getMealsLessAllergens(mealPlan[0].wednesday.meals);
+    @let thursdayMeals =getMealsLessAllergens(mealPlan[0].thursday.meals);
+    @let fridayMeals =getMealsLessAllergens(mealPlan[0].friday.meals);
+
+    <div class="meal-plan-form" [formGroup]="mealPlanFormGroup">
+      <mat-form-field>
+        <mat-label>Monday</mat-label>
+        <mat-select formControlName="monday" [compareWith]="compareMeals">
+          @for (meal of mondayMeals; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Tuesday</mat-label>
+        <mat-select formControlName="tuesday" [compareWith]="compareMeals">
+          @for (meal of tuesdayMeals; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Wednesday</mat-label>
+        <mat-select formControlName="wednesday" [compareWith]="compareMeals">
+          @for (meal of wednesdayMeals; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Thursday</mat-label>
+        <mat-select formControlName="thursday" [compareWith]="compareMeals">
+          @for (meal of thursdayMeals; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Friday</mat-label>
+        <mat-select formControlName="friday" [compareWith]="compareMeals">
+          @for (meal of fridayMeals; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    }
+  </ng-container>
 
   <!-- menu section -->
   <!-- something like this maybe? -->

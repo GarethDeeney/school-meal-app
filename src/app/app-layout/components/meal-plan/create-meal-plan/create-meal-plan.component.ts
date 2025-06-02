@@ -44,6 +44,7 @@ export class CreateMealPlanComponent {
 
   setMealPlanEntity(mealPlanFormGroup: FormGroup): MealPlan {
     const date = new Date(mealPlanFormGroup.controls['startDate'].value);
+    date.setHours(1);
     const mealPlanEntity = {
       _id: mealPlanFormGroup.controls['_id'].value,
       name: mealPlanFormGroup.controls['name'].value,
