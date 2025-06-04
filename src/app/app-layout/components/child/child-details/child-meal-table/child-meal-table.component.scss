@@ -1,4 +1,32 @@
+.meal-table-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  align-items: center;
+
+  h2 {
+    margin: 0;
+  }
+}
+
 .meal-nutrition {
   display: flex;
   justify-content: space-between;
+}
+
+.add-button {
+  background: #212A3E;
+  border: none;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.edit-button {
+  background: #fff;
+  border: none;
+  color: #212A3E;
 }

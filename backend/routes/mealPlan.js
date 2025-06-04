@@ -14,11 +14,9 @@ router.get("/", async (req, res) => {
 
 // GET mealPlan by date for Child
 router.get("/date/:date", async (req, res) => {
-  console.log(req.params);
   try {
     const date = req.params.date;
     const mealPlan = await MealPlan.find({ startDate: date });
-    console.log(mealPlan);
     res.status(200).json(mealPlan);
   } catch (error) {
     res.status(400).json({ message: "An error occured: ", error: error });
@@ -41,7 +39,6 @@ router.put("/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const mealPlan = req.body;
-    console.log(mealPlan);
     const updatedMeal = await MealPlan.findOneAndUpdate(
       { _id: id },
       { $set: mealPlan },

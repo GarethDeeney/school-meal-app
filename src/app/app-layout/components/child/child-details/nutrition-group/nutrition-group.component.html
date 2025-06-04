@@ -1,12 +1,9 @@
 <div class="nutrition-info-group">
-  <div
-    class="nutrition-info"
-    [ngStyle]="{
+  <div class="nutrition-info" [ngStyle]="{
       'background-color': setNutritionColour(nutritionType)
-    }"
-  ></div>
+    }"></div>
   <div class="nutrition-text">
     <h3>{{ nutritionType }}</h3>
-    <p>{{ nutrition }}{{ unit }}</p>
+    <p>{{ nutrition ?? 0 }}{{ unit }}</p>
   </div>
 </div>

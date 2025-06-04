@@ -1,0 +1,24 @@
+<div class="dialog-container">
+
+  <h2>Edit Meal Selection : {{childService.formatDate(data.date)}}</h2>
+
+  <ng-container [formGroup]="formGroup">
+
+    <div class="meal-plan-form" [formGroup]="formGroup">
+      <mat-form-field>
+        <mat-label>Meal Selection</mat-label>
+        <mat-select formControlName="meal" [compareWith]="compareMeals">
+          @for (meal of meals$ | async; track meal) {
+          <mat-option [value]="meal">{{ meal.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-dialog-actions align="end">
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-button cdkFocusInitial (click)="submit()">Save</button>
+      </mat-dialog-actions>
+    </div>
+
+  </ng-container>
+</div>

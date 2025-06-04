@@ -12,12 +12,14 @@ import { AddChildDetailsComponent } from './child/add-child/add-child.component'
 import { ChildAddMealComponent } from './child/child-details/add-meal/add-meal.component';
 import { ChildDetailsComponent } from './child/child-details/child-details.component';
 import { ChildMealTableComponent } from './child/child-details/child-meal-table/child-meal-table.component';
+import { ChildEditMealComponent } from './child/child-details/edit-meal/edit-meal.component';
 import { NutritionGroupComponent } from './child/child-details/nutrition-group/nutrition-group.component';
 import { ChildHubComponent } from './child/child-hub/child-hub.component';
 import { AddIngredientComponent } from './ingredient/add-ingredient/add-ingredient.component';
 import { IngredientHubComponent } from './ingredient/ingredient-hub/ingredient-hub.component';
 import { CreateMealPlanComponent } from './meal-plan/create-meal-plan/create-meal-plan.component';
 import { MealPlanHubComponent } from './meal-plan/meal-plan-hub/meal-plan-hub.component';
+import { MealPlanListComponent } from './meal-plan/meal-plan-list/meal-plan-list.component';
 import { MealPlanMealsComponent } from './meal-plan/meal-plan-meals/meal-plan-meals.component';
 import { AddMealComponent } from './meal/add-meal/add-meal.component';
 import { MealCardInfoComponent } from './meal/meal-card-info/meal-card-info.component';
@@ -27,7 +29,6 @@ import { AddMenuComponent } from './menu/add-menu/add-menu.component';
 import { MenuCardComponent } from './menu/menu-card/menu-card.component';
 import { MenuHubComponent } from './menu/menu-hub/menu-hub.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
-import { MealPlanListComponent } from './meal-plan/meal-plan-list/meal-plan-list.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { MealPlanListComponent } from './meal-plan/meal-plan-list/meal-plan-list
     MealPlanHubComponent,
     MealPlanMealsComponent,
     MealPlanListComponent,
+    ChildEditMealComponent
   ],
   imports: [
     RouterModule,

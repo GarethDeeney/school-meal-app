@@ -1,4 +1,7 @@
 <div class="dialog-container">
+
+  <h2>Add Meals</h2>
+
   <ng-container [formGroup]="formGroup">
     <p>Please select the Monday of the week you wish to select meals for.</p>
     <mat-form-field>
@@ -14,15 +17,14 @@
     </button>
 
     @let mealPlan = mealPlan$ | async;
+    @let otherMeals = otherOpt$ | async;
 
-
-    @if(!!mealPlan){
-
-    @let mondayMeals =getMealsLessAllergens(mealPlan[0].monday.meals);
-    @let tuesdayMeals = getMealsLessAllergens(mealPlan[0].tuesday.meals);
-    @let wednesdayMeals = getMealsLessAllergens(mealPlan[0].wednesday.meals);
-    @let thursdayMeals =getMealsLessAllergens(mealPlan[0].thursday.meals);
-    @let fridayMeals =getMealsLessAllergens(mealPlan[0].friday.meals);
+    @if(!!mealPlan.length){
+    @let mondayMeals =getMealsLessAllergens(mealPlan[0].monday.meals, otherMeals!);
+    @let tuesdayMeals = getMealsLessAllergens(mealPlan[0].tuesday.meals, otherMeals!);
+    @let wednesdayMeals = getMealsLessAllergens(mealPlan[0].wednesday.meals, otherMeals!);
+    @let thursdayMeals =getMealsLessAllergens(mealPlan[0].thursday.meals, otherMeals!);
+    @let fridayMeals =getMealsLessAllergens(mealPlan[0].friday.meals, otherMeals!);
 
     <div class="meal-plan-form" [formGroup]="mealPlanFormGroup">
       <mat-form-field>
@@ -69,23 +71,19 @@
           }
         </mat-select>
       </mat-form-field>
+
+      <mat-dialog-actions align="end">
+        <button mat-button (click)="close()">Cancel</button>
+        <button mat-button cdkFocusInitial (click)="submit()">Save</button>
+      </mat-dialog-actions>
     </div>
+
+
+    } @else {
+    <!-- @TODO: Update form control flow -->
+    @if(!formGroup.controls['start'].untouched){
+    <p>There isn't meals available for selection on that date. Please try another date or contact an admin.</p>
+    }
     }
   </ng-container>
-
-  <!-- menu section -->
-  <!-- something like this maybe? -->
-  <!-- @for (meal of menu.meals; track meal) {
-  <div class="meal-info">
-    <h3>{{ meal.name }}</h3>
-    <h4>Ingredients</h4>
-    <p>{{ setIngredientList(meal.ingredients) }}</p>
-    <p>{{ setAllergenList(meal.ingredients) }}</p>
-    <hr />
-  </div>
-  } @empty {
-  <p>No ingredient information available.</p>
-  } -->
-  <!-- app menu list here??? -->
-  <!-- need to filter options depending on allergens also. -->
 </div>

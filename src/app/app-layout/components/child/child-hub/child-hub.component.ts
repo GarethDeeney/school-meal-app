@@ -50,6 +50,7 @@ export class ChildHubComponent {
     this.dialog.open(AddChildDetailsComponent, {
       height: '325px',
       width: '500px',
+      data: { meals: child.meals },
     });
   }
 

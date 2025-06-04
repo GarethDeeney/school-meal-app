@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { DateTime } from 'luxon';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
+import { Meal } from 'src/app/models/meal';
 
 @Injectable({ providedIn: 'root' })
 export class ChildService {
@@ -50,7 +52,22 @@ export class ChildService {
     return this.http.delete(`${this.api}${id}`);
   }
 
-  getMenu$(id: string, date: any) {
-    return this.http.get<any>(`${this.api}/id/menu`);
+  addMeal$(id: string, meals: { date: DateTime; meal: any }[]) {
+    return this.http.post(`${this.api}${id}/meal`, meals);
+  }
+
+  editMealSelection$(id: string, meal: { date: DateTime; meal: any }) {
+    return this.http.put<any>(`${this.api}${id}/meal`, meal);
+  }
+
+  formatDate(date: DateTime) {
+    const dateStr = date
+      .toString()
+      .substring(0, 10)
+      .split('-')
+      .reverse()
+      .join('-');
+
+    return dateStr;
   }
 }

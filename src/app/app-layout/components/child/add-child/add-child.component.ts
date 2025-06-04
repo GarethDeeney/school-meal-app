@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { ChildService } from '../child-hub.service';
 import { Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Allergen } from 'src/app/models/allergen';
 import { AllergenService } from '../../allergen/allergenService';
 import { SnackbarService } from '../../snackbar-service';
@@ -19,7 +19,8 @@ export class AddChildDetailsComponent {
     protected childService: ChildService,
     public dialogRef: MatDialogRef<AddChildDetailsComponent>,
     protected allergenService: AllergenService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   allergens$ = this.allergenService.getAllergens$();
@@ -32,7 +33,7 @@ export class AddChildDetailsComponent {
       name: fg.controls['name'].value,
       allergens: fg.controls['allergens'].value,
       year: fg.controls['year'].value,
-      meals: <any>[],
+      meals: this.data.meals ?? [],
     };
   }
 

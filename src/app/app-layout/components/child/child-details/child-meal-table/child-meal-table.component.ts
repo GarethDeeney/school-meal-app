@@ -7,6 +7,8 @@ import { Child } from 'src/app/models/child';
 import { ChildService } from '../../child-hub.service';
 import { ChildAddMealComponent } from '../add-meal/add-meal.component';
 import { Ingredient } from 'src/app/models/ingredient';
+import { DateTime } from 'luxon';
+import { ChildEditMealComponent } from '../edit-meal/edit-meal.component';
 
 @Component({
   selector: 'app-child-meal-table',
@@ -18,10 +20,9 @@ export class ChildMealTableComponent implements OnInit {
   idParam!: string;
   nutrition$!: Observable<any>;
   datasource$ = new BehaviorSubject([]);
-  @Input() meals!: [];
-  @Input() allergens!: [];
+  @Input() child!: Child;
 
-  displayedColumns: string[] = ['meal', 'date', 'nutrition'];
+  displayedColumns: string[] = ['meal', 'date', 'nutrition', 'actions'];
 
   constructor(
     protected childService: ChildService,
@@ -36,12 +37,29 @@ export class ChildMealTableComponent implements OnInit {
     this.dialog.open(ChildAddMealComponent, {
       height: '575px',
       width: '400px',
-      data: { allergens: this.allergens },
+      data: { id: this.child._id, allergens: this.child.allergens },
+    });
+  }
+
+  openEditDialog(element: any) {
+    this.dialog.open(ChildEditMealComponent, {
+      height: '235px',
+      width: '400px',
+      data: {
+        date: DateTime.fromISO(element.date),
+        meal: {
+          _id: element._id,
+          name: element.name,
+          ingredients: element.ingredients,
+        },
+        allergens: this.child.allergens,
+        id: this.child._id,
+      },
     });
   }
 
   ngOnInit(): void {
-    this.datasource$.next(this.meals);
+    this.datasource$.next(this.child.meals);
   }
 
   getNutrtionalVal = (ingredients: any[], prop: string): number => {

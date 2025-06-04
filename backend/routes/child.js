@@ -90,11 +90,49 @@ router.put("/:id", async (req, res) => {
 router.post("/:id/meal", async (req, res) => {
   try {
     const id = req.params.id;
-    const meal = req.body;
-    const addedMeal = await Child.findOneAndUpdate({ _id: id });
+    const meals = req.body;
+
+    const addedMeal = await Child.updateOne(
+      { _id: id },
+      { $push: { meals: { $each: meals } } }
+    );
     res.status(201).json(addedMeal);
   } catch (err) {
     res.status(400).json({ message: "An error occured: ", error: err });
+  }
+});
+
+//  PUT: update
+router.put("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const child = req.body;
+    const updatedChild = await Child.findOneAndUpdate(
+      { _id: id },
+      { $set: child },
+      { new: true }
+    );
+
+    res.status(204).json(updatedChild);
+  } catch (error) {
+    res.status(400).json({ message: "An error occured: ", error: error });
+  }
+});
+
+// update meal from list
+router.put("/:id/meal", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const meal = req.body;
+    console.log(meal)
+    const updatedMeal = await Child.findOneAndUpdate(
+      { _id: id },
+      { $set: { meal: meal } },
+      { arrayFilters: [{ date: meal.date }] }
+    );
+    res.status(204).json(updatedMeal);
+  } catch (error) {
+    res.status(400);
   }
 });
 
@@ -107,7 +145,7 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .json({ message: "An error occured: ", error: error.message });
+      .json({ message: "An error occurred: ", error: error.message });
   }
 });
 
