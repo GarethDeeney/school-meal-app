@@ -19,9 +19,7 @@ import { ChildEditMealComponent } from '../edit-meal/edit-meal.component';
 export class ChildMealTableComponent implements OnInit {
   idParam!: string;
   nutrition$!: Observable<any>;
-  datasource$ = new BehaviorSubject([]);
   @Input() child!: Child;
-
   displayedColumns: string[] = ['meal', 'date', 'nutrition', 'actions'];
 
   constructor(
@@ -59,7 +57,7 @@ export class ChildMealTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.datasource$.next(this.child.meals);
+    this.childService.getChildMeals$(this.child._id!);
   }
 
   getNutrtionalVal = (ingredients: any[], prop: string): number => {

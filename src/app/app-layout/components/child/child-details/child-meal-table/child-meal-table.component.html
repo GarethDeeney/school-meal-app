@@ -8,7 +8,7 @@
 </div>
 
 
-<div class="table-container" *ngIf="datasource$ | async as datasource">
+<div class="table-container" *ngIf="childService.mealsDatasource$ | async as datasource">
   <table mat-table [dataSource]="datasource" class="mat-elevation-z8">
     <!-- Name Column -->
     <ng-container matColumnDef="meal">

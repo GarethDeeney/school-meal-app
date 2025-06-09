@@ -2,14 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateTime } from 'luxon';
-import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, map, Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
 import { Meal } from 'src/app/models/meal';
 
 @Injectable({ providedIn: 'root' })
 export class ChildService {
-  datasource$: BehaviorSubject<any[]> = new BehaviorSubject(<any>[]);
-
+  datasource$: BehaviorSubject<any> = new BehaviorSubject([]);
+  mealsDatasource$: BehaviorSubject<any> = new BehaviorSubject([]);
   constructor(protected http: HttpClient) {}
 
   api = '/api/child/';
@@ -36,6 +36,12 @@ export class ChildService {
     return this.http.get<Child>(`${this.api}${childId}`);
   }
 
+  getChildMeals$(id: string) {
+    return this.getChildInfo$(id)
+      .pipe(map((child) => child.meals))
+      .subscribe((meals) => this.mealsDatasource$.next(meals));
+  }
+
   getChildNutritionInfo$(childId: string): Observable<Child> {
     return this.http.get<Child>(`${this.api}${childId}/nutrition`);
   }
@@ -56,7 +62,7 @@ export class ChildService {
     return this.http.post(`${this.api}${id}/meal`, meals);
   }
 
-  editMealSelection$(id: string, meal: { date: DateTime; meal: any }) {
+  editMealSelection$(id: string, meal: any) {
     return this.http.put<any>(`${this.api}${id}/meal`, meal);
   }
 

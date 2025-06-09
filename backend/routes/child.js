@@ -124,11 +124,15 @@ router.put("/:id/meal", async (req, res) => {
   try {
     const id = req.params.id;
     const meal = req.body;
-    console.log(meal)
     const updatedMeal = await Child.findOneAndUpdate(
-      { _id: id },
-      { $set: { meal: meal } },
-      { arrayFilters: [{ date: meal.date }] }
+      { _id: id, "meals.date": meal.date },
+      {
+        $set: {
+          "meals.$._id": meal._id,
+          "meals.$.name": meal.name,
+          "meals.$.ingredients": meal.ingredients,
+        },
+      }
     );
     res.status(204).json(updatedMeal);
   } catch (error) {

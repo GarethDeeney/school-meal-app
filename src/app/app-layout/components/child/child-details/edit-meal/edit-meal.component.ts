@@ -120,7 +120,9 @@ export class ChildEditMealComponent {
 
   setMealObject(meal: any, date: DateTime) {
     return {
-      meal: meal,
+      _id: meal._id,
+      name: meal.name,
+      ingredients: meal.ingredients,
       date: date.toUTC(),
     };
   }
@@ -132,6 +134,15 @@ export class ChildEditMealComponent {
     );
     return this.childService
       .editMealSelection$(this.data.id, mealSelection)
-      .subscribe(console.log);
+      .subscribe({
+        complete: () => {
+          this.childService.getChildMeals$(this.data.id);
+          this.snackbarService.openSnackBar(
+            'Meal Selection updated Successfully'
+          );
+          this.dialogRef.close();
+        },
+        error: (err) => console.log(err),
+      });
   }
 }
