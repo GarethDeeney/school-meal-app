@@ -21,6 +21,13 @@
         <div class="nutrition-section">
           @if(nutrition$ | async; as nutrition){
           <div class="nutrition-info-section">
+
+            <nutrition-group
+              [nutrition]="nutrition.calories"
+              nutritionType="calories"
+              unit="kj"
+            ></nutrition-group>
+
             <nutrition-group
               [nutrition]="nutrition.energy"
               nutritionType="energy"

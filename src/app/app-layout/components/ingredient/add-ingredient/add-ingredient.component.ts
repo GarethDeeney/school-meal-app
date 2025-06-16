@@ -29,6 +29,7 @@ export class AddIngredientComponent {
       name: fg.controls['name'].value,
       allergens: fg.controls['allergens'].value,
       nutrition: {
+        calories: nutrition.controls['calories'].value,
         energy: nutrition.controls['energy'].value,
         fat: nutrition.controls['fat'].value,
         saturates: nutrition.controls['saturates'].value,

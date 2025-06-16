@@ -42,6 +42,7 @@ export class IngredientHubComponent {
       allergens: ingredient.allergens,
       pricePerKG: ingredient.pricePerKG,
       nutrition: {
+        calories: ingredient.nutrition.calories,
         energy: ingredient.nutrition.energy,
         fat: ingredient.nutrition.fat,
         sugars: ingredient.nutrition.sugars,

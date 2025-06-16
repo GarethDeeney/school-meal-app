@@ -10,11 +10,7 @@
 
       <mat-form-field>
         <mat-label>Allergies</mat-label>
-        <mat-select
-          formControlName="allergens"
-          multiple
-          [compareWith]="compareAllergens"
-        >
+        <mat-select formControlName="allergens" multiple [compareWith]="compareAllergens">
           @for (allergen of allergens$ | async; track allergen) {
           <mat-option [value]="allergen">{{ allergen.name }}</mat-option>
           }
@@ -25,56 +21,47 @@
     <div class="form-row">
       <mat-form-field>
         <mat-label>Price Per kg</mat-label>
-        <input
-          formControlName="pricePerKG"
-          matInput
-          placeholder="Price Per kg"
-        />
+        <input formControlName="pricePerKG" matInput placeholder="Price Per kg" />
       </mat-form-field>
     </div>
 
     <h3>Nutrional Information per 100g</h3>
     <div formGroupName="nutrition">
       <div class="form-row">
+
+        <mat-form-field>
+          <mat-label>Calories</mat-label>
+          <input formControlName="calories" matInput placeholder="Calories" />
+        </mat-form-field>
+
         <mat-form-field>
           <mat-label>Energy</mat-label>
-          <input
-            formControlName="energy"
-            matInput
-            placeholder="Energy per 100g"
-          />
+          <input formControlName="energy" matInput placeholder="Energy" />
         </mat-form-field>
+      </div>
 
+      <div class="form-row">
         <mat-form-field>
           <mat-label>Fats</mat-label>
-          <input formControlName="fat" matInput placeholder="Fats per 100g" />
+          <input formControlName="fat" matInput placeholder="Fats" />
         </mat-form-field>
-      </div>
 
-      <div class="form-row">
         <mat-form-field>
           <mat-label>Saturates</mat-label>
-          <input
-            formControlName="saturates"
-            matInput
-            placeholder="Saturates per 100g"
-          />
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-label>Sugars</mat-label>
-          <input
-            formControlName="sugars"
-            matInput
-            placeholder="Sugars per 100g"
-          />
+          <input formControlName="saturates" matInput placeholder="Saturates" />
         </mat-form-field>
       </div>
 
+
       <div class="form-row">
         <mat-form-field>
+          <mat-label>Sugars</mat-label>
+          <input formControlName="sugars" matInput placeholder="Sugars" />
+        </mat-form-field>
+
+        <mat-form-field>
           <mat-label>Salt</mat-label>
-          <input formControlName="salt" matInput placeholder="Salt per 100g" />
+          <input formControlName="salt" matInput placeholder="Salt" />
         </mat-form-field>
       </div>
     </div>

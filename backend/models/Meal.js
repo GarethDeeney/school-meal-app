@@ -4,6 +4,8 @@ const mealSchema = mongoose.Schema({
   id: String,
   name: String,
   ingredients: Array,
+  vegetarian: Boolean,
+  vegan: Boolean
 });
 
 const Meal = mongoose.model("Meal", mealSchema);

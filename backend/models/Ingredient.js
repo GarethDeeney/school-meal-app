@@ -6,6 +6,7 @@ const ingredientSchema = mongoose.Schema({
   allergens: Array,
   pricePerKG: Number,
   nutrition: {
+    calories: Number,
     energy: Number,
     fat: Number,
     saturates: Number,

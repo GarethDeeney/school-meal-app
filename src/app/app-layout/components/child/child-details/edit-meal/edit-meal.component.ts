@@ -58,6 +58,7 @@ export class ChildEditMealComponent {
 
   HOME_FOR_LUNCH = 'Home for Lunch';
   PACKED_LUNCH = 'Packed Lunch';
+  ABSENT = 'Absent';
 
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
@@ -112,7 +113,8 @@ export class ChildEditMealComponent {
         return meals.filter(
           (meal) =>
             meal.name.includes(this.HOME_FOR_LUNCH) ||
-            meal.name.includes(this.PACKED_LUNCH)
+            meal.name.includes(this.PACKED_LUNCH) ||
+            meal.name.includes(this.ABSENT)
         );
       })
     );

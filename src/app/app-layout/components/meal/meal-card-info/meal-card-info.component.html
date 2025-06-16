@@ -25,12 +25,12 @@
     <mat-panel-title> Nutrition </mat-panel-title>
   </mat-expansion-panel-header>
   @if (meal.ingredients.length > 0) {
+  <p>Calories: {{ getNutrtionalVal(meal.ingredients, "calories") }}kcal</p>
   <p>Energy: {{ getNutrtionalVal(meal.ingredients, "energy") }}kcal</p>
   <p>Fats: {{ getNutrtionalVal(meal.ingredients, "fat") }}g</p>
   <p>Saturates: {{ getNutrtionalVal(meal.ingredients, "saturates") }}g</p>
   <p>Sugars: {{ getNutrtionalVal(meal.ingredients, "sugars") }}g</p>
   <p>Salt: {{ getNutrtionalVal(meal.ingredients, "salt") }}g</p>
-
   } @else {
   <p>No nutrtional information available</p>
   }

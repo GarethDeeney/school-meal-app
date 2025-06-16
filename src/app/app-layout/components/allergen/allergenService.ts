@@ -26,7 +26,11 @@ export class AllergenService {
 
   setDataSource() {
     this.getAllergens$().subscribe((allergens: Allergen[]) => {
-      this.datasource$.next([...allergens]);
+      this.datasource$.next(
+        [...allergens].sort((a, b) =>
+          a.name < b.name ? -1 : a.name > b.name ? 1 : 0
+        )
+      );
     });
   }
 

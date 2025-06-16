@@ -31,6 +31,9 @@ export class AddMealComponent {
       _id: fg.controls['_id'].value,
       name: fg.controls['name'].value,
       ingredients: fg.controls['ingredients'].value,
+      vegetarian: fg.controls['vegetarian'].value,
+      vegan: fg.controls['vegan'].value,
+
     };
   }
 

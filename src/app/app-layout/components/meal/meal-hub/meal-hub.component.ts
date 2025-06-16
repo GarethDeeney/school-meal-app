@@ -15,6 +15,8 @@ import { BehaviorSubject, filter, map, Observable, tap } from 'rxjs';
 export class MealHubComponent {
   HOME_FOR_LUNCH = 'Home for Lunch';
   PACKED_LUNCH = 'Packed Lunch';
+  ABSENT = 'Absent';
+
   meals$!: Observable<any>;
 
   constructor(
@@ -28,7 +30,9 @@ export class MealHubComponent {
       map((meals: Meal[]) =>
         meals.filter(
           (meal: Meal) =>
-            !this.checkHomeForLunch(meal) && !this.checkPackedLunch(meal)
+            !this.checkHomeForLunch(meal) &&
+            !this.checkPackedLunch(meal) &&
+            !this.checkHomeForAbsence(meal)
         )
       )
     );
@@ -40,6 +44,10 @@ export class MealHubComponent {
 
   checkHomeForLunch = (meal: Meal) => {
     return meal.name == this.HOME_FOR_LUNCH;
+  };
+
+  checkHomeForAbsence = (meal: Meal) => {
+    return meal.name == this.ABSENT;
   };
 
   openMealDialog() {

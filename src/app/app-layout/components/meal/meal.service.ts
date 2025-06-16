@@ -69,6 +69,8 @@ export class MealService {
         ],
         Validators.required
       ),
+      vegetarian: new FormControl<boolean>(false),
+      vegan: new FormControl<boolean>(false),
     });
   };
 

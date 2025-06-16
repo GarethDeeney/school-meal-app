@@ -14,6 +14,7 @@ const ingredient: Ingredient = {
   allergens: [],
   pricePerKG: 1.00,
   nutrition: {
+    calories: 200,
     energy: 100,
     fat: 100,
     saturates: 100,
@@ -27,6 +28,7 @@ const ingredient2: Ingredient = {
   allergens: [],
   pricePerKG: 1.00,
   nutrition: {
+    calories: 200,
     energy: 100,
     fat: 100,
     saturates: 100,

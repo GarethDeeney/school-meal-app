@@ -36,6 +36,7 @@ export class IngredientService {
       Validators.required
     ),
     nutrition: new FormGroup({
+      calories: new FormControl<number | undefined>(undefined),
       energy: new FormControl<number | undefined>(undefined),
       fat: new FormControl<number | undefined>(undefined),
       saturates: new FormControl<number | undefined>(undefined),
