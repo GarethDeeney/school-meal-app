@@ -37,7 +37,7 @@ export class AddMealComponent {
     };
   }
 
-  compareIngredients = (a: any, b: any) => a.id == b.id;
+  compareIngredients = (a: any, b: any) => a._id == b._id;
 
   close() {
     this.dialogRef.close();

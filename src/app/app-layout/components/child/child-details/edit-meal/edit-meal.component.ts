@@ -74,7 +74,7 @@ export class ChildEditMealComponent {
     return this.formGroup.reset(entity);
   }
 
-  compareMeals = (a: any, b: any) => a.id == b.id;
+  compareMeals = (a: any, b: any) => a._id == b._id;
 
   getMealPlanByDate$(date: DateTime) {
     const dayOfWeek = date.weekdayLong!.toLowerCase();

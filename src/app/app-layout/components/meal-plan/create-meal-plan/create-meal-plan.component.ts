@@ -95,7 +95,7 @@ export class CreateMealPlanComponent {
     return newDate;
   }
 
-  compareMeals = (a: any, b: any) => a.id == b.id;
+  compareMenus = (a: any, b: any) => a._id == b._id;
 
   editMeal(mealPlan: MealPlan) {
     return this.mealPlanService.editMealPlan$(mealPlan).subscribe({

@@ -71,7 +71,7 @@ export class ChildAddMealComponent {
     friday: new FormControl(),
   });
 
-  compareMeals = (a: any, b: any) => a.id == b.id;
+  compareMeals = (a: any, b: any) => a._id == b._id;
 
   getMealPlanByDate(date: Date) {
     const isoDate = DateTime.fromISO(date.toISOString())

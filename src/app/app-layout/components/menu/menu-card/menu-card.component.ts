@@ -67,7 +67,7 @@ export class MenuCardComponent {
     // open dialog with updated form group
     this.dialog.open(AddMenuComponent, {
       maxHeight: '100%',
-      width: '300px',
+      width: '400px',
     });
   }
 

@@ -1,4 +1,4 @@
-import { Meal } from './meal';
+import { Menu } from './menu';
 
 export interface MealPlan {
   _id?: string;
@@ -13,5 +13,5 @@ export interface MealPlan {
 
 export interface MealPlanDay {
   date: Date;
-  meals: Meal[];
+  menu: Menu;
 }

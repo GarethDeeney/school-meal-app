@@ -45,7 +45,7 @@ export class AddIngredientComponent {
     this.dialogRef.close();
   }
 
-  compareAllergens = (a: any, b: any) => a.id == b.id;
+  compareAllergens = (a: any, b: any) => a._id == b._id;
 
   submit() {
     const ingredient = this.getIngredientValues(this.formGroup);
