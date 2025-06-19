@@ -22,10 +22,21 @@
   }
 }
 
+@media only screen and (max-width: 1300px) {}
+
 .nutrition {
   &-info-section {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
+
+    @media only screen and (max-width: 1300px) {
+      justify-content: flex-start;
+    }
+
+    & nutrition-group {
+      flex: 1 1 0px;
+    }
   }
 
 

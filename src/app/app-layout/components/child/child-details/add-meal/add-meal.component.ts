@@ -15,6 +15,7 @@ import { MealService } from '../../../meal/meal.service';
 import { ChildService } from '../../child-hub.service';
 import { MealPlan } from 'src/app/models/mealPlan';
 import { SnackbarService } from '../../../snackbar-service';
+import { Ingredient } from 'src/app/models/ingredient';
 
 @Component({
   selector: 'child-add-meal',
@@ -48,6 +49,7 @@ export class ChildAddMealComponent {
 
   HOME_FOR_LUNCH = 'Home for Lunch';
   PACKED_LUNCH = 'Packed Lunch';
+  ABSENT = 'Absent';
 
   noMealsOnDate$ = new BehaviorSubject<boolean>(false);
 
@@ -106,15 +108,18 @@ export class ChildAddMealComponent {
   }
 
   removeMealsWithAllergen(meals: Meal[]) {
-    const newMeals = meals.filter((meal: Meal) => {
-      return meal.ingredients.some(
-        (ingredients) =>
-          !ingredients.ingredient.allergens.find((allergen) =>
-            this.isAllergenInArray(allergen)
-          )
+    return meals.filter((meal) => {
+      const allergens = meal.ingredients
+        .flat()
+        .map((ingredients) => ingredients.ingredient)
+        .map((ingredient) => ingredient.allergens)
+        .flat();
+
+      return (
+        !!!allergens.length ||
+        !!!allergens.find((allergen) => this.isAllergenInArray(allergen))
       );
     });
-    return newMeals;
   }
 
   combineMealOptions(dayMeals: Meal[], otherOpt: Meal[]) {

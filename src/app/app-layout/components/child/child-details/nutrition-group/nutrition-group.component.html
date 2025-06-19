@@ -4,6 +4,6 @@
     }"></div>
   <div class="nutrition-text">
     <h3>{{ nutritionType }}</h3>
-    <p>{{ nutrition ?? 0 }}{{ unit }}</p>
+    <p>{{ (nutrition ?? 0).toFixed(2) }}{{ unit }}</p>
   </div>
 </div>
