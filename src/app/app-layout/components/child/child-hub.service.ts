@@ -2,7 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateTime } from 'luxon';
-import { BehaviorSubject, EMPTY, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { Allergen } from 'src/app/models/allergen';
 import { Child } from 'src/app/models/child';
 import { Meal } from 'src/app/models/meal';
 
@@ -77,5 +78,27 @@ export class ChildService {
       .join('-');
 
     return dateStr;
+  }
+
+  isAllergenInArray = (childAllergens: Allergen[], allergen: Allergen) =>
+    childAllergens
+      .map((allergen: Allergen) => allergen._id)
+      .includes(allergen._id!);
+
+  removeMealsWithAllergen(childAllergens: Allergen[], meals: Meal[]) {
+    return meals.filter((meal) => {
+      const allergens = meal.ingredients
+        .flat()
+        .map((ingredients) => ingredients.ingredient)
+        .map((ingredient) => ingredient.allergens)
+        .flat();
+
+      return (
+        !!!allergens.length ||
+        !!!allergens.find((allergen) =>
+          this.isAllergenInArray(childAllergens, allergen)
+        )
+      );
+    });
   }
 }

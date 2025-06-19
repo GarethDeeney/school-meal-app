@@ -33,15 +33,18 @@
 
           <div class="meal-nutrition">
             <p>
+              Calories: {{ getNutrtionalVal(element.ingredients, "calories") }}kcal
+            </p>
+            <p>
               Energy: {{ getNutrtionalVal(element.ingredients, "energy") }}kj
             </p>
-            <p>Fat: {{ getNutrtionalVal(element.ingredients, "fat") }}g</p>
-            <p>Salt: {{ getNutrtionalVal(element.ingredients, "salt") }}g</p>
+            <p>Fat: {{ getNutrtionalVal(element.ingredients, "fat").toFixed(2) }}g</p>
+            <p>Salt: {{ getNutrtionalVal(element.ingredients, "salt").toFixed(2) }}g</p>
             <p>
               Saturates:
-              {{ getNutrtionalVal(element.ingredients, "saturates") }}g
+              {{ getNutrtionalVal(element.ingredients, "saturates").toFixed(2) }}g
             </p>
-            <p>Sugar: {{ getNutrtionalVal(element.ingredients, "sugars") }}g</p>
+            <p>Sugar: {{ getNutrtionalVal(element.ingredients, "sugars").toFixed(2) }}g</p>
           </div>
           } @else {
           <p>No nutritional information available for meal selection</p>

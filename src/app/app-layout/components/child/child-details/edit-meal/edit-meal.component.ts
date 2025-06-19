@@ -33,7 +33,10 @@ export class ChildEditMealComponent {
     public dialogRef: MatDialogRef<ChildEditMealComponent>,
     protected snackbarService: SnackbarService
   ) {
-    this.mealList$().subscribe((val) => this.meals$.next(val));
+    this.mealList$().subscribe((val) => {
+      this.meals$.next(val);
+    });
+
     this.setupFormGroup({ date: this.data.date, meal: this.data.meal });
   }
 
@@ -46,7 +49,13 @@ export class ChildEditMealComponent {
     ]).pipe(
       map((arr: Meal[][]) =>
         !!this.data.allergens.length
-          ? [...this.removeMealsWithAllergen(arr[0]), ...arr[1]]
+          ? [
+              ...this.childService.removeMealsWithAllergen(
+                this.data.allergens,
+                arr[0]
+              ),
+              ...arr[1],
+            ]
           : arr.flat()
       )
     );
@@ -74,7 +83,9 @@ export class ChildEditMealComponent {
     return this.formGroup.reset(entity);
   }
 
-  compareMeals = (a: any, b: any) => a._id == b._id;
+  compareMeals = (a: any, b: any) => {
+    return a._id == b._id;
+  };
 
   getMealPlanByDate$(date: DateTime) {
     const dayOfWeek = date.weekdayLong!.toLowerCase();
@@ -87,24 +98,27 @@ export class ChildEditMealComponent {
     return this.mealPlanService
       .getMealPlanByDate$(startDate)
       .pipe(
-        map((mealPlan: any) => mealPlan[0][dayOfWeek as keyof MealPlan].meals)
+        map(
+          (mealPlan: any) => mealPlan[0][dayOfWeek as keyof MealPlan].menu.meals
+        )
       );
   }
 
-  isAllergenInArray(allergen: Allergen) {
-    return this.data.allergens.includes(allergen._id!);
-  }
-
   removeMealsWithAllergen(meals: Meal[]) {
-    const newMeals = meals.filter((meal: Meal) => {
-      return meal.ingredients.some((ingredients) => {
-        if (!!ingredients)
-          !ingredients.ingredient.allergens.find((allergen) =>
-            this.isAllergenInArray(allergen)
-          );
-      });
+    return meals.filter((meal) => {
+      const allergens = meal.ingredients
+        .flat()
+        .map((ingredients) => ingredients.ingredient)
+        .map((ingredient) => ingredient.allergens)
+        .flat();
+
+      return (
+        !!!allergens.length ||
+        !!!allergens.find((allergen) =>
+          this.childService.isAllergenInArray(this.data.allergens, allergen)
+        )
+      );
     });
-    return newMeals;
   }
 
   getNotSchoolLunchMeals$(): Observable<Meal[]> {

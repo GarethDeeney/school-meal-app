@@ -98,28 +98,12 @@ export class ChildAddMealComponent {
   }
 
   getMealsLessAllergens(meals: Meal[], otherOpt: Meal[]) {
-    return this.childAllergens.length > 0
-      ? this.combineMealOptions(this.removeMealsWithAllergen(meals), otherOpt)
+    return this.data.allergens.length > 0
+      ? this.combineMealOptions(
+          this.childService.removeMealsWithAllergen(this.data.allergens, meals),
+          otherOpt
+        )
       : this.combineMealOptions(meals, otherOpt);
-  }
-
-  isAllergenInArray(allergen: Allergen) {
-    return this.childAllergens.includes(allergen._id!);
-  }
-
-  removeMealsWithAllergen(meals: Meal[]) {
-    return meals.filter((meal) => {
-      const allergens = meal.ingredients
-        .flat()
-        .map((ingredients) => ingredients.ingredient)
-        .map((ingredient) => ingredient.allergens)
-        .flat();
-
-      return (
-        !!!allergens.length ||
-        !!!allergens.find((allergen) => this.isAllergenInArray(allergen))
-      );
-    });
   }
 
   combineMealOptions(dayMeals: Meal[], otherOpt: Meal[]) {

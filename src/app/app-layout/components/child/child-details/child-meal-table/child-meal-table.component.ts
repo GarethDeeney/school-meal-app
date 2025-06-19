@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { DateTime } from 'luxon';
+import { Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
+import { Ingredient } from 'src/app/models/ingredient';
 import { ChildService } from '../../child-hub.service';
 import { ChildAddMealComponent } from '../add-meal/add-meal.component';
-import { Ingredient } from 'src/app/models/ingredient';
-import { DateTime } from 'luxon';
 import { ChildEditMealComponent } from '../edit-meal/edit-meal.component';
 
 @Component({
@@ -35,7 +35,10 @@ export class ChildMealTableComponent implements OnInit {
     this.dialog.open(ChildAddMealComponent, {
       height: '575px',
       width: '400px',
-      data: { id: this.child._id, allergens: this.child.allergens },
+      data: {
+        id: this.child._id,
+        allergens: this.child.allergens,
+      },
     });
   }
 
