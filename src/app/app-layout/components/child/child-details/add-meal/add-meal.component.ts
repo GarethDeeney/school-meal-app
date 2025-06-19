@@ -49,6 +49,8 @@ export class ChildAddMealComponent {
   HOME_FOR_LUNCH = 'Home for Lunch';
   PACKED_LUNCH = 'Packed Lunch';
 
+  noMealsOnDate$ = new BehaviorSubject<boolean>(false);
+
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     return day == 1;
@@ -81,6 +83,10 @@ export class ChildAddMealComponent {
     return this.mealPlanService
       .getMealPlanByDate$(isoDate)
       .subscribe((mealPlan: any) => {
+        !!!mealPlan.length
+          ? this.noMealsOnDate$.next(true)
+          : this.noMealsOnDate$.next(false);
+
         this.mealPlan$.next(mealPlan);
       });
   }

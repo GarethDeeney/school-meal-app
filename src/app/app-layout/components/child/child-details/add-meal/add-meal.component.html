@@ -20,11 +20,11 @@
     @let otherMeals = otherOpt$ | async;
 
     @if(!!mealPlan.length){
-    @let mondayMeals =getMealsLessAllergens(mealPlan[0].monday.meals, otherMeals!);
-    @let tuesdayMeals = getMealsLessAllergens(mealPlan[0].tuesday.meals, otherMeals!);
-    @let wednesdayMeals = getMealsLessAllergens(mealPlan[0].wednesday.meals, otherMeals!);
-    @let thursdayMeals =getMealsLessAllergens(mealPlan[0].thursday.meals, otherMeals!);
-    @let fridayMeals =getMealsLessAllergens(mealPlan[0].friday.meals, otherMeals!);
+    @let mondayMeals =getMealsLessAllergens(mealPlan[0].monday.menu.meals, otherMeals!);
+    @let tuesdayMeals = getMealsLessAllergens(mealPlan[0].tuesday.menu.meals, otherMeals!);
+    @let wednesdayMeals = getMealsLessAllergens(mealPlan[0].wednesday.menu.meals, otherMeals!);
+    @let thursdayMeals =getMealsLessAllergens(mealPlan[0].thursday.menu.meals, otherMeals!);
+    @let fridayMeals =getMealsLessAllergens(mealPlan[0].friday.menu.meals, otherMeals!);
 
     <div class="meal-plan-form" [formGroup]="mealPlanFormGroup">
       <mat-form-field>
@@ -81,7 +81,7 @@
 
     } @else {
     <!-- @TODO: Update form control flow -->
-    @if(!formGroup.controls['start'].untouched){
+    @if(noMealsOnDate$ | async){
     <p>There isn't meals available for selection on that date. Please try another date or contact an admin.</p>
     }
     }
