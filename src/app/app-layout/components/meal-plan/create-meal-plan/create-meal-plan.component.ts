@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { MealPlan } from 'src/app/models/mealPlan';
+import { MealPlan, MealPlanDay } from 'src/app/models/mealPlan';
 import { MealService } from '../../meal/meal.service';
 import { MenuService } from '../../menu/menu-service';
 import { SnackbarService } from '../../snackbar-service';
@@ -51,27 +51,31 @@ export class CreateMealPlanComponent {
       startDate: date,
       monday: {
         date: this.setDate(date, 0),
-        meals: mealPlanFormGroup.controls['monday'].value.meals,
+        menu: this.setMealDayValue(mealPlanFormGroup.controls['monday']),
       },
       tuesday: {
         date: this.setDate(date, 1),
-        meals: mealPlanFormGroup.controls['tuesday'].value.meals,
+        menu: this.setMealDayValue(mealPlanFormGroup.controls['tuesday']),
       },
       wednesday: {
         date: this.setDate(date, 2),
-        meals: mealPlanFormGroup.controls['wednesday'].value.meals,
+        menu: this.setMealDayValue(mealPlanFormGroup.controls['wednesday']),
       },
       thursday: {
         date: this.setDate(date, 3),
-        meals: mealPlanFormGroup.controls['thursday'].value.meals,
+        menu: this.setMealDayValue(mealPlanFormGroup.controls['thursday']),
       },
       friday: {
         date: this.setDate(date, 4),
-        meals: mealPlanFormGroup.controls['friday'].value.meals,
+        menu: this.setMealDayValue(mealPlanFormGroup.controls['friday']),
       },
     };
 
     return mealPlanEntity;
+  }
+
+  setMealDayValue(dayControl: AbstractControl) {
+    return dayControl.value.menu ?? dayControl.value;
   }
 
   addMeal(mealPlan: MealPlan) {
@@ -95,7 +99,9 @@ export class CreateMealPlanComponent {
     return newDate;
   }
 
-  compareMenus = (a: any, b: any) => a._id == b._id;
+  compareMenus = (a: any, b: any) => {
+    return a._id == b.menu._id;
+  };
 
   editMeal(mealPlan: MealPlan) {
     return this.mealPlanService.editMealPlan$(mealPlan).subscribe({

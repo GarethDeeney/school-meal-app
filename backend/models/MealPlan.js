@@ -6,23 +6,43 @@ const mealPlanSchema = mongoose.Schema({
   startDate: Date,
   monday: {
     date: Date,
-    menu: Array,
+    menu: {
+      _id: String,
+      name: String,
+      meals: Array,
+    },
   },
   tuesday: {
     date: Date,
-    menu: Array,
+    menu: {
+      _id: String,
+      name: String,
+      meals: Array,
+    },
   },
   wednesday: {
     date: Date,
-    menu: Array,
+    menu: {
+     _id: String,
+      name: String,
+      meals: Array,
+    },
   },
   thursday: {
     date: Date,
-    menu: Array,
+    menu: {
+      _id: String,
+      name: String,
+      meals: Array,
+    },
   },
   friday: {
     date: Date,
-    menu: Array,
+    menu: {
+      _id: String,
+      name: String,
+      meals: Array,
+    },
   },
 });
 
