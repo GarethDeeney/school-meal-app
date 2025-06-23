@@ -152,7 +152,7 @@ export class ChildAddMealComponent {
 
     return this.childService.addMeal$(this.data.id, mealObj).subscribe({
       complete: () => {
-        this.childService.getChildren$();
+        this.childService.getChildMeals$(this.data.id);
         this.snackbarService.openSnackBar('Meal Selection added Successfully');
         this.dialogRef.close();
       },

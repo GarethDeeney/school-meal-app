@@ -41,6 +41,7 @@ getNutrition = (child) => {
   );
 
   return {
+    calories: calcNutrition(nutritionArr.flat(), "calories"),
     energy: calcNutrition(nutritionArr.flat(), "energy"),
     fat: calcNutrition(nutritionArr.flat(), "fat"),
     salt: calcNutrition(nutritionArr.flat(), "salt"),

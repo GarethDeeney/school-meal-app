@@ -9,6 +9,7 @@ import { DashboardComponent } from './app-layout/dashboard/dashboard.component';
 import { LogInComponent } from './app-layout/log-in/log-in.component';
 import { MealHubComponent } from './app-layout/components/meal/meal-hub/meal-hub.component';
 import { MealPlanHubComponent } from './app-layout/components/meal-plan/meal-plan-hub/meal-plan-hub.component';
+import { ReportsComponent } from './app-layout/components/reports/reports-hub/reports.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'allergen/hub',
     component: AllergenHubComponent,
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
   },
 ];
 

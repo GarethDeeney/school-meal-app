@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require('dotenv').config()
+require("dotenv").config();
 
 const passport = require("passport");
 const { uuid } = require("uuidv4");
@@ -19,6 +19,7 @@ const allergenRoutes = require("./backend/routes/allergy");
 const mealRoutes = require("./backend/routes/meal");
 const menuRoutes = require("./backend/routes/menu");
 const mealPlanRoutes = require("./backend/routes/mealPlan");
+const reportRoutes = require("./backend/routes/reports");
 
 app.use("/api/customers", customerRoutes);
 app.use("/api/child", childRoutes);
@@ -27,6 +28,7 @@ app.use("/api/ingredient", ingredientRoutes);
 app.use("/api/meal", mealRoutes);
 app.use("/api/menu", menuRoutes);
 app.use("/api/mealPlan", mealPlanRoutes);
+app.use("/api/reports", reportRoutes);
 
 app.listen(port, (err) => {
   if (!err) {
@@ -41,8 +43,7 @@ main().catch((err) => {
 });
 
 async function main() {
-  const connectionString =
-    `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@cluster0.u7ujn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+  const connectionString = `mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@cluster0.u7ujn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
   await mongoose.connect(connectionString, { dbName: "schoolmealapp" });
   mongoose.set("strictQuery", true);
 }

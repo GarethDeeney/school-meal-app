@@ -25,7 +25,8 @@
             <nutrition-group
               [nutrition]="nutrition.calories"
               nutritionType="calories"
-              unit="kj"
+              unit="kcal"
+              [recommended]="setRecommendedCalories(child)"
             ></nutrition-group>
 
             <nutrition-group

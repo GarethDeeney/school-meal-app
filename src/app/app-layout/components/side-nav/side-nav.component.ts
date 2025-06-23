@@ -57,6 +57,12 @@ export class SideNavComponent {
       execute: (): void => {},
     },
     {
+      label: 'Reports',
+      url: '/reports',
+      icon: 'analytics',
+      execute: (): void => {},
+    },
+    {
       label: 'Log Out',
       url: '/log-out',
       icon: 'logout',

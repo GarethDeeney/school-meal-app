@@ -9,7 +9,7 @@ import { ChildService } from '../child-hub.service';
   selector: 'app-child-details',
   templateUrl: './child-details.component.html',
   styleUrls: ['./child-details.component.scss'],
-  standalone: false
+  standalone: false,
 })
 export class ChildDetailsComponent implements OnInit {
   idParam!: string;
@@ -26,19 +26,8 @@ export class ChildDetailsComponent implements OnInit {
     });
   }
 
-  setNutritionColour(value: number, recommended: number): string {
-    const percentage = (value / recommended) * 100;
-
-    let colour;
-    if (percentage < 70 && percentage > 50) {
-      colour = 'yellow';
-    } else if (percentage < 50) {
-      colour = 'green';
-    } else {
-      colour = 'red';
-    }
-
-    return colour;
+  setRecommendedCalories(child: Child): number {
+    return Number(child.year) > 6 ? 800 : 550;
   }
 
   setRecommendedSugar(child: Child): number {

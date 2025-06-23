@@ -32,19 +32,47 @@
           @if(!!element.ingredients.length){
 
           <div class="meal-nutrition">
-            <p>
-              Calories: {{ getNutrtionalVal(element.ingredients, "calories") }}kcal
-            </p>
-            <p>
-              Energy: {{ getNutrtionalVal(element.ingredients, "energy") }}kj
-            </p>
-            <p>Fat: {{ getNutrtionalVal(element.ingredients, "fat").toFixed(2) }}g</p>
-            <p>Salt: {{ getNutrtionalVal(element.ingredients, "salt").toFixed(2) }}g</p>
-            <p>
-              Saturates:
-              {{ getNutrtionalVal(element.ingredients, "saturates").toFixed(2) }}g
-            </p>
-            <p>Sugar: {{ getNutrtionalVal(element.ingredients, "sugars").toFixed(2) }}g</p>
+            <div class="meal-nutrition-text">
+              <p>
+                Calories
+              </p>
+              <p>{{ getNutrtionalVal(element.ingredients, "calories") }}kcal</p>
+            </div>
+
+            <div class="meal-nutrition-text">
+              <p>
+                Energy
+              </p>
+              <p>
+                {{ getNutrtionalVal(element.ingredients, "energy") }}kj
+              </p>
+            </div>
+
+            <div class="meal-nutrition-tex">
+              <p>Fat</p>
+              <p>
+                {{ getNutrtionalVal(element.ingredients, "fat").toFixed(2) }}g
+              </p>
+            </div>
+
+            <div class="meal-nutrtion-text">
+              <p>Salt</p>
+              <p>{{ getNutrtionalVal(element.ingredients, "salt").toFixed(2) }}g</p>
+            </div>
+
+            <div class="meal-nutrtion-text">
+              <p>
+                Saturates
+              </p>
+              <p>{{ getNutrtionalVal(element.ingredients, "saturates").toFixed(2) }}g</p>
+            </div>
+
+            <div class="meal-nutrtion-text">
+              <p>Sugar</p>
+              <p>{{ getNutrtionalVal(element.ingredients, "sugars").toFixed(2) }}g</p>
+            </div>
+
+
           </div>
           } @else {
           <p>No nutritional information available for meal selection</p>

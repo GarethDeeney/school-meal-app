@@ -28,6 +28,8 @@ import { MealHubComponent } from './meal/meal-hub/meal-hub.component';
 import { AddMenuComponent } from './menu/add-menu/add-menu.component';
 import { MenuCardComponent } from './menu/menu-card/menu-card.component';
 import { MenuHubComponent } from './menu/menu-hub/menu-hub.component';
+import { NutritionReportComponent } from './reports/nutrition-report/nutrition-report.component';
+import { ReportsComponent } from './reports/reports-hub/reports.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
@@ -54,7 +56,9 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     MealPlanHubComponent,
     MealPlanMealsComponent,
     MealPlanListComponent,
-    ChildEditMealComponent
+    ChildEditMealComponent,
+    ReportsComponent,
+    NutritionReportComponent,
   ],
   imports: [
     RouterModule,
