@@ -7,6 +7,10 @@ export class ReportService {
   constructor(protected http: HttpClient) {}
 
   getNutritionReport$() {
-    return this.http.get<any>(`${this.api}/nutritionReport`);
+    return this.http.get<any>(`${this.api}/nutrition-report`);
+  }
+
+    getCostReport$() {
+    return this.http.get<any>(`${this.api}/cost-report`);
   }
 }

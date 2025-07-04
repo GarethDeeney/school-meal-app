@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ReportService } from '../reports.service';
-import Chart from 'chart.js/auto';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-menu-hub',

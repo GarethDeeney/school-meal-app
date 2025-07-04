@@ -16,6 +16,7 @@ export class NutritionReportComponent implements OnInit {
   @Input() chartId: string = 'chartId';
 
   ngOnInit(): void {
+    this.reportService.getCostReport$().subscribe(console.log);
     this.reportService.getNutritionReport$().subscribe((val) => {
       const data = [
         { month: 'Jan', count: val.january[this.nutritionType.toLowerCase()] },
