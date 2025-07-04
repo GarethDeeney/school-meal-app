@@ -9,7 +9,7 @@ const Ingredient = require("../models/Ingredient");
 // then calculate the average of each nturtition type?
 
 // GET: nutrition report
-router.get("/nutritionReport", async (req, res) => {
+router.get("/nutrition-report", async (req, res) => {
   try {
     const childMeals = await Child.find({}, { meals: 1, _id: 0 });
 
@@ -24,15 +24,86 @@ router.get("/nutritionReport", async (req, res) => {
       })
       .filter((meal) => !!meal.ingredients.length);
 
-    const totalNutrition = getNutrition(mealWithDate);
+    const nutirtionPerMonth = getNutrition(mealWithDate);
 
-    res.status(200).json(totalNutrition);
+    res.status(200).json(nutirtionPerMonth);
   } catch (error) {
     res
       .status(400)
       .json({ message: "An error occured: ", error: error.message });
   }
 });
+
+// GET: cost report
+router.get("/cost-report", async (req, res) => {
+  try {
+    const childMeals = await Child.find({}, { meals: 1, _id: 0 });
+
+    const mealWithDate = childMeals
+      .map((meal) => meal.meals)
+      .flat()
+      .map((meal) => {
+        return {
+          date: meal.date,
+          ingredients: meal.ingredients,
+        };
+      })
+      .filter((meal) => !!meal.ingredients.length);
+
+    const costPerMonth = getCostsPerMonth(mealWithDate);
+
+    res.status(200).json(costPerMonth);
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "An error occured: ", error: error.message });
+  }
+});
+
+getCostsPerMonth = (item) => {
+  const months = {
+    january: [],
+    february: [],
+    march: [],
+    april: [],
+    may: [],
+    june: [],
+    july: [],
+    august: [],
+    september: [],
+    october: [],
+    november: [],
+    december: [],
+  };
+
+  const costArr = item.map((item) => {
+    return {
+      date: item.date,
+      cost: item.ingredients.map((item) =>
+        costOfIngredient(item.ingredient.pricePerKG, item.amount)
+      ),
+    };
+  });
+
+  costArr.forEach((element) => {
+    const dateMonth = getMonth(element.date);
+    months[dateMonth].push(element.cost.flat());
+  });
+
+  const keys = Object.keys(months);
+
+  const returnObj = {};
+
+  for (key of keys) {
+    const flatArr = months[key].flat();
+    returnObj[key] = calcCostTotal(flatArr).toFixed(2);
+  }
+  return returnObj;
+};
+
+costOfIngredient = (costPerKg, amount) => {
+  return (amount / 100) * costPerKg;
+};
 
 getNutrition = (item) => {
   const months = {
@@ -58,7 +129,7 @@ getNutrition = (item) => {
   });
 
   nutritionArr.forEach((element) => {
-    const dateMonth = getNutritionMonth(element.date);
+    const dateMonth = getMonth(element.date);
     months[dateMonth].push(element.nutrition.flat());
   });
 
@@ -81,19 +152,21 @@ getNutrition = (item) => {
   return returnObj;
 };
 
-getNutritionMonth = (date) => {
+getMonth = (date) => {
   return new Date(date)
     .toLocaleString("default", { month: "long" })
     .toLowerCase();
+};
+
+calcCostTotal = (arr) => {
+  return arr.reduce((prev, current) => prev + current, 0);
 };
 
 const calcNutrition = (arr, prop) => {
   const nutritionVal =
     arr
       .map((nutrition) => nutrition[prop])
-      .reduce((prev, current) => {
-        return prev + current;
-      }, 0) / arr.length ?? 0;
+      .reduce((prev, current) => prev + current, 0) / arr.length ?? 0;
 
   return !isNaN(nutritionVal) ? nutritionVal : 0;
 };
