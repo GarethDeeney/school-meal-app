@@ -59,19 +59,26 @@ getNutrition = (item) => {
 
   nutritionArr.forEach((element) => {
     const dateMonth = getNutritionMonth(element.date);
-    months[dateMonth].push(element.nutrition);
+    months[dateMonth].push(element.nutrition.flat());
   });
 
-  // to do - get return for each month of year.
+  const keys = Object.keys(months);
 
-  // return {
-  //   calories: calcNutrition(nutritionArr.flat(), "calories").toFixed(2),
-  //   energy: calcNutrition(nutritionArr.flat(), "energy").toFixed(2),
-  //   fat: calcNutrition(nutritionArr.flat(), "fat").toFixed(2),
-  //   salt: calcNutrition(nutritionArr.flat(), "salt").toFixed(2),
-  //   saturates: calcNutrition(nutritionArr.flat(), "saturates").toFixed(2),
-  //   sugars: calcNutrition(nutritionArr.flat(), "sugars").toFixed(2),
-  // };
+  const returnObj = {};
+
+  for (key of keys) {
+    const flatArr = months[key].flat();
+    returnObj[key] = {
+      calories: calcNutrition(flatArr, "calories").toFixed(2),
+      energy: calcNutrition(flatArr, "energy").toFixed(2),
+      fat: calcNutrition(flatArr, "fat").toFixed(2),
+      salt: calcNutrition(flatArr, "salt").toFixed(2),
+      saturates: calcNutrition(flatArr, "saturates").toFixed(2),
+      sugars: calcNutrition(flatArr, "sugars").toFixed(2),
+    };
+  }
+
+  return returnObj;
 };
 
 getNutritionMonth = (date) => {
@@ -81,13 +88,14 @@ getNutritionMonth = (date) => {
 };
 
 const calcNutrition = (arr, prop) => {
-  return (
+  const nutritionVal =
     arr
       .map((nutrition) => nutrition[prop])
       .reduce((prev, current) => {
         return prev + current;
-      }, 0) / arr.length
-  );
+      }, 0) / arr.length ?? 0;
+
+  return !isNaN(nutritionVal) ? nutritionVal : 0;
 };
 
 module.exports = router;

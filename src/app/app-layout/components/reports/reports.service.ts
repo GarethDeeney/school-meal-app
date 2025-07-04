@@ -6,11 +6,9 @@ import { Nutrition } from 'src/app/models/Nutrition';
 @Injectable({ providedIn: 'root' })
 export class ReportService {
   api = '/api/reports';
-  constructor(
-    protected http: HttpClient,
-  ) {}
+  constructor(protected http: HttpClient) {}
 
   getNutritionReport$() {
-    return this.http.get<Nutrition>(`${this.api}/nutritionReport`);
+    return this.http.get<any>(`${this.api}/nutritionReport`);
   }
 }
