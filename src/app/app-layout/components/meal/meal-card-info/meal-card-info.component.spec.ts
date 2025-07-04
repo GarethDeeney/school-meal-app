@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MealCardComponent } from './meal-card-info.component';
+import { MealCardComponent } from '../meal-card/meal-card.component';
 
 
 describe('MealCardComponent', () => {

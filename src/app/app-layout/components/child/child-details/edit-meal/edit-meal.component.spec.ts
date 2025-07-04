@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ChildEditMealComponent } from './edit-meal.component';
 
-import { ChildAddMealComponent } from './edit-meal.component';
 
-describe('ChildAddMealComponent', () => {
-  let component: ChildAddMealComponent;
-  let fixture: ComponentFixture<ChildAddMealComponent>;
+describe('ChildEditMealComponent', () => {
+  let component: ChildEditMealComponent;
+  let fixture: ComponentFixture<ChildEditMealComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ChildAddMealComponent],
+      declarations: [ChildEditMealComponent],
     });
-    fixture = TestBed.createComponent(ChildAddMealComponent);
+    fixture = TestBed.createComponent(ChildEditMealComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
