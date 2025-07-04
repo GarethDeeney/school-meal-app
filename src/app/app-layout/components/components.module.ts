@@ -28,6 +28,7 @@ import { MealHubComponent } from './meal/meal-hub/meal-hub.component';
 import { AddMenuComponent } from './menu/add-menu/add-menu.component';
 import { MenuCardComponent } from './menu/menu-card/menu-card.component';
 import { MenuHubComponent } from './menu/menu-hub/menu-hub.component';
+import { CostReportComponent } from './reports/cost-report/cost-report.component';
 import { NutritionReportComponent } from './reports/nutrition-report/nutrition-report.component';
 import { ReportsComponent } from './reports/reports-hub/reports.component';
 import { SideNavComponent } from './side-nav/side-nav.component';
@@ -59,6 +60,7 @@ import { SideNavComponent } from './side-nav/side-nav.component';
     ChildEditMealComponent,
     ReportsComponent,
     NutritionReportComponent,
+    CostReportComponent
   ],
   imports: [
     RouterModule,
