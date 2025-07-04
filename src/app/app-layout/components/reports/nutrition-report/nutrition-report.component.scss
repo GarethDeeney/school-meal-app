@@ -1,0 +1,19 @@
+ .nutrition-reports {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin-top: 1rem;
+   width: 90%;
+ }
+
+ .chart-row {
+   display: flex;
+ }
+
+ .chartBox {
+   width: 30%;
+   border: 1px solid lightgray;
+   border-radius: 15px;
+   padding: 0.5rem;
+ }
