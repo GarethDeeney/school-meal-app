@@ -3,6 +3,13 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { HttpService } from 'src/app/services/http.service';
 
+interface Route {
+  label: string;
+  ur: string;
+  icon: string;
+  execture: () => {};
+}
+
 @Component({
   selector: 'app-side-nav',
   templateUrl: './side-nav.component.html',

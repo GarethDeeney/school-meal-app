@@ -18,10 +18,7 @@ export class ChildService {
   formGroup = new FormGroup({
     _id: new FormControl<string | undefined>(undefined),
     name: new FormControl<string | undefined>(undefined, Validators.required),
-    allergens: new FormControl<any[] | undefined>(
-      undefined,
-      Validators.required
-    ),
+    allergens: new FormControl<any[] | undefined>(undefined),
     year: new FormControl<string | undefined>(undefined),
   });
 

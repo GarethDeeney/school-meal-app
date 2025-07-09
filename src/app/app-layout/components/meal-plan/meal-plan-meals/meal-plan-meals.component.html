@@ -6,9 +6,12 @@
   </mat-expansion-panel-header>
   @for(meal of meals; track $index; let last = $last){
   <h3>{{ meal.name }}</h3>
+
   <div class="allergen-list">
+    @if(listAllergens(meal.ingredients).length > 0){
     <h4>Allergens:</h4>
     {{ listAllergens(meal.ingredients) }}
+    }
   </div>
 
   @if(!last){

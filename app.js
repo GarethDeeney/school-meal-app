@@ -3,10 +3,7 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 
-const passport = require("passport");
-const { uuid } = require("uuidv4");
 const mongoose = require("mongoose");
-const session = require("express-session");
 const port = 3000;
 
 app.use(cors());
