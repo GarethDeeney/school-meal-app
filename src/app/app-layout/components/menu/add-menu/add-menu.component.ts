@@ -25,6 +25,10 @@ export class AddMenuComponent {
   ) {}
   meals$: Observable<Meal[]> = this.mealService.getMeals$();
 
+  hasId(fg: FormGroup){
+    return !!fg.controls['_id'].value;
+  }
+
   getMealValues(fg: FormGroup) {
     return {
       _id: fg.controls['_id'].value,

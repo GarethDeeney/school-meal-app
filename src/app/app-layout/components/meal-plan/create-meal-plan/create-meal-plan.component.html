@@ -1,7 +1,7 @@
 @let formGroup = mealPlanService.formGroup;
 
 <div class="dialog-container">
-  <ng-container [formGroup]="formGroup">
+  <ng-container [formGroup]="formGroup" *ngIf="!!formGroup">
     <mat-form-field>
       <mat-label>Name</mat-label>
       <input formControlName="name" matInput placeholder="Name" />

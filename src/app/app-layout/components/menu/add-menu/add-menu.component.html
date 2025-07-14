@@ -1,5 +1,5 @@
 <div class="dialog-container">
-  <h2>Create Menu</h2>
+  <h2>{{hasId(service.formGroup) ? "Edit Menu": "Create Menu"}}</h2>
 
   <form class="add-child-form" [formGroup]="service.formGroup">
     <div class="form-row">
@@ -19,16 +19,11 @@
       </div>
 
       <div class="ingredient-list" formArrayName="meals">
-        <ng-container
-          *ngFor="let formGroup of service.meals.controls; let i = index"
-        >
+        <ng-container *ngFor="let formGroup of service.meals.controls; let i = index">
           <div class="ingredient-form" [formGroup]="formGroup">
             <mat-form-field>
               <mat-label>Meal</mat-label>
-              <mat-select
-                formControlName="meal"
-                [compareWith]="compareMeals"
-              >
+              <mat-select formControlName="meal" [compareWith]="compareMeals">
                 @for (meal of meals$ | async; track meal) {
                 <mat-option [value]="meal">{{ meal.name }}</mat-option>
                 }
@@ -36,8 +31,7 @@
             </mat-form-field>
 
             <mat-icon class="delete-btn" (click)="service.removeMeal(i)">
-              delete_forever</mat-icon
-            >
+              delete_forever</mat-icon>
           </div>
         </ng-container>
       </div>

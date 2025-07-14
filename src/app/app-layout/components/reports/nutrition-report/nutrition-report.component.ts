@@ -15,10 +15,6 @@ import { NutritionGroupComponent } from '../../child/child-details/nutrition-gro
         </div>
 
         <div class="chart-box">
-          <canvas id="energyChart"> </canvas>
-        </div>
-
-        <div class="chart-box">
           <canvas id="fatChart"> </canvas>
         </div>
       </div>
@@ -69,31 +65,14 @@ import { NutritionGroupComponent } from '../../child/child-details/nutrition-gro
 export class NutritionReportComponent implements OnInit {
   constructor(protected reportService: ReportService) {}
 
-  setDataAndChart(obj: any, nutritionType: string, chartId: string) {
-    const data = [
-      { month: 'Jan', count: obj.january[nutritionType.toLowerCase()] },
-      { month: 'Feb', count: obj.february[nutritionType.toLowerCase()] },
-      { month: 'Mar', count: obj.march[nutritionType.toLowerCase()] },
-      { month: 'Apr', count: obj.april[nutritionType.toLowerCase()] },
-      { month: 'May', count: obj.may[nutritionType.toLowerCase()] },
-      { month: 'June', count: obj.june[nutritionType.toLowerCase()] },
-      { month: 'July', count: obj.july[nutritionType.toLowerCase()] },
-      { month: 'Aug', count: obj.august[nutritionType.toLowerCase()] },
-      { month: 'Sept', count: obj.september[nutritionType.toLowerCase()] },
-      { month: 'Oct', count: obj.october[nutritionType.toLowerCase()] },
-      { month: 'Nov', count: obj.november[nutritionType.toLowerCase()] },
-      { month: 'Dec', count: obj.december[nutritionType.toLowerCase()] },
-    ];
-
-    let labelType;
-
-    if (nutritionType == 'Calories') {
-      labelType = 'kcal';
-    } else if (nutritionType == 'Energy') {
-      labelType = 'kj';
-    } else {
-      labelType = 'g';
-    }
+  setDataAndChart(
+    obj: any,
+    nutritionType: string,
+    chartId: string,
+    recommendedAmount: number
+  ) {
+    const data = this.createData(obj, nutritionType);
+    const labelType = this.setLabelType(nutritionType);
 
     return new Chart(chartId, {
       type: 'bar',
@@ -101,22 +80,50 @@ export class NutritionReportComponent implements OnInit {
         labels: data.map((row) => row.month),
         datasets: [
           {
-            label: `Average intake of ${nutritionType} (${labelType})`,
+            label: `Average (${nutritionType} (${labelType}))`,
             data: data.map((row) => row.count),
+          },
+          {
+            type: 'line',
+            label: `Recommended intake (${nutritionType} (${labelType}))`,
+            data: this.createRecommendedData(recommendedAmount),
           },
         ],
       },
     });
   }
 
+  createRecommendedData = (recommended: number) => {
+    return Array(12).fill(recommended);
+  };
+
+  createData = (data: any, nutritionType: string) => {
+    return [
+      { month: 'Jan', count: data.january[nutritionType.toLowerCase()] },
+      { month: 'Feb', count: data.february[nutritionType.toLowerCase()] },
+      { month: 'Mar', count: data.march[nutritionType.toLowerCase()] },
+      { month: 'Apr', count: data.april[nutritionType.toLowerCase()] },
+      { month: 'May', count: data.may[nutritionType.toLowerCase()] },
+      { month: 'June', count: data.june[nutritionType.toLowerCase()] },
+      { month: 'July', count: data.july[nutritionType.toLowerCase()] },
+      { month: 'Aug', count: data.august[nutritionType.toLowerCase()] },
+      { month: 'Sept', count: data.september[nutritionType.toLowerCase()] },
+      { month: 'Oct', count: data.october[nutritionType.toLowerCase()] },
+      { month: 'Nov', count: data.november[nutritionType.toLowerCase()] },
+      { month: 'Dec', count: data.december[nutritionType.toLowerCase()] },
+    ];
+  };
+
+  setLabelType = (nutritionType: string) =>
+    nutritionType == 'Calories' ? 'kcal' : 'g';
+
   ngOnInit(): void {
     this.reportService.getNutritionReport$().subscribe((val) => {
-      this.setDataAndChart(val, 'Calories', 'caloriesChart');
-      this.setDataAndChart(val, 'Energy', 'energyChart');
-      this.setDataAndChart(val, 'Fat', 'fatChart');
-      this.setDataAndChart(val, 'Saturates', 'saturatesChart');
-      this.setDataAndChart(val, 'Salt', 'saltChart');
-      this.setDataAndChart(val, 'Sugars', 'sugarChart');
+      this.setDataAndChart(val, 'Calories', 'caloriesChart', 400);
+      this.setDataAndChart(val, 'Fat', 'fatChart', 17);
+      this.setDataAndChart(val, 'Saturates', 'saturatesChart', 22);
+      this.setDataAndChart(val, 'Salt', 'saltChart', 1);
+      this.setDataAndChart(val, 'Sugars', 'sugarChart', 8);
     });
   }
 }
