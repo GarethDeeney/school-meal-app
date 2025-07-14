@@ -26,9 +26,7 @@ export class ChildService {
     return this.http
       .get<Child[]>('/api/child')
       .subscribe((children: Child[]) => {
-        this.datasource$.next(
-          children.sort((a, b) => Number(a.year) - Number(b.year))
-        );
+        this.datasource$.next(children);
       });
   }
 
