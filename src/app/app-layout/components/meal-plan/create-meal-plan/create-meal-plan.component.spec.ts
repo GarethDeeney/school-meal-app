@@ -39,6 +39,8 @@ fdescribe('CreateMealPlanComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should POST a new meal plan', () => {});
+
   it('should set meal date', () => {
     let mealsControl = new FormControl(mealsObj);
     expect(component.setMealDayValue(mealsControl).name).toEqual('Set Meal C');
