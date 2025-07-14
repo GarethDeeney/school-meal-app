@@ -5,7 +5,7 @@ const Child = require("../models/Child");
 // GET: list
 router.get("/", async (req, res) => {
   try {
-    const child = await Child.find();
+    const child = await Child.find().sort({year: 1});
     res.status(200).json(child);
   } catch (error) {
     res.status(400).json({ message: "An error occured: ", error: error });
@@ -35,7 +35,8 @@ router.get("/:id/nutrition", async (req, res) => {
   }
 });
 
-getNutrition = (child) => {
+
+const getNutrition = (child) => {
   const nutritionArr = child[0].meals.map((meal) =>
     meal.ingredients.map((ingredient) => ingredient.ingredient.nutrition)
   );
