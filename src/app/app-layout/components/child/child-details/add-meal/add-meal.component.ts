@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -7,15 +7,13 @@ import {
 } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DateTime } from 'luxon';
-import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { Allergen } from 'src/app/models/allergen';
 import { Meal } from 'src/app/models/meal';
 import { MealPlanService } from '../../../meal-plan/meal-plan-service';
 import { MealService } from '../../../meal/meal.service';
-import { ChildService } from '../../child-hub.service';
-import { MealPlan } from 'src/app/models/mealPlan';
 import { SnackbarService } from '../../../snackbar-service';
-import { Ingredient } from 'src/app/models/ingredient';
+import { ChildService } from '../../child-hub.service';
 
 @Component({
   selector: 'child-add-meal',
@@ -23,7 +21,7 @@ import { Ingredient } from 'src/app/models/ingredient';
   styleUrls: ['./add-meal.component.scss'],
   standalone: false,
 })
-export class ChildAddMealComponent {
+export class ChildAddMealComponent implements OnInit {
   constructor(
     protected childService: ChildService,
     protected dialog: MatDialog,
@@ -34,13 +32,15 @@ export class ChildAddMealComponent {
     public dialogRef: MatDialogRef<ChildAddMealComponent>,
     protected snackbarService: SnackbarService
   ) {
-    this.childAllergens = this.data.allergens.map(
-      (allergen: Allergen) => allergen._id
-    );
-
     this.addNotSchoolLunchMeals$().subscribe((val) => {
       this.otherOpt$.next(val);
     });
+  }
+
+  ngOnInit(): void {
+    this.childAllergens = this.data.allergens.map(
+      (allergen: Allergen) => allergen._id
+    );
   }
 
   close() {
@@ -91,10 +91,6 @@ export class ChildAddMealComponent {
 
         this.mealPlan$.next(mealPlan);
       });
-  }
-
-  allMeals$(mealPlan$: BehaviorSubject<any>, otherMeals: Observable<Meal[]>) {
-    combineLatest([mealPlan$, otherMeals]).subscribe(console.log);
   }
 
   getMealsLessAllergens(meals: Meal[], otherOpt: Meal[]) {
@@ -154,7 +150,7 @@ export class ChildAddMealComponent {
       complete: () => {
         this.childService.getChildMeals$(this.data.id);
         this.snackbarService.openSnackBar('Meal Selection added Successfully');
-        this.dialogRef.close();
+        this.close();
       },
       error: (err) => console.log(err),
     });

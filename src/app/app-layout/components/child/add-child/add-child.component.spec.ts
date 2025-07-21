@@ -14,7 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AddChildDetailsComponent } from './add-child.component';
 
-fdescribe('AddChildDetailsComponent', () => {
+describe('AddChildDetailsComponent', () => {
   let component: AddChildDetailsComponent;
   let fixture: ComponentFixture<AddChildDetailsComponent>;
 
