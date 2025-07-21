@@ -35,7 +35,7 @@ export class AddAllergenComponent {
 
   submit() {
     const allergen = this.getAllergenValues(this.formGroup);
-    this.dialogRef.close();
+    this.close();
     return allergen._id
       ? this.editAllergen(allergen)
       : this.addAllergen(allergen);
