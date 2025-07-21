@@ -20,7 +20,7 @@ import { ChildAddMealComponent } from './add-meal.component';
 import { Meal } from 'src/app/models/meal';
 import { DateTime } from 'luxon';
 
-fdescribe('ChildAddMealComponent', () => {
+describe('ChildAddMealComponent', () => {
   let component: ChildAddMealComponent;
   let fixture: ComponentFixture<ChildAddMealComponent>;
 
@@ -57,7 +57,7 @@ fdescribe('ChildAddMealComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should combine meal options', () => {
+  it('should combine meal options', () => {
     const dayMeals: Meal[] = [{ _id: '1', name: 'mealName', ingredients: [] }];
     const otherOpt = [
       { _id: '2', name: 'Absent', ingredients: [] },
@@ -127,7 +127,7 @@ fdescribe('ChildAddMealComponent', () => {
     expect(component.setMealPlanEntity(mealPlan)).toEqual(expectedReturn);
   });
 
-  fit('should remove allergens from meal selection', () => {
+  it('should remove allergens from meal selection', () => {
     expect(
       component.getMealsLessAllergens(meals, []).map((meal) => meal.name)
     ).toEqual(['Tofu Stir Fry', 'Stir Fry No Allergen']);
