@@ -6,6 +6,7 @@ import { SnackbarService } from '../../snackbar-service';
 import { CreateMealPlanComponent } from '../create-meal-plan/create-meal-plan.component';
 import { MealPlanService } from '../meal-plan-service';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { DateTime } from 'luxon';
 
 @Component({
   selector: 'app-meal-plan-list',
@@ -24,13 +25,11 @@ export class MealPlanListComponent {
   }
 
   setDateRange(startDate: string) {
-    const endDate = new Date(
-      new Date().setDate(new Date(startDate).getDate() + 4)
-    )
-      .toISOString()
-      .substring(0, 10);
+    const endDate = DateTime.fromISO(startDate).plus({ days: 4 }).toISODate();
     const startStr = new Date(startDate).toISOString().substring(0, 10);
-    return `${this.convertDigitIn(startStr)} - ${this.convertDigitIn(endDate)}`;
+    return `${this.convertDigitIn(startStr)} - ${this.convertDigitIn(
+      endDate!
+    )}`;
   }
 
   convertDigitIn(str: string) {

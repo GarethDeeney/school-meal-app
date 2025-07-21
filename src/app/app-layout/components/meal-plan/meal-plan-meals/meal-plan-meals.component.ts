@@ -21,7 +21,6 @@ export class MealPlanMealsComponent {
     protected dialog: MatDialog
   ) {}
 
-  // need to collate allergens from list and remove duplicates
   listAllergens(ingredients: { amount: number; ingredient: Ingredient }[]) {
     const allergenArr = ingredients
       .map((ingredient) =>

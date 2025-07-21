@@ -13,7 +13,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SideNavComponent } from '../../side-nav/side-nav.component';
 import { MealHubComponent } from './meal-hub.component';
 
-fdescribe('MealHubComponent', () => {
+describe('MealHubComponent', () => {
   let component: MealHubComponent;
   let fixture: ComponentFixture<MealHubComponent>;
 

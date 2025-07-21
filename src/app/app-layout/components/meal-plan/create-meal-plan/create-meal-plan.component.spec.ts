@@ -39,6 +39,18 @@ describe('CreateMealPlanComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should compare menu ids', () => {
+    let menu1 = { _id: '1' };
+    let menu2 = { menu: { _id: '2' } };
+    expect(component.compareMenus(menu1, menu2)).toBeFalse();
+
+    menu1 = { _id: '2' };
+    expect(component.compareMenus(menu1, menu2)).toBeTrue();
+
+    menu2 = { menu: { _id: '1' } };
+    expect(component.compareMenus(menu1, menu2)).toBeFalse();
+  });
+
   it('should set meal date', () => {
     let mealsControl = new FormControl(mealsObj);
     expect(component.setMealDayValue(mealsControl).name).toEqual('Set Meal C');
