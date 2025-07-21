@@ -9,7 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { MealPlanMealsComponent } from './meal-plan-meals.component';
 
-fdescribe('MealPlanMealsComponent', () => {
+describe('MealPlanMealsComponent', () => {
   let component: MealPlanMealsComponent;
   let fixture: ComponentFixture<MealPlanMealsComponent>;
 

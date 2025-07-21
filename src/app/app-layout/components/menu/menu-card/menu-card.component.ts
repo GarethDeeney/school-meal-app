@@ -22,14 +22,19 @@ export class MenuCardComponent {
     private snackbarService: SnackbarService
   ) {}
 
-  setIngredientList(ingredients: Ingredient[]) {
-    return ingredients.map((i: any) => i.ingredient.name).join(', ');
+  setIngredientList(ingredients: { amount: number; ingredient: Ingredient }[]) {
+    return ingredients
+      .map((i: { amount: number; ingredient: Ingredient }) => i.ingredient.name)
+      .join(', ');
   }
 
-  setAllergenList(ingredients: Ingredient[]) {
+  setAllergenList(ingredients: { amount: number; ingredient: Ingredient }[]) {
     const allergenArr =
       ingredients
-        .map((ingredient: any) => ingredient.ingredient.allergens)
+        .map(
+          (ingredient: { amount: number; ingredient: Ingredient }) =>
+            ingredient.ingredient.allergens
+        )
         .flat()
         .map((allergen) => allergen.name) ?? [];
 
