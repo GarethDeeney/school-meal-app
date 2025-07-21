@@ -19,7 +19,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ChildMealTableComponent } from './child-meal-table.component';
 
-fdescribe('ChildMealTableComponent', () => {
+describe('ChildMealTableComponent', () => {
   let component: ChildMealTableComponent;
   let fixture: ComponentFixture<ChildMealTableComponent>;
 

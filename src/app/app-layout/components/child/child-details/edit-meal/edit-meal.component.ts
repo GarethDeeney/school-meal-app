@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   MAT_DIALOG_DATA,
@@ -22,17 +22,19 @@ import { ChildService } from '../../child-hub.service';
   styleUrls: ['./edit-meal.component.scss'],
   standalone: false,
 })
-export class ChildEditMealComponent {
+export class ChildEditMealComponent implements OnInit {
   constructor(
     protected childService: ChildService,
     protected dialog: MatDialog,
     protected mealPlanService: MealPlanService,
     protected route: ActivatedRoute,
-    protected mealService: MealService,
+    public  mealService: MealService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<ChildEditMealComponent>,
     protected snackbarService: SnackbarService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.mealList$().subscribe((val) => {
       this.meals$.next(val);
     });
@@ -102,23 +104,6 @@ export class ChildEditMealComponent {
           (mealPlan: any) => mealPlan[0][dayOfWeek as keyof MealPlan].menu.meals
         )
       );
-  }
-
-  removeMealsWithAllergen(meals: Meal[]) {
-    return meals.filter((meal) => {
-      const allergens = meal.ingredients
-        .flat()
-        .map((ingredients) => ingredients.ingredient)
-        .map((ingredient) => ingredient.allergens)
-        .flat();
-
-      return (
-        !!!allergens.length ||
-        !!!allergens.find((allergen) =>
-          this.childService.isAllergenInArray(this.data.allergens, allergen)
-        )
-      );
-    });
   }
 
   getNotSchoolLunchMeals$(): Observable<Meal[]> {

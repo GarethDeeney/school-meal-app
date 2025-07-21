@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { Child } from 'src/app/models/child';
+import { SnackbarService } from '../../snackbar-service';
 import { AddChildDetailsComponent } from '../add-child/add-child.component';
 import { ChildService } from '../child-hub.service';
-import { FormControl, Validators } from '@angular/forms';
-import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-child-hub',
