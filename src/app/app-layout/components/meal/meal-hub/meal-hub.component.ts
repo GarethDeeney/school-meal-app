@@ -32,7 +32,7 @@ export class MealHubComponent {
           (meal: Meal) =>
             !this.checkHomeForLunch(meal) &&
             !this.checkPackedLunch(meal) &&
-            !this.checkHomeForAbsence(meal)
+            !this.checkAbsence(meal)
         )
       )
     );
@@ -46,7 +46,7 @@ export class MealHubComponent {
     return meal.name == this.HOME_FOR_LUNCH;
   };
 
-  checkHomeForAbsence = (meal: Meal) => {
+  checkAbsence = (meal: Meal) => {
     return meal.name == this.ABSENT;
   };
 

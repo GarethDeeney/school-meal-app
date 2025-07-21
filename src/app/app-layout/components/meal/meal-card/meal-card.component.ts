@@ -1,13 +1,11 @@
-import { Component, Input, input, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { Allergen } from 'src/app/models/allergen';
+import { Ingredient } from 'src/app/models/ingredient';
 import { Meal } from 'src/app/models/meal';
-import { Nutrition } from 'src/app/models/Nutrition';
+import { SnackbarService } from '../../snackbar-service';
 import { AddMealComponent } from '../add-meal/add-meal.component';
 import { MealService } from '../meal.service';
-import { Ingredient } from 'src/app/models/ingredient';
-import { FormArray, FormControl, FormGroup } from '@angular/forms';
-import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-meal-card',
@@ -28,9 +26,6 @@ export class MealCardComponent {
     this.dialog.open(AddMealComponent, {
       maxHeight: '100%',
     });
-    console.log('clicked');
-    // open edit dialog
-    // after closed save the updated meal.
   };
 
   createIngredientForm(ingredient: {

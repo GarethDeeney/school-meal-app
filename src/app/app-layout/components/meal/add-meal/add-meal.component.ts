@@ -33,7 +33,6 @@ export class AddMealComponent {
       ingredients: fg.controls['ingredients'].value,
       vegetarian: fg.controls['vegetarian'].value,
       vegan: fg.controls['vegan'].value,
-
     };
   }
 
