@@ -119,6 +119,7 @@ export class NutritionReportComponent implements OnInit {
 
   ngOnInit(): void {
     this.reportService.getNutritionReport$().subscribe((val) => {
+      console.log(val)
       this.setDataAndChart(val, 'Calories', 'caloriesChart', 400);
       this.setDataAndChart(val, 'Fat', 'fatChart', 17);
       this.setDataAndChart(val, 'Saturates', 'saturatesChart', 22);
