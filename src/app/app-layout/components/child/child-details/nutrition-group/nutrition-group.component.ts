@@ -28,14 +28,13 @@ export class NutritionGroupComponent {
 
     const percentage = (this.nutrition / this.recommended) * 100;
     let colour;
-    if (percentage < 70 && percentage > 50) {
-      colour = 'yellow';
-    } else if (percentage < 50) {
+    if (percentage > 70) {
       colour = 'green';
+    } else if (percentage < 70 && percentage > 50) {
+      colour = 'yellow';
     } else {
       colour = 'red';
     }
-
     return colour;
   }
 }
