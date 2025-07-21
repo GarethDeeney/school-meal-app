@@ -15,7 +15,7 @@ import { ChildHubComponent } from './child-hub.component';
 import { SideNavComponent } from '../../side-nav/side-nav.component';
 import { MatTableModule } from '@angular/material/table';
 
-fdescribe('ChildHubComponent', () => {
+describe('ChildHubComponent', () => {
   let component: ChildHubComponent;
   let fixture: ComponentFixture<ChildHubComponent>;
 

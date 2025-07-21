@@ -49,7 +49,7 @@ export class AddIngredientComponent {
 
   submit() {
     const ingredient = this.getIngredientValues(this.formGroup);
-    this.dialogRef.close();
+    this.close();
     return ingredient._id
       ? this.editIngredient(ingredient)
       : this.addIngredient(ingredient);

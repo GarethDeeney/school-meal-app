@@ -63,13 +63,13 @@ describe('AddChildDetailsComponent', () => {
   it('should compare allergen ids', () => {
     let allergen1 = { _id: '1' };
     let allergen2 = { _id: '2' };
-    expect(component.compareAllergens(allergen1, allergen2)).toBeFalse;
+    expect(component.compareAllergens(allergen1, allergen2)).toBeFalse();
 
     allergen1 = { _id: '2' };
-    expect(component.compareAllergens(allergen1, allergen2)).toBeTrue;
+    expect(component.compareAllergens(allergen1, allergen2)).toBeTrue();
 
     allergen2 = { _id: '1' };
-    expect(component.compareAllergens(allergen1, allergen2)).toBeFalse;
+    expect(component.compareAllergens(allergen1, allergen2)).toBeFalse();
   });
 
  it('should get form group values', () => {
