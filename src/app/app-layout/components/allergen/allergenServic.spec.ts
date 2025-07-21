@@ -6,7 +6,7 @@ import { TestBed } from '@angular/core/testing';
 import { AllergenService } from './allergenService';
 import { of } from 'rxjs';
 
-fdescribe('AllergenService', () => {
+describe('AllergenService', () => {
   let service: AllergenService;
 
   beforeEach(() => {

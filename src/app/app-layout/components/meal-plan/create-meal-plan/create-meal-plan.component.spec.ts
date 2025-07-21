@@ -11,7 +11,7 @@ import { CreateMealPlanComponent } from './create-meal-plan.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 
-fdescribe('CreateMealPlanComponent', () => {
+describe('CreateMealPlanComponent', () => {
   let component: CreateMealPlanComponent;
   let fixture: ComponentFixture<CreateMealPlanComponent>;
 
@@ -38,8 +38,6 @@ fdescribe('CreateMealPlanComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
-  it('should POST a new meal plan', () => {});
 
   it('should set meal date', () => {
     let mealsControl = new FormControl(mealsObj);
