@@ -45,7 +45,7 @@ export class AddChildDetailsComponent {
 
   submit() {
     const child = this.getChildValues(this.formGroup);
-    this.dialogRef.close();
+    this.close();
     return child._id ? this.editChild(child) : this.addChild(child);
   }
 
