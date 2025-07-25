@@ -33,7 +33,7 @@ export class AddChildDetailsComponent {
       name: fg.controls['name'].value,
       allergens: fg.controls['allergens'].value,
       year: fg.controls['year'].value,
-      meals: this.data.meals ?? [],
+      meals: this.data?.meals ?? [],
     };
   }
 

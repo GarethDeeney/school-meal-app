@@ -52,6 +52,10 @@ export class ChildHubComponent {
     });
   }
 
+  setClassName(name: string) {
+    return `menu-${name.replace(' ', '-').toLowerCase()}`;
+  }
+
   deleteChild(id: string) {
     return this.childService.deleteChild$(id).subscribe({
       complete: () => {

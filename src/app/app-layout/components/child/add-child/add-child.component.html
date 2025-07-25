@@ -17,7 +17,7 @@
     <div class="form-row">
       <mat-form-field>
         <mat-label>Allergies</mat-label>
-        <mat-select formControlName="allergens" multiple [compareWith]="compareAllergens">
+        <mat-select class="allergy-list" formControlName="allergens" multiple [compareWith]="compareAllergens">
           @for (allergen of allergens$ | async; track allergen) {
           <mat-option [value]="allergen">{{ allergen.name }}</mat-option>
           }
