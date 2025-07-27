@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { setClassName } from 'src/app/helpers';
 import { Allergen } from 'src/app/models/allergen';
+import { SnackbarService } from '../../snackbar-service';
 import { AddAllergenComponent } from '../add-allergen/add-allergen.component';
 import { AllergenService } from '../allergenService';
-import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-allergen-hub',
@@ -66,4 +67,6 @@ export class AllergenHubComponent {
       error: (err) => console.log(err),
     });
   }
+
+  setClassName = setClassName;
 }

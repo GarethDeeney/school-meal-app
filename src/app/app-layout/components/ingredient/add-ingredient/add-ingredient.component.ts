@@ -58,7 +58,7 @@ export class AddIngredientComponent {
   addIngredient(ingredient: Ingredient) {
     return this.ingredientService.addIngredient$(ingredient).subscribe({
       complete: () => {
-        this.ingredientService.getIngredients$();
+        this.ingredientService.setDataSource();
         this.snackbarService.openSnackBar('Ingredient Created Successfully');
       },
       error: (err) => console.log(err),
@@ -68,7 +68,7 @@ export class AddIngredientComponent {
   editIngredient(ingredient: Ingredient) {
     return this.ingredientService.updateIngredient$(ingredient).subscribe({
       complete: () => {
-        this.ingredientService.getIngredients$();
+        this.ingredientService.setDataSource();
         this.snackbarService.openSnackBar('Ingredient Updated Successfully');
       },
       error: (err) => console.log(err),

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { setClassName } from 'src/app/helpers';
 import { Ingredient } from 'src/app/models/ingredient';
+import { SnackbarService } from '../../snackbar-service';
 import { AddIngredientComponent } from '../add-ingredient/add-ingredient.component';
 import { IngredientService } from '../ingredient.service';
-import { SnackbarService } from '../../snackbar-service';
 
 @Component({
   selector: 'app-ingredient-hub',
@@ -63,4 +64,6 @@ export class IngredientHubComponent {
       error: (err) => console.log(err),
     });
   }
+    setClassName = setClassName;
+  
 }

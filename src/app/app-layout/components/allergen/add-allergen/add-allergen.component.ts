@@ -44,7 +44,7 @@ export class AddAllergenComponent {
   addAllergen(allergen: Allergen) {
     return this.allergenService.addAllergen$(allergen).subscribe({
       complete: () => {
-        this.allergenService.getAllergens$();
+        this.allergenService.setDataSource();
         this.snackbarService.openSnackBar('Allergen Created Successfully');
       },
       error: (err) => console.log(err),
@@ -54,7 +54,7 @@ export class AddAllergenComponent {
   editAllergen(allergen: Allergen) {
     return this.allergenService.updateAllergen$(allergen).subscribe({
       complete: () => {
-        this.allergenService.getAllergens$();
+        this.allergenService.setDataSource();
         this.snackbarService.openSnackBar('Allergen Updated Successfully');
       },
       error: (err) => console.log(err),

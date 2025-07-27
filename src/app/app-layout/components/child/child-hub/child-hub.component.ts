@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { setClassName } from 'src/app/helpers';
 import { Child } from 'src/app/models/child';
 import { SnackbarService } from '../../snackbar-service';
 import { AddChildDetailsComponent } from '../add-child/add-child.component';
@@ -52,9 +53,7 @@ export class ChildHubComponent {
     });
   }
 
-  setClassName(name: string) {
-    return `menu-${name.replace(' ', '-').toLowerCase()}`;
-  }
+  setClassName= setClassName
 
   deleteChild(id: string) {
     return this.childService.deleteChild$(id).subscribe({
