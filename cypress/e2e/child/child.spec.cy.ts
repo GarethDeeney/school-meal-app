@@ -1,4 +1,4 @@
-describe('Child Integration Test', () => {
+describe('Child Integration Tests', () => {
   beforeEach(() => {
     cy.intercept('GET', '*/child').as('childRequest');
 
@@ -14,7 +14,7 @@ describe('Child Integration Test', () => {
     cy.wait('@childRequest');
   });
 
-  it('View Child Record', () => {
+  it('GET Child Record', () => {
     cy.intercept('GET', '*/child/*').as('childRequest');
     cy.intercept('GET', '*/child/*/nutrition').as('nutritionRequest');
 
@@ -28,7 +28,7 @@ describe('Child Integration Test', () => {
     cy.get('app-child-meal-table').should('exist');
   });
 
-  it('View Child Hub', () => {
+  it('GET Child Hub', () => {
     cy.get('table')
       .should('exist')
       .then((table) => {
@@ -37,7 +37,7 @@ describe('Child Integration Test', () => {
       });
   });
 
-  it('Add Child', () => {
+  it('POST Child', () => {
     cy.intercept('POST', '*/child').as('childAddRequest');
 
     cy.get('button').contains('Add Child').click();
@@ -46,7 +46,7 @@ describe('Child Integration Test', () => {
 
     cy.get('mat-form-field').contains('Name').click().type('Test Name');
     cy.get('mat-form-field').contains('Year').type('1');
-    cy.get('mat-select.allergy-list').click();
+    cy.get('mat-select').click();
     cy.get('mat-option').contains('Peanuts').click();
     cy.get('body').click();
 
@@ -59,7 +59,7 @@ describe('Child Integration Test', () => {
     cy.wait('@childAddRequest');
   });
 
-  it('Edit Child', () => {
+  it('PUT Child', () => {
     cy.intercept('PUT', '*/child/*').as('childEditRequest');
 
     cy.get('button.menu-test-name').click();
@@ -80,12 +80,79 @@ describe('Child Integration Test', () => {
     cy.wait('@childEditRequest');
   });
 
-  it('Delete Child', () => {
+  it('DELETE Child', () => {
     cy.intercept('DELETE', '*/child/*').as('childDeleteRequest');
     cy.get('button.menu-test-name').click();
     cy.get('div.mat-mdc-menu-content').should('exist');
     cy.get('button').contains('Delete').click();
 
     cy.wait('@childDeleteRequest');
+  });
+});
+
+describe.skip('Child End to End Tests', () => {
+  it('Add Meals for Child', () => {
+    // Expected API Calls
+    cy.intercept('GET', '*/child').as('childRequest');
+    cy.intercept('GET', '*/child/*').as('childRequest');
+    cy.intercept('POST', '*/child').as('childAddRequest');
+    cy.intercept('PUT', '*/child/*').as('childEditRequest');
+    cy.intercept('DELETE', '*/child/*').as('childDeleteRequest');
+    cy.intercept('GET', '*/child/*/nutrition').as('nutritionRequest');
+
+    // Log into App
+    cy.visit('/');
+    cy.get('[class="log-in-button"]').click();
+    cy.url().should('include', '/');
+    cy.get('mat-sidenav-container').should('exist');
+
+    cy.get('div.route-list').within((items) => {
+      cy.get('div.route-item').contains('Child').click();
+    });
+
+    cy.wait('@childRequest');
+
+    cy.get('table')
+      .should('exist')
+      .then((table) => {
+        const rows = table.find('tr');
+        expect(rows.length).to.be.greaterThan(0);
+      });
+
+    // View Child Record
+    cy.get('td').contains('Sophia Johnson').click();
+    // cy.wait(500);
+    cy.wait('@childRequest');
+    cy.wait('@nutritionRequest');
+    cy.get('div.header-text h2').should('exist');
+    cy.get('div.header-text h2').should('exist');
+    cy.get('div.nutrition-section').should('exist');
+    cy.get('app-child-meal-table').should('exist');
+
+    // Add Meal to Child?
+
+    // Edit Childs meals
+
+    //  make sure no allergens are available to choose?
+
+    // View Child Hub
+
+    // Add Child to Hub
+
+    // View Child Record
+
+    // Edit Child
+
+    // Update Name
+
+    // Update Allergens
+
+    // Cancel Button Click
+
+    // Edit again
+
+    // View Child Record with Updated Information
+
+    // Return to hub and delete child
   });
 });

@@ -14,7 +14,7 @@ describe('Allegen Integration Tests', () => {
     cy.wait('@allergenRequest');
   });
 
-  it('View Allergen Hub', () => {
+  it('GET Allergen Hub', () => {
     cy.get('div.action-header').contains('Allergen Hub');
     cy.get('table')
       .should('exist')
@@ -24,7 +24,7 @@ describe('Allegen Integration Tests', () => {
       });
   });
 
-  it('Add Allergen', () => {
+  it('POST Allergen', () => {
     cy.intercept('POST', '*/allergen').as('allergenAddRequest');
 
     cy.get('button').contains('Add Allergen').click();
@@ -46,7 +46,7 @@ describe('Allegen Integration Tests', () => {
     cy.wait('@allergenAddRequest');
   });
 
-  it('Edit Allegen', () => {
+  it('PUT Allegen', () => {
     cy.intercept('PUT', '*/allergen/*').as('allergenEditRequest');
 
     cy.get('button.menu-test-allergen').click();
@@ -67,7 +67,7 @@ describe('Allegen Integration Tests', () => {
     cy.wait('@allergenEditRequest');
   });
 
-  it('Delete Allegen', () => {
+  it('DELETE Allegen', () => {
     cy.intercept('DELETE', '*/allergen/*').as('allergenDeleteRequest');
     cy.get('button.menu-test-allergen').click();
     cy.get('div.mat-mdc-menu-content').should('exist');

@@ -14,7 +14,7 @@ describe('Ingredient Integration Tests', () => {
     cy.wait('@ingredientRequest');
   });
 
-  it.only('View Ingredient Hub', () => {
+  it('GET Ingredient Hub', () => {
     cy.get('div.action-header').contains('Ingredient Hub');
     cy.get('table')
       .should('exist')
@@ -24,7 +24,7 @@ describe('Ingredient Integration Tests', () => {
       });
   });
 
-  it.only('Add Ingredient', () => {
+  it.only('POST Ingredient', () => {
     cy.intercept('POST', '*/ingredient').as('ingredientAddRequest');
 
     cy.get('button').contains('Add Ingredient').click();
@@ -52,7 +52,7 @@ describe('Ingredient Integration Tests', () => {
     cy.wait('@ingredientAddRequest');
   });
 
-  it.only('Edit Ingredient', () => {
+  it.only('PUT Ingredient', () => {
     cy.intercept('PUT', '*/ingredient/*').as('ingredientEditRequest');
 
     cy.get('button.menu-test-ingredient').click();
@@ -73,7 +73,7 @@ describe('Ingredient Integration Tests', () => {
     cy.wait('@ingredientEditRequest');
   });
 
-  it.only('Delete Ingredient', () => {
+  it.only('DELETE Ingredient', () => {
     cy.intercept('DELETE', '*/ingredient/*').as('ingredientDeleteRequest');
     cy.get('button.menu-test-ingredient').click();
     cy.get('div.mat-mdc-menu-content').should('exist');
