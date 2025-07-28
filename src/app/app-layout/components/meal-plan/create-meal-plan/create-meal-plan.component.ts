@@ -83,7 +83,7 @@ export class CreateMealPlanComponent {
       complete: () => {
         this.dialogRef.close();
         this.mealPlanService.setMealsPlans();
-        this.snackbarService.openSnackBar('Meal Created Successfully');
+        this.snackbarService.openSnackBar('Meal Plan Created Successfully');
       },
       error: (err) => console.log(err),
     });
@@ -108,7 +108,7 @@ export class CreateMealPlanComponent {
       complete: () => {
         this.dialogRef.close();
         this.mealPlanService.setMealsPlans();
-        this.snackbarService.openSnackBar('Meal Updated Successfully');
+        this.snackbarService.openSnackBar('Meal Plan Updated Successfully');
       },
       error: (err) => console.log(err),
     });

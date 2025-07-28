@@ -10,16 +10,9 @@
     <p>Please select the Monday of the week you wish to select meals for.</p>
     <mat-form-field>
       <mat-label>Select initial date</mat-label>
-      <input
-        formControlName="startDate"
-        matInput
-        [matDatepickerFilter]="myFilter"
-        [matDatepicker]="picker"
-      />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="picker"
-      ></mat-datepicker-toggle>
+      <input formControlName="startDate" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker"
+        class="date" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
@@ -29,7 +22,7 @@
 
     <mat-form-field>
       <mat-label>Monday</mat-label>
-      <mat-select formControlName="monday" [compareWith]="compareMenus">
+      <mat-select formControlName="monday" [compareWith]="compareMenus" class="monday">
         @for (menu of menus$ | async; track menu) {
 
         <mat-option [value]="menu">{{ menu.name }}</mat-option>
@@ -39,7 +32,7 @@
 
     <mat-form-field>
       <mat-label>Tuesday</mat-label>
-      <mat-select formControlName="tuesday" [compareWith]="compareMenus">
+      <mat-select formControlName="tuesday" [compareWith]="compareMenus" class="tuesday">
         @for (menu of menus$ | async; track menu) {
         <mat-option [value]="menu">{{ menu.name }}</mat-option>
         }
@@ -48,7 +41,7 @@
 
     <mat-form-field>
       <mat-label>Wednesday</mat-label>
-      <mat-select formControlName="wednesday" [compareWith]="compareMenus">
+      <mat-select formControlName="wednesday" [compareWith]="compareMenus" class="wednesday">
         @for (menu of menus$ | async; track menu) {
         <mat-option [value]="menu">{{ menu.name }}</mat-option>
         }
@@ -57,7 +50,7 @@
 
     <mat-form-field>
       <mat-label>Thursday</mat-label>
-      <mat-select formControlName="thursday" [compareWith]="compareMenus">
+      <mat-select formControlName="thursday" [compareWith]="compareMenus" class="thursday">
         @for (menu of menus$ | async; track menu) {
         <mat-option [value]="menu">{{ menu.name }}</mat-option>
         }
@@ -66,7 +59,7 @@
 
     <mat-form-field>
       <mat-label>Friday</mat-label>
-      <mat-select formControlName="friday" [compareWith]="compareMenus">
+      <mat-select formControlName="friday" [compareWith]="compareMenus" class="friday">
         @for (menu of menus$ | async; track menu) {
         <mat-option [value]="menu">{{ menu.name }}</mat-option>
         }
@@ -76,6 +69,6 @@
 
   <div class="buttons">
     <button mat-button (click)="close()">Cancel</button>
-    <button (click)="submit()" class="submit-btn">Submit</button>
+    <button (click)="submit()" class="submit-btn">Save</button>
   </div>
 </div>

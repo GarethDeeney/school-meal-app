@@ -54,8 +54,7 @@ export class MealPlanService {
     this.formGroup = new FormGroup({
       _id: new FormControl<string | undefined>(mealPlan?._id),
       startDate: new FormControl<Date | undefined>(
-        mealPlan?.startDate,
-        this.checkFutureDate()
+        mealPlan?.startDate
       ),
       name: new FormControl<string | undefined>(
         mealPlan?.name,
@@ -84,25 +83,4 @@ export class MealPlanService {
     });
   };
 
-  convertToDateTime = (date: string | Object) => {
-    return typeof date == 'object'
-      ? DateTime.fromISO((date as Date).toISOString()).startOf('day')
-      : DateTime.fromISO(date).startOf('day');
-  };
-
-  checkFutureDate(): ValidatorFn {
-    return (control: AbstractControl): ValidationErrors | null => {
-      if (!control.untouched && !control.pristine) {
-        const startDate: DateTime = this.convertToDateTime(control.value);
-        const notBeforeDate: DateTime = DateTime.now()
-          .startOf('week')
-          .startOf('day')
-          .plus({ weeks: 3 });
-
-        return startDate < notBeforeDate ? { isBefore: true } : null;
-      } else {
-        return null;
-      }
-    };
-  }
 }
