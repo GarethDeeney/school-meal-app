@@ -1,3 +1,5 @@
+import { addIngredient } from "../helpers";
+
 describe('Meal Integration Tests', () => {
   beforeEach(() => {
     cy.intercept('GET', '*/meal').as('mealRequest');

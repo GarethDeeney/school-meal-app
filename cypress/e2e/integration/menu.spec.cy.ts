@@ -1,3 +1,5 @@
+import { addMealToMenu } from "../helpers";
+
 describe('Menu Integration Tests', () => {
   beforeEach(() => {
     cy.intercept('GET', '*/menu').as('menuRequest');

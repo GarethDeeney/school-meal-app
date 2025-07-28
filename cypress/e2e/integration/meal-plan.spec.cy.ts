@@ -1,3 +1,5 @@
+import { selectMenu } from "../helpers";
+
 describe('Meal Plan Integration Tests', () => {
   beforeEach(() => {
     cy.intercept('GET', '*/mealplan').as('mealplanRequest');
