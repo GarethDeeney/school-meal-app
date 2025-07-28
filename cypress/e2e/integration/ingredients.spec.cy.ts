@@ -14,7 +14,7 @@ describe('Ingredient Integration Tests', () => {
     cy.wait('@ingredientRequest');
   });
 
-  it('GET Ingredient Hub', () => {
+  it('GET Ingredients', () => {
     cy.get('div.action-header').contains('Ingredient Hub');
     cy.get('table')
       .should('exist')

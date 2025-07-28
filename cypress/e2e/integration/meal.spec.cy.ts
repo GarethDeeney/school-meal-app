@@ -14,11 +14,11 @@ describe('Meal Integration Tests', () => {
     cy.wait('@mealRequest');
   });
 
-  it('View Meal Hub', () => {
+  it('GET Meals', () => {
     cy.get('div.action-header').contains('Meal Hub');
   });
 
-  it('Add Ingredient', () => {
+  it('POST Meal', () => {
     cy.intercept('POST', '*/meal').as('mealAddRequest');
 
     cy.get('button').contains('Add Meal').click();
@@ -44,7 +44,7 @@ describe('Meal Integration Tests', () => {
     cy.wait('@mealAddRequest');
   });
 
-  it('Edit Ingredient', () => {
+  it('PUT Meal', () => {
     cy.intercept('PUT', '*/meal/*').as('mealEditRequest');
 
     cy.get('div.meal-card-header h2:contains(Test Meal)').parent('div').within(() => {
@@ -64,7 +64,7 @@ describe('Meal Integration Tests', () => {
     cy.wait('@mealEditRequest');
   });
 
-  it('Delete Ingredient', () => {
+  it('DELETE Meal', () => {
     cy.intercept('DELETE', '*/meal/*').as('mealDeleteRequest');
     cy.get('div.meal-card-header h2:contains(Test Meal 1)').parent('div').within(() => {
       cy.get('mat-icon:contains(delete)').click();

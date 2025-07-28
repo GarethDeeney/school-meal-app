@@ -14,11 +14,11 @@ describe('Menu Integration Tests', () => {
     cy.wait('@menuRequest');
   });
 
-  it.only('View Menu Hub', () => {
+  it('GET Menus', () => {
     cy.get('div.action-header').contains('Menus');
   });
 
-  it.only('Add Ingredient', () => {
+  it('POST Menu', () => {
     cy.intercept('POST', '*/menu').as('menuAddRequest');
 
     cy.get('button').contains('Create Menu').click();
@@ -53,7 +53,7 @@ describe('Menu Integration Tests', () => {
     cy.wait('@menuAddRequest');
   });
 
-  it.only('Edit Ingredient', () => {
+  it('PUT Menu', () => {
     cy.intercept('PUT', '*/menu/*').as('menuEditRequest');
 
     cy.get('div.icons')
@@ -77,7 +77,7 @@ describe('Menu Integration Tests', () => {
     cy.wait('@menuEditRequest');
   });
 
-  it.only('Delete Ingredient', () => {
+  it('DELETE Menu', () => {
     cy.intercept('DELETE', '*/menu/*').as('menuDeleteRequest');
 
     cy.get('div.icons')

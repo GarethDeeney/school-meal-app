@@ -14,7 +14,7 @@ describe('Allegen Integration Tests', () => {
     cy.wait('@allergenRequest');
   });
 
-  it('GET Allergen Hub', () => {
+  it('GET Allergens', () => {
     cy.get('div.action-header').contains('Allergen Hub');
     cy.get('table')
       .should('exist')
