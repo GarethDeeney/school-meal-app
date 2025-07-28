@@ -57,7 +57,7 @@ export class AddMenuComponent {
         this.service.getMenus$().subscribe((menus) => {
           this.service.menus$.next(menus);
         });
-        this.snackbarService.openSnackBar('Menu Create Successful');
+        this.snackbarService.openSnackBar('Menu Created Successfully');
       },
       error: (err) => console.log(err),
     });

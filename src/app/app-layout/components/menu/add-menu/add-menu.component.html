@@ -23,7 +23,11 @@
           <div class="ingredient-form" [formGroup]="formGroup">
             <mat-form-field>
               <mat-label>Meal</mat-label>
-              <mat-select formControlName="meal" [compareWith]="compareMeals">
+              <mat-select
+              formControlName="meal"
+              [compareWith]="compareMeals"
+              class="meal-{{service.meals.controls.indexOf(formGroup) + 1}}"
+              >
                 @for (meal of meals$ | async; track meal) {
                 <mat-option [value]="meal">{{ meal.name }}</mat-option>
                 }
