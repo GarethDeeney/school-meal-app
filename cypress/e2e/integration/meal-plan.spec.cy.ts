@@ -88,7 +88,4 @@ describe('Meal Plan Integration Tests', () => {
   });
 });
 
-const selectMenu = (day: string, setMeal: string) => {
-  cy.get(`mat-select.${day}`).click();
-  cy.get('mat-option').contains(`Set Meal ${setMeal}`).click();
-};
+

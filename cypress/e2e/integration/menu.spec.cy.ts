@@ -90,7 +90,3 @@ describe('Menu Integration Tests', () => {
   });
 });
 
-const addMealToMenu = (index: string, meal: string) => {
-  cy.get(`mat-select.meal-${index}`).click();
-  cy.get('mat-option').contains(`${meal}`).click();
-};
