@@ -14,7 +14,6 @@ describe('Create meal plan and add to child', () => {
     cy.intercept('POST', '*/child/*/meal').as('addMealRequest');
     cy.intercept('PUT', '*/child/*/meal').as('editMealRequest');
 
-    // navigate to app
     cy.visit('/');
     cy.get('[class="log-in-button"]').click();
     cy.url().should('include', '/');
