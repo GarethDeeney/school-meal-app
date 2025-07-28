@@ -6,7 +6,7 @@
     <p>Please select the Monday of the week you wish to select meals for.</p>
     <mat-form-field>
       <mat-label>Select menu date</mat-label>
-      <input formControlName="start" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" />
+      <input formControlName="start" matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" class="date" />
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -29,7 +29,7 @@
     <div class="meal-plan-form" [formGroup]="mealPlanFormGroup">
       <mat-form-field>
         <mat-label>Monday</mat-label>
-        <mat-select formControlName="monday" [compareWith]="compareMeals">
+        <mat-select formControlName="monday" [compareWith]="compareMeals" class="monday">
           @for (meal of mondayMeals; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }
@@ -38,7 +38,7 @@
 
       <mat-form-field>
         <mat-label>Tuesday</mat-label>
-        <mat-select formControlName="tuesday" [compareWith]="compareMeals">
+        <mat-select formControlName="tuesday" [compareWith]="compareMeals" class="tuesday">
           @for (meal of tuesdayMeals; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }
@@ -47,7 +47,7 @@
 
       <mat-form-field>
         <mat-label>Wednesday</mat-label>
-        <mat-select formControlName="wednesday" [compareWith]="compareMeals">
+        <mat-select formControlName="wednesday" [compareWith]="compareMeals" class="wednesday">
           @for (meal of wednesdayMeals; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }
@@ -56,7 +56,7 @@
 
       <mat-form-field>
         <mat-label>Thursday</mat-label>
-        <mat-select formControlName="thursday" [compareWith]="compareMeals">
+        <mat-select formControlName="thursday" [compareWith]="compareMeals" class="thursday">
           @for (meal of thursdayMeals; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }
@@ -65,7 +65,7 @@
 
       <mat-form-field>
         <mat-label>Friday</mat-label>
-        <mat-select formControlName="friday" [compareWith]="compareMeals">
+        <mat-select formControlName="friday" [compareWith]="compareMeals" class="friday">
           @for (meal of fridayMeals; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }

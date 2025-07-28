@@ -7,7 +7,7 @@
     <div class="meal-plan-form" [formGroup]="formGroup">
       <mat-form-field>
         <mat-label>Meal Selection</mat-label>
-        <mat-select formControlName="meal" [compareWith]="compareMeals">
+        <mat-select formControlName="meal" [compareWith]="compareMeals" class="meal-selection">
           @for (meal of meals$ | async; track meal) {
           <mat-option [value]="meal">{{ meal.name }}</mat-option>
           }
