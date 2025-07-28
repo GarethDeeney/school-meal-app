@@ -9,7 +9,6 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
-const customerRoutes = require("./backend/routes/customers");
 const childRoutes = require("./backend/routes/child");
 const ingredientRoutes = require("./backend/routes/ingredients");
 const allergenRoutes = require("./backend/routes/allergy");
@@ -18,7 +17,6 @@ const menuRoutes = require("./backend/routes/menu");
 const mealPlanRoutes = require("./backend/routes/mealPlan");
 const reportRoutes = require("./backend/routes/reports");
 
-app.use("/api/customers", customerRoutes);
 app.use("/api/child", childRoutes);
 app.use("/api/allergen", allergenRoutes);
 app.use("/api/ingredient", ingredientRoutes);
